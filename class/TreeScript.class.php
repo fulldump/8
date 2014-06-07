@@ -39,13 +39,13 @@
 		}
 
 		private function textScope() {
-			$find = $p = mb_strpos($this->code,'[[',$this->i);
+			$find = $p = mb_strpos($this->code,'[[',$this->i, $this->encoding);
 			if ($find===false) {
 				$p = $this->code_length;
 			}
 			$this->tokens[] = array(
 				'type'=>'text',
-				'data'=>mb_substr($this->code,$this->i, $p-$this->i),
+				'data'=>mb_substr($this->code,$this->i, $p-$this->i, $this->encoding),
 			);
 
 			$this->i = $p+2;
@@ -61,8 +61,8 @@
 		}
 
 		private function tagStart() {
-			$c = mb_substr($this->code, $this->i, 1);
-			$cc = mb_substr($this->code, $this->i, 2);
+			$c = mb_substr($this->code, $this->i, 1, $this->encoding);
+			$cc = mb_substr($this->code, $this->i, 2, $this->encoding);
 
 			if ($c == ' ' || $c == "\n" || $c == "\t" || $cc == ']]') {
 				$this->comment();
@@ -74,8 +74,8 @@
 		}
 
 		private function tagName() {
-			$c = mb_substr($this->code, $this->i, 1);
-			$cc = mb_substr($this->code, $this->i, 2);
+			$c = mb_substr($this->code, $this->i, 1, $this->encoding);
+			$cc = mb_substr($this->code, $this->i, 2, $this->encoding);
 
 			if ($c == ' ' || $c == "\n" || $c == "\t") {
 				$this->i++;
@@ -95,8 +95,8 @@
 		}
 
 		private function tagAttributeStart() {
-			$c = mb_substr($this->code, $this->i, 1);
-			$cc = mb_substr($this->code, $this->i, 2);
+			$c = mb_substr($this->code, $this->i, 1, $this->encoding);
+			$cc = mb_substr($this->code, $this->i, 2, $this->encoding);
 
 			if ($c == ' ' || $c == "\n" || $c == "\t") {
 				$this->i++;
@@ -116,8 +116,8 @@
 		}
 
 		private function tagAttribute($space=false) {
-			$c = mb_substr($this->code, $this->i, 1);
-			$cc = mb_substr($this->code, $this->i, 2);
+			$c = mb_substr($this->code, $this->i, 1, $this->encoding);
+			$cc = mb_substr($this->code, $this->i, 2, $this->encoding);
 
 			if ($c == ' ' || $c == "\n" || $c == "\t") {
 				$this->i++;
@@ -143,8 +143,8 @@
 		}
 
 		private function tagValueStart() {
-			$c = mb_substr($this->code, $this->i, 1);
-			$cc = mb_substr($this->code, $this->i, 2);
+			$c = mb_substr($this->code, $this->i, 1, $this->encoding);
+			$cc = mb_substr($this->code, $this->i, 2, $this->encoding);
 
 			$this->value = '';
 
@@ -171,8 +171,8 @@
 		}
 
 		private function tagValue() {
-			$c = mb_substr($this->code, $this->i, 1);
-			$cc = mb_substr($this->code, $this->i, 2);
+			$c = mb_substr($this->code, $this->i, 1, $this->encoding);
+			$cc = mb_substr($this->code, $this->i, 2, $this->encoding);
 
 			if ($c == ' ' || $c == "\n" || $c == "\t") {
 				$this->token['data'][$this->attribute] = $this->value;
@@ -190,8 +190,8 @@
 		}
 
 		private function tagValueQuotes(&$quote) {
-			$c = mb_substr($this->code, $this->i, 1);
-			$cc = mb_substr($this->code, $this->i, 2);
+			$c = mb_substr($this->code, $this->i, 1, $this->encoding);
+			$cc = mb_substr($this->code, $this->i, 2, $this->encoding);
 
 			if ($c == $quote) {
 				$this->i++;
@@ -199,7 +199,7 @@
 				$this->tagAttributeStart();
 			} else if ($cc == '\\\\' || $cc == '\\"' || $cc == '\\\'') {
 				$this->i++;
-				$d = mb_substr($this->code, $this->i, 1);
+				$d = mb_substr($this->code, $this->i, 1, $this->encoding);
 				$this->value .= $d;
 				$this->i++;
 				$this->tagValueQuotes($quote);
@@ -211,13 +211,13 @@
 		}
 
 		private function comment() {
-			$find = $p = mb_strpos($this->code,']]',$this->i);
+			$find = $p = mb_strpos($this->code,']]',$this->i, $this->encoding);
 			if ($find === false) {
 				$p = $this->code_length;
 			}
 			$this->tokens[] = array(
 				'type'=>'comment',
-				'data'=>mb_substr($this->code,$this->i, $p-$this->i),
+				'data'=>mb_substr($this->code,$this->i, $p-$this->i, $this->encoding),
 			);
 			$this->i = $p+2;
 			if ($find) {

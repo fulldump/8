@@ -579,4 +579,31 @@ FUCK;
 	return recursive_compare($reference, $result);
 };
 
+$tests['Multibyte'] = function() {
+
+	$code = <<<FUCK
+ú [[MI_ITEM]] ú 1234567890
+FUCK;
+
+	$reference = array (
+		0 => array(
+			'type' => 'text',
+			'data' => 'ú ',
+		),
+		1 => array(
+			'type' => 'tag',
+			'data' => array(),
+			'name' => 'MI_ITEM',
+			'flags' => array(),
+		),
+		2 => array(
+			'type' => 'text',
+			'data' => ' ú 1234567890',
+		),
+	);
+
+	$result = TreeScript::getParse($code); print_r($result);
+	return recursive_compare($reference, $result);
+};
+
 Test::addFunctions($tests);
