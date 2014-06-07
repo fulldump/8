@@ -10,7 +10,7 @@
 		public function setHTML($html) {
 			// TODO: Corregir sintaxis...
 			
-			$tokens = TreeScript::getParse($html)->getTokens();
+			$tokens = TreeScript::getParse($html);
 			$html = '';
 			foreach ($tokens as $token) {
 				if ($token['type'] == 'text') {
@@ -39,10 +39,9 @@
 		}
 		
 		public function render() {
-
-
 			$html = $this->getHTML();
-            $tokens = TreeScript::getParse($html)->getTokens();
+            $tokens = TreeScript::getParse($html);
+
 			$text = '';
             foreach ($tokens as $token)
 				RenderToken::tokenDefault($token, $text);

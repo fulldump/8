@@ -15,7 +15,7 @@
 		public static function tokenDefault(&$token, &$text) {
 			if ($token['type'] == 'text') {
 				$text .= $token['data'];
-			} else if ($token['type'] == 'token' && strtoupper($token['name']) == 'COMPONENT') {
+			} else if ($token['type'] == 'tag' && strtoupper($token['name']) == 'COMPONENT') {
 				$name = $token['data']['name'];
 				
 				$component = SystemComponent::getComponentByName($name);
@@ -26,7 +26,7 @@
 					
 					// Por esto otro:
 					$html = $component->getPHP();
-				    $ctokens = TreeScript::getParse($html)->getTokens();
+				    $ctokens = TreeScript::getParse($html);
 					$ctext = '';
 				    foreach ($ctokens as $ctoken)
 						RenderToken::tokenDefault($ctoken, $ctext);
@@ -37,7 +37,7 @@
 					
 					ControllerPage::requireComponent($name);
 				}
-			} else if ($token['type'] == 'token' && $token['name'] == '') {
+			} else if ($token['type'] == 'tag' && $token['name'] == '') {
 				$text .= '';
 			} else {
 				//$text .= '';

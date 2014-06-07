@@ -134,7 +134,7 @@
 		public function setPHP($html) {
 			// TODO: Corregir sintaxis...
 			
-			$tokens = TreeScript::getParse($html)->getTokens();
+			$tokens = TreeScript::getParse($html);
 			$code = '';
 			foreach ($tokens as $token) {
 				if ($token['type'] == 'text') {
@@ -163,7 +163,7 @@
 		
 		public function setJS($js) {
 			//Procesar antes el js
-			$tokens = TreeScript::getParse($js)->getTokens();
+			$tokens = TreeScript::getParse($js);
 			$code = '';
 						
 			foreach ($tokens as $token) {

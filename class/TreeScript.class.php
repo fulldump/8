@@ -1,278 +1,240 @@
 <?php
 
 	/**
-	 * Documentar esto
+	 * Class: TreeScript
+	 * Location: packages/treeweb/class/TreeScript.class.php
+	 * Description: Parse TreeWeb tags
+	 * Typical use:
+	 * 		$tokens = TreeScript::getParse($code);
 	 *
-	 * autor: gerardooscarjt@gmail.com
-	 * fecha: 13/04/2011
-	 * Uso típico:
-	 * 		$parse = TreeScript::getParse($codigo);
-	 * 		print_r($parse->getTokens());
+	 * author: gerardooscarjt@gmail.com
+	 * date: 2011/04/13
 	*/
 	
 	class TreeScript {
-		
-		
-		// TODO: limpiar cosas que no se usan:
-		private $encoding;
-		private $pos;
-		private $len;
-		private $code;
-		private $tokens = array();
-		private $token = null;
-		private $last_key = null;
-		private $equal = false;
-		private $errors = array();
-		private $line = 1;
-		
-		/**
-		 * Documentar esto
-		*/
-		private function __construct($code, $encoding='UTF-8') {
+
+		public $code = '';
+		public $code_length = 0;
+		public $errors = array();
+		public $i = 0;
+		public $tokens = array();
+		public $token = array(); // Last token
+		public $attribute = '';
+		public $value = '';
+
+		public $encoding = '';
+
+
+		public function __construct(&$code, $encoding='UTF-8') {
 			$this->encoding = $encoding;
-			$this->pos = 0;
-			$this->code = $code;
-			$this->len = mb_strlen($code, $this->encoding);
-			$this->parse();
-		}
-		
-		/**
-		 * Documentar esto
-		*/
-		public static function getParse($code) {
-			return new TreeScript($code);
-		}
-		
-		/**
-		 * Documentar esto
-		*/
-		
-		private function parse() {
-		
-			mb_internal_encoding('UTF-8');
-		
-			$text = $this->code;
-			$l = mb_strlen($text);
-			$i = 0;
-			$token = array();
-			$tokens = array();
-			$state = 0;
 
-			$attribute = '';
-			$value = '';
+			$this->code = &$code;
+			$this->code_length = mb_strlen($code, $this->encoding);
+		}
 
-			while ($i<$l) {
-				switch ($state) {
-					case 0:
-						// Estado inicial, busco un inicio de token '[['
-						$p = mb_strpos($text,'[[',$i);
-						if ($p===false) {
-						    $p = $l;
-						}
-						
-						$tokens[] = array('type'=>'text', 'data'=>mb_substr($text,$i, $p-$i));
-						$i = $p;
-						
-						$state = 1;
-						break;
-					case 1:
-						$i+=2; // Me salto los dos corchetes;
-						
-						$token = array(
-						    'type'=>'token',
-						    'data'=>array(),
-						    'name'=>''
-						);
-						// Busco el primer espacio o la primera pareja de corchetes que cierran
-						$p1 = mb_strpos($text, ']]', $i);
-						$p2 = mb_strpos($text, ' ', $i);
-						if ($p2===false || $p1<$p2) {
-						    $token['name'] = mb_substr($text, $i, $p1-$i);
-						    $tokens[] = $token;
-						    $i = $p1+2;
-						    $state = 0;
-						} else {
-						    $token['name'] = mb_substr($text, $i, $p2-$i);
-						    $i = $p2;
-						    $state = 2;
-						}
-						break;
-					case 2:
-						// Empiezo a buscar atributos
-						// Tarea: si hay un espacio, lo quito
-						$c = mb_substr($text, $i, 1);
-						$i++;
-						switch ($c) {
-						    case ' ':
-						        // No hago nada
-						        $state = 2;
-						        break;
-						    case ']':
-						        // Voy a buscar otro corchete de cierre
-						        $state = 3;
-						        break;
-						    default:
-						        // Comienzo a guardar el nombre del primer atributo
-						        $attribute = $c;
-						        $state = 4;
-						} 
-						break;
-					case 3:
-						// Busco otro corchete de cierre
-						$c = mb_substr($text, $i, 1);
-						$i++;
-						if ($c == ']') {
-						    $tokens[] = $token;
-						}
-						$state = 0;
-						break;
-					case 4:
-						// Estoy buscando el nombre del atributo
-						$c = mb_substr($text, $i, 1);
-						$i++;
-						switch ($c) {
-						    case ' ':
-						        // Voy a buscar un operador de asignación
-						        $state = 5;
-						        break;
-						    case '=':
-						    case ':':
-						        // Ya he encontrado la asignación!! :) voy a buscar el valor
-						        $state = 6;
-						        break;
-						    case ']':
-						        // Cancelo todo y voy a buscar otro corchete de cierre
-						        $state = 3;
-						        break;
-						    default:
-						        // Completo el nombre
-						        $attribute .= $c;
-						    
-						}
-						break;
-					case 5:
-						// Empiezo a buscar un operador de asignación
-						$c = mb_substr($text, $i, 1);
-						$i++;
-						switch ($c) {
-						    case ' ':
-						        // Sigo buscando el operador
-						        break;
-						    case ':':
-						    case '=':
-						        // He encontrado el operador! voy a buscar el valor:
-						        $state = 6;
-						        break;
-						    case ']':
-						        // Cancelo todo y voy a buscar otro corchete de cierre
-						        $state = 3;
-						        break;
-						    default:
-						        $attribute = $c;
-						        // esto se produce cuando encuentro un atributo, luego un espacio
-						        // y luego empieza a aparecer otro atributo.
-						    
-						}
-						break;
-					case 6:
-						// Empiezo a buscar un valor de atributo
-						$c = mb_substr($text, $i, 1);
-						$i++;
-						switch($c) {
-						    case ' ':
-						        // Sigo buscando el primer caracter valido
-						        break;
-						    case '"':
-						        // Empiezo a procesar comillas dobles :P
-						        $state = 8;
-						        $value = '';
-						        break;
-						    case '\'':
-						        // Empiezo a procesar comillas simples
-						        $value = '';
-						        $state = 9;
-						        break;
-						    case ']':
-						        // Cancelo todo y voy a buscar otro corchete de cierre
-						        $state = 3;
-						        break;
-						    default:
-						        // Empiezo a procesar valores sin comillas:
-						        $value = $c;
-						        $state = 7;
-						}
-						break;
-					case 7:
-						$c = mb_substr($text, $i, 1);
-						$i++;
-						switch($c) {
-						    case ' ':
-						        // He terminado de procesar el valor sin comillas :)
-						        // Lo añado al data del token y sigo procesando atributos
-						        $token['data'][$attribute] = $value;
-						        $state = 2;
-						        break;
-						    case ']':
-						        // He terminado de procesar el valor sin comillas :)
-						        // Lo añado al data y voy a buscar otro corchete de cierre
-						        $token['data'][$attribute] = $value;
-						        $state = 3;
-						        break;
-						    default:
-						        $value .= $c;
-						    
-						}
-						break;
-					case 8:
-						// TODO: esto se puede optimizar con mb_strpos
-						// Acumulo valor hasta que encuentre una comilla doble de cierre
-						$c = mb_substr($text, $i, 1);
-						$i++;
-						switch ($c) {
-						    case '"':
-						        // He terminado de procesar el valor con comillas simples,
-						        // Lo añado al data del token y sigo procesando atributos
-						        $token['data'][$attribute] = $value;
-						        $state = 2;
-						        break;
-						    default:
-						        $value .= $c;
-						}
-						break;
-					case 9:
-						// TODO: esto se puede optimizar con mb_strpos
-						// Acumulo valor hasta que encuentre una comilla simple de cierre
-						$c = mb_substr($text, $i, 1);
-						$i++;
-						switch ($c) {
-						    case '\'':
-						        // He terminado de procesar el valor con comillas simples,
-						        // Lo añado al data del token y sigo procesando atributos
-						        $token['data'][$attribute] = $value;
-						        $state = 2;
-						        break;
-						    default:
-						        $value .= $c;
-						}
-						break;
+		public function parse() {
+			$this->i = 0; // Initialize position
+			$this->tokens = array();
+			$this->textScope();
+		}
+
+		private function textScope() {
+			$find = $p = mb_strpos($this->code,'[[',$this->i);
+			if ($find===false) {
+				$p = $this->code_length;
+			}
+			$this->tokens[] = array(
+				'type'=>'text',
+				'data'=>mb_substr($this->code,$this->i, $p-$this->i),
+			);
+
+			$this->i = $p+2;
+			if (!$this->isEnd()) {
+				$this->token = array(
+					'type'=>'tag',
+					'data'=>array(),
+					'name'=>'',
+					'flags'=>array(),
+				);
+				$this->tagStart();
+			}
+		}
+
+		private function tagStart() {
+			$c = mb_substr($this->code, $this->i, 1);
+			$cc = mb_substr($this->code, $this->i, 2);
+
+			if ($c == ' ' || $c == "\n" || $c == "\t" || $cc == ']]') {
+				$this->comment();
+			} else {
+				$this->token['name'] = $c;
+				$this->i++;
+				$this->tagName();
+			}
+		}
+
+		private function tagName() {
+			$c = mb_substr($this->code, $this->i, 1);
+			$cc = mb_substr($this->code, $this->i, 2);
+
+			if ($c == ' ' || $c == "\n" || $c == "\t") {
+				$this->i++;
+				$this->tagAttributeStart();
+			} else if ($cc == ']]') {
+				$this->tokens[] = $this->token;
+				$this->i += 2;
+				$this->textScope();
+			} else if ($this->isEnd()) {
+				$this->errors[] = 'Early end of file. Expected ]] ';
+				$this->tokens[] = $this->token;
+			} else {
+				$this->token['name'] .= $c;
+				$this->i++;
+				$this->tagName();
+			}
+		}
+
+		private function tagAttributeStart() {
+			$c = mb_substr($this->code, $this->i, 1);
+			$cc = mb_substr($this->code, $this->i, 2);
+
+			if ($c == ' ' || $c == "\n" || $c == "\t") {
+				$this->i++;
+				$this->tagAttributeStart();
+			} else if ($cc == ']]') {
+				$this->tokens[] = $this->token;
+				$this->i += 2;
+				$this->textScope();
+			} else if ($this->isEnd()) {
+				$this->errors[] = 'Early end of file. Expected ]] ';
+				$this->tokens[] = $this->token;
+			} else {
+				$this->attribute = $c;
+				$this->i++;
+				$this->tagAttribute(false);
+			}
+		}
+
+		private function tagAttribute($space=false) {
+			$c = mb_substr($this->code, $this->i, 1);
+			$cc = mb_substr($this->code, $this->i, 2);
+
+			if ($c == ' ' || $c == "\n" || $c == "\t") {
+				$this->i++;
+				$this->tagAttribute(true);
+			} else if ($c == ':' || $c == '=') {
+				$this->i++;
+				$this->tagValueStart();
+			} else if ($cc == ']]') {
+				$this->token['flags'][] = $this->attribute;
+				$this->tagAttributeStart();
+			} else if ($this->isEnd()) {
+				$this->errors[] = 'Early end of file. Expected ]] ';
+				$this->tokens[] = $this->token;
+			} else {
+				if ($space) {
+					$this->token['flags'][] = $this->attribute;
+					$this->attribute = '';
 				}
+				$this->attribute .= $c;
+				$this->i++;
+				$this->tagAttribute(false);
+			}
+		}
+
+		private function tagValueStart() {
+			$c = mb_substr($this->code, $this->i, 1);
+			$cc = mb_substr($this->code, $this->i, 2);
+
+			$this->value = '';
+
+			if ($c == ' ' || $c == "\n" || $c == "\t") {
+				$this->i++;
+				$this->tagValueStart();
+			} else if ($cc == ']]') {
+				// $this->tagAttribute();
+				$this->tokens[] = $this->token;
+				$this->i += 2;
+				$this->textScope();
+			} else if ($c == '"' || $c == "'") {
+				$this->i++;
+				$this->tagValueQuotes($c);
+			} else if ($this->isEnd()) {
+				$this->errors[] = 'Early end of file. Expected value or ]].';
+				$this->i++;
+				$this->$tagValueEscape();
+			} else {
+				$this->value = $c;
+				$this->i++;
+				$this->tagValue();
+			}
+		}
+
+		private function tagValue() {
+			$c = mb_substr($this->code, $this->i, 1);
+			$cc = mb_substr($this->code, $this->i, 2);
+
+			if ($c == ' ' || $c == "\n" || $c == "\t") {
+				$this->token['data'][$this->attribute] = $this->value;
+				$this->i++;
+				$this->tagAttributeStart();
+			} else if ($cc==']]') {
+				$this->token['data'][$this->attribute] = $this->value;
+				$this->tagValueStart();
+			} else {
+				$this->value .= $c;
+				$this->i++;
+				$this->tagValue();
 			}
 			
-			$this->tokens = $tokens;
 		}
-		
-		/**
-		 * Documentar esto
-		*/
-		public function &getErrors() {
-			if (count($this->errors))
-				return $this->errors;
-			return false;
+
+		private function tagValueQuotes(&$quote) {
+			$c = mb_substr($this->code, $this->i, 1);
+			$cc = mb_substr($this->code, $this->i, 2);
+
+			if ($c == $quote) {
+				$this->i++;
+				$this->token['data'][$this->attribute] = $this->value;
+				$this->tagAttributeStart();
+			} else if ($cc == '\\\\' || $cc == '\\"' || $cc == '\\\'') {
+				$this->i++;
+				$d = mb_substr($this->code, $this->i, 1);
+				$this->value .= $d;
+				$this->i++;
+				$this->tagValueQuotes($quote);
+			} else {
+				$this->value .= $c;
+				$this->i++;
+				$this->tagValueQuotes($quote);
+			}
 		}
-		/**
-		 * Documentar esto
-		*/
-		public function &getTokens() {
-			return $this->tokens;
+
+		private function comment() {
+			$find = $p = mb_strpos($this->code,']]',$this->i);
+			if ($find === false) {
+				$p = $this->code_length;
+			}
+			$this->tokens[] = array(
+				'type'=>'comment',
+				'data'=>mb_substr($this->code,$this->i, $p-$this->i),
+			);
+			$this->i = $p+2;
+			if ($find) {
+				$this->textScope();
+			}
 		}
+
+		private function isEnd() {
+			return $this->i >= $this->code_length;
+		}
+
+		public static function getParse(&$code, $encoding='UTF-8') {
+			$treescript = new TreeScript($code, $encoding);
+			$treescript->parse();
+			return $treescript->tokens;
+		}
+
 	}
+
+

@@ -19,7 +19,7 @@
 		private static $components_loaded = array();
 		
 		public static function compile() {
-		
+
 			$if_modified_since = '';
 			if (Config::get('IF_MODIFIED_SINCE_ENABLED')) {
 				header('Last-Modified: '.date('r', self::$node->getLastModified()));
@@ -94,11 +94,11 @@
 		}
 		
 		public static function appendJS($js, $component = null) {
-			$tokens = TreeScript::getParse($js)->getTokens();
+			$tokens = TreeScript::getParse($js);
 			foreach ($tokens as $token) {
-				if ($token['type'] == 'token' && $token['name'] == 'INCLUDE') {
+				if ($token['type'] == 'tag' && $token['name'] == 'INCLUDE') {
 					self::requireComponent($token['data']['component']);
-				} else if ($token['type'] == 'token' && $token['name'] == 'AJAX') {
+				} else if ($token['type'] == 'tag' && $token['name'] == 'AJAX') {
 
 					if (ControllerAbstract::$language != Config::get('DEFAULT_LANGUAGE')) {
 						self::$js .= '/'.ControllerAbstract::$language;

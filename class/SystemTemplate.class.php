@@ -49,10 +49,10 @@
 
 		public function render() {
 			$html = $this->getPHP();
-            $tokens = TreeScript::getParse($html)->getTokens();
+            $tokens = TreeScript::getParse($html);
             $text = '';
             foreach ($tokens as $token) {
-				if ($token['type'] == 'token' && $token['name'] == 'BODY') {
+				if ($token['type'] == 'tag' && $token['name'] == 'BODY') {
 					$text .= ControllerPage::$html;
 				} else {
 					RenderToken::tokenDefault($token, $text);
@@ -153,7 +153,7 @@
 		public function setPHP($html) {
 			// TODO: Corregir sintaxis...
 			
-			$tokens = TreeScript::getParse($html)->getTokens();
+			$tokens = TreeScript::getParse($html);
 			$code = '';
 			foreach ($tokens as $token) {
 				if ($token['type'] == 'text') {
@@ -182,7 +182,7 @@
 		
 		public function setJS($js) {
 			//Procesar antes el js
-			$tokens = TreeScript::getParse($js)->getTokens();
+			$tokens = TreeScript::getParse($js);
 			$code = '';
 						
 			foreach ($tokens as $token) {
