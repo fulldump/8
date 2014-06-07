@@ -1,0 +1,109 @@
+.left-panel {
+	position:absolute;
+	top:16px;
+	left:16px;
+	bottom:16px;
+	width:300px;
+}
+
+.left-panel .graphicList-listItem-Button {
+	background-image:url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAABARJREFUSMe9VU1olFcUPed9M/mbidHYTGk6+WkSwbSKNlQEDSlJEQpuBkrJtnRjHVrooqCLAVsx1aVF0ZUUkk3FdhG7qBBtigtba+ug2DaCBX86UcfWTEhMMpnvvdPFfDMdMQmW/jx48Pi+e9+9755zzwX+48W/69CdSjVWNzVtB1C7kM3+4E9P37xx9Kj7VwJsPnx4/esDA1+0RyLdvnO8MTt75+uxsfemr107fWt4WEv5mKe9vDOZNL19fZ90RCLdkuCR6IpG46/09w/VtbauXc7vqQOEotHwhoaGXkOCFfvFVavWAYj94wCmqsrPW5tj4CQJBsCCtY8kTS+b2HI/Xtq/v94tLraVcKLn4at7904PtrS8Uyq2A3j2/v1xkrHuVKqx0l9SZmJo6OGyIL954cKewZaWISuhcgMwAlBwjg6Q75yzEgTAl6DA7uT4+NvpZHJ42RcY0qsyxvjOwSPpS/Ik+pJsADIkhIwxnkQriQBEkpIAeCuWiAA8kjAGi86BAA0JU0FtAXRSEXCABoArYkOST2IQHxykCYWMV1vrSMKQshLCRWv5Eg0gV0yABGQA2OB7gA0NqSdA3njwYFtbb28yVlPTcX1y8uqC7zd5JB0JC8BI9IpZ0QQvFFC+6UE+fzedy30ZIrGhoSEBwJYDbD5ypCWVSHzTWlfXZiX47e1vZObnHxGQISGAHikn/ZV18AICuD4zc+XM6OjOn/btmwSAnuPHU3ZuLlKWivfT6UNvtbfv8SU5CQUJvnO0kvwiK1hwTr5ztICsBF+iCwA/cubM4OXdu08t22gvRCJdHlkEtVgCmqAcQa3hkQwZU6o9QwGwADSfydxcsZMf5PPpgAkKGyOPlCFReS4B55HyHj+zrrV1e2cyuaQqeACwODBwpTsW2/FMdXWzC6h2e25usj4crg/qSFfkCIMuhQuoKABrYrGNv2Yy1xu3br27dts27/lEoufZHTvi98fGMmVOv3zsWM36np5EjTGtE7dvf98Rj/clu7o+chIKzsFKyBUKM+ey2c8XrP1tXTTa3xmN9rqgc3OFwtyPU1PXCNhNq1dvGh4ff/fyrl2flmmaTiYX0sBn5cFy6dI2j1QgzfxjcXH649HRnQ8vXrxwa2RE3amU6UskDvXHYh84gA3hcO2rTU1bbAD+U6mpKdYZhsTJO3dOTaXT394aGREA/HLggPvu/PkPZ31/qtQXXGKCmZUuNyQ9koZEdnY2c/PEicdG43wms/B7Pp8JZkTZ1pR0YqUALNJWCBqra82arev37q2vtKltbm6O19V1EEAosA3oriW1qHLN+f7P57LZ0yX5jdfUFKoaG58DMFOyad6y5bWrudxZW2QVFMi2lWDn5yfwf6w/AVsj8D+SOjLFAAAAAElFTkSuQmCC');
+}
+
+.right-panel {
+	position:absolute;
+	top:0;
+	left:316px;
+	bottom:0;
+	right:0;
+}
+
+.topbar {
+	position:absolute;
+	top:0;
+	left:0;
+	right:0;
+	height:32px;
+	overflow:hidden;
+	padding:16px;
+}
+
+.topbar BUTTON {
+	min-width:60px;
+}
+
+.center {
+	position:absolute;
+	top:64px;
+	left:16px;
+	right:16px;
+	bottom:64px;
+}
+
+.editor-js, .editor-css, .editor-html, .editor-ajax {
+	display:none;
+	position:absolute;
+	top:0;
+	left:0;
+	right:0;
+	bottom:0;
+}
+
+.editor-js, .editor-css, .editor-html{
+	background-color:#F8F8F8;
+	padding:0;
+	border: solid silver 1px;
+}
+
+.editor-js .CodeMirror,
+.editor-css .CodeMirror,
+.editor-html .CodeMirror,
+.editor-ajax-center-panel-margin .CodeMirror {
+	height: 100%;
+}
+
+
+.editor-ajax-right-panel {
+	position:absolute;
+	top:0;
+	right:0;
+	bottom:0;
+	width:300px;
+}
+
+.editor-ajax-right-panel .simple-list {
+	position:absolute;
+	top:16px;
+	left:16px;
+	right:16px;
+	bottom:64px;
+	overflow-y:auto;
+}
+
+.editor-ajax-center-panel {
+	position:absolute;
+	top:0;
+	left:0;
+	right:300px;
+	bottom:0;
+}
+
+.editor-ajax-center-panel-margin {
+	position:absolute;
+	top:0;
+	right:0;
+	bottom:0;
+	left:0;
+	background-color:#F8F8F8;
+	padding:0;
+	border: solid silver 1px;
+}
+
+.ComponentEditor-current {
+  padding: 9px;
+  text-align: center;
+  height: 17px;
+  color: dodgerblue;
+  font-weight: bold;
+  font-size: 15px;
+}

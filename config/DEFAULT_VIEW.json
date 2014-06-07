@@ -1,0 +1,8 @@
+{
+    "name": "DEFAULT_VIEW",
+    "type": "STRING",
+    "description": "",
+    "default": "desktop",
+    "callback_before": null,
+    "callback_after": null
+}

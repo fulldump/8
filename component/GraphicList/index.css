@@ -1,0 +1,100 @@
+.graphicList-docked {
+  position:absolute;
+  top:0;
+  left:0;
+  right:0;
+  bottom:0;
+}
+
+.graphicList-docked .graphicList-searchBox {
+  position:absolute;
+  top:0;
+  left:0;
+  right:0;
+}
+
+.graphicList-docked .graphicList-listBox {
+  position:absolute;
+  bottom:37px;
+  top:37px;
+  left:0;
+  right:0;
+  overflow-y:hidden;
+}
+
+.graphicList-docked .graphicList-listBox:hover {
+  overflow-y:auto;
+}
+
+.graphicList-docked .graphicList-newBox {
+  position:absolute;
+  bottom:0;
+  left:0;
+  right:0;
+}
+
+.graphicList-listItem {
+  display:block;
+  margin:0;
+  padding:0;
+  border:none;
+  background-color:transparent;
+  cursor:pointer;
+}
+
+.graphicList-listItem:hover {
+  background-color:#EEEEEE;
+}
+
+.graphicList-listItem-selected .graphicList-listItem-Button {
+  color: dodgerblue;
+  font-weight: bold;
+}
+
+.graphicList-listItem-Button {
+  border:none;
+  margin:0;
+  padding:8px;
+  padding-left:32px;
+  min-height:32px;
+  width:100%;
+  background-color:transparent;
+  background-repeat:no-repeat;
+  background-position:5px 5px;
+  text-align:left;
+  cursor:pointer;
+}
+
+.graphicList-listItem-Button {
+  background-image:url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAMAAADXqc3KAAAAAXNSR0IArs4c6QAAADZQTFRFMU5sMU5sMU5sMU5sMU5sMU5sMU5sMU5sMU5sMU5sMU5sMU5sMU5sQ156R2F8SWWCWnGK////PwxnKgAAAAF0Uk5TAEDm2GYAAAA/SURBVCjPY2DAA7h4eBgYGBkZkQkQEMBUygciuLEZAtLDg0uCEZcE6YCRZDtGLcc0hhdTnB8qjZoO4IkBOwAA70MAn3O8RkEAAAAASUVORK5CYII=');
+}
+
+.graphicList-listItem-Delete {
+  border:none;
+  color:red;
+  width:32px;
+  height:32px;
+  margin:0 0 0 -32px;
+  padding:0;
+  position: absolute;
+  background:url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAQAAABKfvVzAAAALHRFWHRDcmVhdGlvbiBUaW1lAFN1biAxOCBPY3QgMjAwOSAxMDowMjo0MCAtMDAwMJA/7VAAAAAHdElNRQfZChIKHwiHU2OIAAAACXBIWXMAAAsSAAALEgHS3X78AAAABGdBTUEAALGPC/xhBQAAAHZJREFUeNpj/M9AGmAiUT0DCzbBRrC19YxYdfzHgA3/n4Bhw///WGQZ/6OYigsgbENyUj3DUyQlN5FYr7D7oZEoTzMiXNL4H5sdIPORvY8WrFuheAMQb4FiCuNhVMPw0OANxQFA7APFqAAlxxGTXhlpXgiQrAEAqc4zxVjDvIoAAAAASUVORK5CYII=') no-repeat center center transparent;
+  cursor:pointer;
+  visibility:hidden;
+}
+
+.graphicList-listItem:hover .graphicList-listItem-Delete {
+  visibility:visible;
+}
+
+.graphicList-listItem-Delete:hover {
+
+}
+
+/* Mobile devices */
+@media (max-width: 1024px) {
+
+  .graphicList-docked .graphicList-listBox {
+    overflow-y: scroll;
+  }
+
+}

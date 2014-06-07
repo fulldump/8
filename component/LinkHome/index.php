@@ -1,0 +1,1 @@
+<?php echo SystemRoute::ROW(Config::get('DEFAULT_PAGE'))->getPath(true); ?>

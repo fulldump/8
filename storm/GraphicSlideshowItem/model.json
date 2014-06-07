@@ -1,0 +1,13 @@
+{
+    "name": "GraphicSlideshowItem",
+    "native": false,
+    "fields": {
+        "Slideshow": "GraphicSlideshow",
+        "Order": "Number",
+        "Background": "Image",
+        "Title": "Label",
+        "Text": "SimpleText",
+        "Enabled": "Number"
+    },
+    "data": []
+}

@@ -1,0 +1,167 @@
+[component="TrunkToolbar"] {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  overflow: hidden;
+}
+
+[component="TrunkToolbar"] .toolbar {
+  background-color: #222222;
+  border-bottom: solid black 1px;
+}
+
+/* link styles */
+[component="TrunkToolbar"],
+[component="TrunkToolbar"] .link {
+  color: white;
+  text-decoration: none;
+  font-family: sans-serif;
+  font-size: 14px;
+}
+
+[component="TrunkToolbar"] .link {
+  display: inline-block;
+  height: 16px;
+  padding: 6px 12px 8px;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-color: transparent;
+  cursor: pointer;
+  opacity: 0.75;
+}
+
+[component="TrunkToolbar"] .link:hover {
+  background-color: rgba(0,0,0,0.6);
+}
+
+[component="TrunkToolbar"] .link.selected {
+  border-color: white;
+  opacity: 1;
+}
+
+/* Icon styles */
+[component="TrunkToolbar"] .link.icon {
+  background-position: 9px center;
+  background-repeat: no-repeat;
+}
+
+[component="TrunkToolbar"] .link.icon:before {
+  display: inline-block;
+  width: 24px;
+  content: '';
+  background-color: white;
+}
+
+/* Expand button */
+[component="TrunkToolbar"] .expand-button {
+  display: none;
+  float: left;
+  background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAADlJREFUSMft0lENACAMA9EbBvDvkik4VAx+egKaNHmQflfqAfbQfpfq5IMF9OB+B0kURVEURVF60gXZuyBu3PIh+gAAAABJRU5ErkJggg==');
+}
+
+/* logo */
+[component="TrunkToolbar"] .logo {
+  display: inline-block;
+  float: left;
+  background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAAUNJREFUSMftlDFKg0EQhd+EmFIIGKsUgqUEFC8QsPMEVrlAbhDS2HoQ8QRWkXgBMY1dBLuACCnSGXifzSYsIWj+XwMWec3uz86bt/N25pe2jPgpAKgDZxFxBNQjQpKmkt4kPUfEtJSy7YbtW2Bie2Z7DmCbtJ/ZnqSYxsaJgRrQXyTL1xxrzvpA7VuLbB9ExJ2kC0DJDkl6kvQCvEtSRBxKOpF0vpLvQdJVRHyssySA8eKC6XaPQAvYB6pZlVVg33YrxSw5wNh2rBMYZuXPbV8XsPUamGf84WpAN7P3E+iUaIpO4i7QzQVObY/SwU3ZngduUgUj4HRdQBto/kKgCbQLDVpGPpZ0mT7vI+L1T0ce6GV939uUVymgsZdmYLn/a4FSqBS0absC2a9DO4t2FpUSiIhYiGzsVbWAwEBSLb3DQP8FX8BoW+3VBAaNAAAAAElFTkSuQmCC');
+}
+
+/* user */
+[component="TrunkToolbar"] .user {
+  background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAAJpJREFUSMfdlMERhCAQBHcvAkIwFEI5M9AMCMWQCMEQMIK+z33wwXKIZxX9pewpnGJEngbwQCQnAr6XvIS/GhCNgGg51AjAFKgWHa+CfOrR4XM36MX4AatxPl8q2SraKnjwDgAHBOP3BcD9uj/u+2GijlQdBLyBnTYSsJRmuVV8Zs9mHNi4h01ERGsGrXlJVXWMd3Dc5D7kH3wAOZeq86WpPscAAAAASUVORK5CYII=');
+}
+/* logout */
+[component="TrunkToolbar"] .logout {
+  background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAAQlJREFUSMfNVVERgzAMTVBQCTgACZUwCUioFCRUwiRMAjhAQh28/ZRb1qM0gdvd3h0/bfJemyYPIiUARHwQtXlsEMBXIrMqt6Mfozs5sTPcrjepAgi51kmWSOJgPVx5TBgE2o8vTr5jUwhsxVao1rEITABGhcCYYyX6ZmkA+LJNjwTynj8tFQBXBMzWQQMwFxxObk7NKypateCY5BxIwpWZN6tAzlnFUl8btHRjcNNfWIW7wedqArLmw9VHJqJBLG2mNlUI1NtUM2gNct/0pIpVeCV5Us3RgdkhX72vHGg+iA8muxZYALzyt1RiovWHY0G44i1RQRzP2poVQo6IHoVf7X3+ZOZTa3kDwwHSEN4i+N4AAAAASUVORK5CYII=');
+}
+
+[component="TrunkToolbar"] .form-logout {
+  display: none;
+}
+
+/* Left menu */
+[component="TrunkToolbar"] .left {
+  display: block;
+}
+
+/* Right menu */
+[component="TrunkToolbar"] .right {
+  display: block;
+  float: right;
+}
+
+/* Mobile devices */
+@media (max-width: 1024px) {
+
+  [component="TrunkToolbar"] .shadow {
+    z-index: 9998;
+    background-color: rgba(0,0,0,0);
+    transition: background-color 0.4s ease;
+  }
+
+  [component="TrunkToolbar"] .expand-button {
+    display: block;
+  }
+
+  [component="TrunkToolbar"] .logo {
+    float: none;
+  }
+
+  [component="TrunkToolbar"] .user-name {
+    display:none;
+  }
+
+  [component="TrunkToolbar"] .left {
+    margin-left: -400px;
+    position: absolute;
+    top: 33px;
+    left: 0;
+    bottom: 0;
+    z-index: 9999;
+    overflow-y: auto;
+    background: #222222;
+    width: 300px;
+    max-width: 80%;
+    box-shadow: 8px 0 8px rgba(0,0,0,0.6);
+    transition: margin-left 0.4s ease;
+  }
+
+  /* Expanded behaviour */
+  [component="TrunkToolbar"].expanded {
+    bottom: 0;
+  }
+
+  [component="TrunkToolbar"].expanded .shadow {
+    position: absolute;
+    top: 32px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0,0,0,0.8);
+  }
+
+  [component="TrunkToolbar"].expanded .left {
+    margin-left: 0;
+  }
+
+  [component="TrunkToolbar"].expanded .left .link {
+    display: block;
+    padding: 8px 12px;
+    border-top: none;
+    border-left-style: solid;
+    border-left-width: 2px;
+  }
+
+}
+
+
+/* Special styles to fit the rest of the screen */
+[component="TrunkToolbarWorkspace"] {
+  position: absolute;
+  top: 33px;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  overflow-y: auto;
+}

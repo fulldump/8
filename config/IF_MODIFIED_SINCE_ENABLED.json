@@ -1,0 +1,8 @@
+{
+    "name": "IF_MODIFIED_SINCE_ENABLED",
+    "type": "BOOLEAN",
+    "description": "",
+    "default": true,
+    "callback_before": null,
+    "callback_after": null
+}

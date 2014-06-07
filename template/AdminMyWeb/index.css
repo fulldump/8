@@ -1,0 +1,106 @@
+HTML {
+	font-size:13px;
+	font-family:Arial,sans-serif;
+	background-color:#F8F8F8;
+}
+
+/* Objeto margen */
+.margen {
+	padding:16px;
+}
+
+
+#form-login {
+	position:absolute;
+	margin:0;
+	padding:0;
+	top:29px;
+	right:0;
+	background-color:white;
+	z-index:999;
+	background-repeat:no-repeat;
+	background-position:16px 80px;
+}
+
+#form-login INPUT {
+	border:none;
+	padding:0;
+	margin:0;
+}
+
+#form-register {
+	position:absolute;
+	margin:0;
+	padding:0;
+	top:32px;
+	right:0;
+	display:none;
+	background-color:silver;
+	color:white;
+	z-index:999;
+}
+
+#form-register INPUT {
+	border:none;
+	padding:0;
+	margin:0;
+}
+
+#form-logout {
+	display:none;
+}
+
+
+/* SHADOW BUTTON */
+
+.shadow-button {
+	color:white;
+	padding:7px;
+	margin:0px;
+	border-radius:3px;
+	background-color: silver;
+	border:0px;
+	cursor:pointer;
+	border:solid silver 1px;
+	font-weight:bold;
+	text-transform:uppercase;
+	font-size:12px;
+}
+
+.shadow-button:hover {
+	box-shadow:2px 2px 2px rgba(0,0,0,0.1);
+	border-color:gray;
+}
+
+.shadow-button-blue {
+	background-color:#4D90FE;
+}
+
+.shadow-button-red {
+	background-color:#DD4B39;
+}
+
+.shadow-button-green {
+	background-color:#3D9400;
+}
+
+.shadow-button-white {
+	background-color:white;
+	color:silver;
+	cursor:default;
+}
+
+.shadow-button-white:hover {
+	box-shadow:none;
+	border-color:silver;
+}
+
+
+
+
+
+
+
+#form-login {
+	background-image: url("data:image/png;base64,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");
+}

@@ -1,0 +1,242 @@
+/* Overwrite Trunk[Double] */
+[component="AdminxTest"] [component="TrunkDouble"] .left-panel {
+  width: 500px;
+}
+
+[component="AdminxTest"] [component="TrunkDouble"] .left-panel:hover {
+  overflow-y: auto;
+}
+
+[component="AdminxTest"] [component="TrunkDouble"] .splitter-panel {
+  left: 500px;
+}
+
+[component="AdminxTest"] [component="TrunkDouble"] .right-panel {
+  left: 508px;
+}
+
+[component="AdminxTest"] [component="TrunkDouble"] .right-panel {
+  overflow: auto;
+}
+
+/* Tree */
+[component="AdminxTest"] .tree {
+	
+}
+
+[component="AdminxTest"] .tree .info {
+  border: dashed 1px silver;
+  margin: 4px 4px 0 4px;
+  padding: 4px;
+  height: 18px;
+}
+
+[component="AdminxTest"] .tree .info[pass="true"] {
+  border-color: green;
+  background: #BBFFBB;
+}
+
+[component="AdminxTest"] .tree .info[pass="false"] {
+  border-color: red;
+  background: #FFBBBB;
+}
+
+[component="AdminxTest"] .tree .stats {
+  float:right;
+  font-size: 80%;
+}
+
+[component="AdminxTest"] .tree .info[type="test"]:hover {
+  cursor: pointer;
+}
+
+[component="AdminxTest"] .tree .info[type="test"] .stats {
+  display: none;
+}
+
+[component="AdminxTest"] .tree .stats .pass:before {
+  content: ' P:';
+}
+
+[component="AdminxTest"] .tree .stats .fail:before {
+  content: ' F:';
+}
+
+[component="AdminxTest"] .tree .stats .total:before {
+  content: ' T:';
+}
+
+[component="AdminxTest"] .tree .stats .stat:before {
+  color: gray;
+}
+
+[component="AdminxTest"] .tree .stats .stat:after {
+  content: ' ';
+}
+
+[component="AdminxTest"] .tree[count="0"] .expand {
+  display: none;
+}
+
+[component="AdminxTest"] .tree .expand {
+  float: left;
+  width: 16px;
+  height: 16px;
+  cursor: pointer;
+  background: center center no-repeat url('data:image/png;base64,R0lGODlhDwAPAMQAANTU1NbW1vj4+OLi4uTk5PLy8u3t7dfX1/39/fr6+hAQEPT09Pn5+ff39+7u7vv7++zs7Pb29vX19fPz88bGxv7+/gAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAAAAAAALAAAAAAPAA8AAAVlIANQZGlSABMQyeO+MBFQTGXfOJKQCe7bO0rvhwvWiDcG6YisKCkOSURBrSoiEgcpGmk0BGAvVguVSL1obJZkWJgjcLh5YSBBJviFXo+fQLYFfYJ4BVoBAw4QiouLDgMHIieSKSEAOw==');
+}
+
+[component="AdminxTest"] .tree[expanded="false"] .expand {
+  background-image: url('data:image/png;base64,R0lGODlhDwAPAMQAANTU1NbW1uTk5Pj4+O3t7fLy8uLi4tfX1/39/fr6+vT09Pf39/n5+e7u7vv7+/b29uzs7PX19RAQEPPz88bGxv7+/gAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAAAAAAALAAAAAAPAA8AAAVoIANQZGlSABMIieO+sBBQTGXfOJKQCe7bO0oPJ/EFa0Qfg4S8FXFLSiPykFivkkekQZo+FouBZADWcqURKlhSTp8JivSjOk8rCCTIZK/o9/cTEF0FgIV7BVwBBg0QjY6ODQYHIieVKSEAOw==');
+}
+
+
+[component="AdminxTest"] .tree .check {
+  float: left;
+}
+
+[component="AdminxTest"] .tree .name {
+  margin: 0 120px 0 24px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  font-size: 14px;
+}
+
+[component="AdminxTest"] .tree .subtree {
+  padding-left: 32px;
+  overflow: hidden;
+}
+
+[component="AdminxTest"] .tree[expanded="false"] .subtree {
+  display: none;
+}
+
+[component="AdminxTest"] .tree .info {
+	
+}
+
+[component="AdminxTest"] .tree .info {
+	
+}
+
+[component="AdminxTest"] .tree .info {
+	
+}
+
+[component="AdminxTest"] .tree .info {
+	
+}
+
+[component="AdminxTest"] .tree .info {
+	
+}
+
+[component="AdminxTest"] {
+	
+}
+
+[component="AdminxTest"] {
+	
+}
+
+[component="AdminxTest"] {
+	
+}
+
+[component="AdminxTest"] {
+	
+}
+
+[component="AdminxTest"] {
+	
+}
+
+[component="AdminxTest"] {
+	
+}
+
+[component="AdminxTest"] {
+	
+}
+
+[component="AdminxTest"] {
+	
+}
+
+[component="AdminxTest"] {
+	
+}
+
+[component="AdminxTest"] {
+	
+}
+
+[component="AdminxTest"] {
+	
+}
+
+[component="AdminxTest"] {
+	
+}
+
+[component="AdminxTest"] {
+	
+}
+
+[component="AdminxTest"] {
+	
+}
+
+[component="AdminxTest"] {
+	
+}
+
+[component="AdminxTest"] {
+	
+}
+
+[component="AdminxTest"] {
+	
+}
+
+[component="AdminxTest"] {
+	
+}
+
+[component="AdminxTest"] {
+	
+}
+
+[component="AdminxTest"] {
+	
+}
+
+[component="AdminxTest"] {
+	
+}
+
+[component="AdminxTest"] {
+	
+}
+
+[component="AdminxTest"] {
+	
+}
+
+[component="AdminxTest"] {
+	
+}
+
+[component="AdminxTest"] {
+	
+}
+
+[component="AdminxTest"] {
+	
+}
+
+
+
+
+

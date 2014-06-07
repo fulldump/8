@@ -1,0 +1,120 @@
+body {
+  font-family: sans-serif;
+}
+
+.left-panel {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 59%;
+  overflow: hidden;
+}
+
+.left-panel ::selection {
+  background: rgba(255,255,255,0);
+}
+
+.right-panel {
+  position: absolute;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  width: 39%;
+  overflow: hidden;
+}
+
+.left-panel:hover,
+.right-panel:hover {
+  overflow-y: auto;
+} 
+
+.branch .branch-children {
+  padding-left: 32px;
+  overflow: hidden;
+}
+
+.branch .branch-children[expanded="false"] {
+  display: none;
+}
+
+.leaf,
+.branch-info {
+  border: dashed 1px;
+  margin: 4px 4px 0 4px;
+  padding: 4px;
+  height: 18px;
+}
+
+.leaf {
+  font-size: 14px;
+  float: left;
+  min-width: 240px;
+  cursor: pointer;
+}
+
+.leaf[passed="true"],
+.branch[passed="true"]>.branch-info {
+  border-color: green;
+  background: #BBFFBB;
+}
+
+.leaf[passed="false"],
+.branch[passed="false"]>.branch-info {
+  border-color: red;
+  background: #FFBBBB;
+}
+
+.leaf[passed="true"]:hover,
+.branch[passed="true"]>.branch-info:hover {
+  background: #DDFFDD;
+}
+
+.leaf[passed="false"]:hover,
+.branch[passed="false"]>.branch-info:hover {
+  background: #FFDDDD;
+}
+
+.branch-expand {
+  float: left;
+  width: 16px;
+  height: 16px;
+  border: solid silver 1px;
+  border-radius: 2px;
+  background: white;
+  text-align: center;
+  cursor: pointer;
+}
+
+.branch-name {
+  margin: 0 320px 0 24px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  font-size: 14px;
+}
+
+.branch-name:hover {
+  overflow: visible;
+}
+
+.branch-stats span {
+  font-family: monospace;
+  display: inline-block;
+  width: 100px;
+  float: right;
+}
+
+.branch-stats span.mark {
+  color: red;
+  font-weight: bold;
+}
+
+.dropper {
+  float: right;
+  width: 16px;
+  padding-top: 16px;
+  overflow: hidden;
+  height: 0;
+  background: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABmJLR0QA/wD/AP+gvaeTAAABYUlEQVR42qWTT4oiMRTGfy8pEHTlznXTqzmCLr2KLno2vS0URRiLEmFuIDlDbV25qjt4BnFTQirJKrOYrpquEWykH3wkvLzvS96fAPwAfgM3ID6BGfAC8PN0OkVrbbTWxrquO3DORedc9N5H730MIcQQQjwejxF4EyBaa7ler4hIB0qph77hcEjChzXO/X5PmqYopdjtdohI5xxgtVq1++R/8udbFovFw9e0Ao1ImqatiIiQ53knuFnX6zVKqXuBxtmQlsvlwzoACBDruqaqqrvAPM9bwSbvz4KDweCvgHOOqqo4n88URcF0OmU8Hn/ZlX6/302hKApmsxnGGCaTCVmW3XVARNhsNt0UvPfcbjculwvGGObzOaPR6Mt56PV6qEZVa40xBhHhcDiglCLLMrbbLUqpFlprtNb/Cg7EEALW2qemUERIkgQF/CrL8mlyWZYA7wCvwNuTPzF+cF75rv0BNP6pAFejwPkAAAAASUVORK5CYII=') center center no-repeat;		
+}

@@ -1,0 +1,13 @@
+{
+    "name": "Image",
+    "native": false,
+    "fields": {
+        "Hash": "Text",
+        "Width": "Number",
+        "Height": "Number",
+        "Size": "Number",
+        "Mime": "Text",
+        "Counter": "Number"
+    },
+    "data": []
+}

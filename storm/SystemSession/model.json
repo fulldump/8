@@ -1,0 +1,13 @@
+{
+    "name": "SystemSession",
+    "native": false,
+    "fields": {
+        "SessionId": "Text",
+        "User": "SystemUser",
+        "Created": "Number",
+        "UserAgent": "Text",
+        "Data": "Text",
+        "Ip": "Text"
+    },
+    "data": []
+}

@@ -1,0 +1,8 @@
+{
+    "name": "COUNTER",
+    "type": "NUMBER",
+    "description": "",
+    "default": 0,
+    "callback_before": null,
+    "callback_after": null
+}

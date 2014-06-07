@@ -1,0 +1,8 @@
+{
+    "name": "COOKIE_NAME",
+    "type": "STRING",
+    "description": "Name of the cookie",
+    "default": "ASPXFORMSAUTH",
+    "callback_before": null,
+    "callback_after": null
+}

@@ -1,0 +1,8 @@
+{
+    "name": "DEFAULT_PAGE",
+    "type": "NUMBER",
+    "description": "",
+    "default": 1,
+    "callback_before": null,
+    "callback_after": null
+}

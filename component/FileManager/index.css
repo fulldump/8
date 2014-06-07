@@ -1,0 +1,245 @@
+/* GENERAL LIST STYLES */
+
+.file-manager .fm-list {
+	overflow-y:auto;
+}
+
+.file-manager .fm-list-item {
+	display:block;
+	text-decoration:none;
+	margin:2px;
+	padding:4px;
+	cursor:pointer;
+}
+
+/*
+.file-manager .fm-list-item:focus {
+	background-color:rgba(255,53,0,0.2);
+	transition:background-color 0.3s ease;
+}
+*/
+
+.file-manager .fm-list-item-icon {
+	background:center center no-repeat;
+	background-size: contain;
+}
+
+.file-manager .fm-list-item-delete {
+	border:solid transparent 3px;
+	margin:-3px;
+	background:center center no-repeat transparent;
+	border-radius:16px;
+	display:none;
+}
+
+.file-manager .fm-list-item-name,
+.file-manager .fm-list-item-details {
+	text-overflow:ellipsis;
+	white-space:nowrap;
+}
+
+.file-manager .fm-list-item-delete:hover {
+	border:solid red 3px;
+	margin:-3px;
+	background-color:white;
+}
+
+.file-manager .fm-list-item:hover .fm-list-item-delete {
+	display:block;
+}
+
+.file-manager .fm-list-item-name {
+	color:black;
+	height:20px;
+	overflow:hidden;
+	font-weight:bold;
+}
+
+.file-manager .fm-list-item-details {
+	height:12px;
+	overflow:hidden;
+	font-size:10px;
+	color:gray;
+}
+
+.file-manager .fm-list-item-details .attr-size {
+	display:inline-block;
+	min-width:60px;
+}
+
+.file-manager .fm-list-item-details .attr-timestamp {
+	display:inline-block;
+	min-width:80px;
+}
+
+.file-manager .fm-list-item-details .attr-user {
+	display:inline-block;
+}
+
+.file-manager .predeleting .fm-list-item-delete {
+	display:none !important;
+}
+
+
+/* LIST VIEW */
+
+.file-manager [view=list] .fm-list-item-icon {
+	float:left;
+	width:32px;
+	height:32px;
+}
+
+.file-manager [view=list] .fm-list-item-delete {
+	float:right;
+	width:32px;
+	height:32px;
+}
+
+.file-manager [view=list] .fm-list-item {
+	border:solid silver 1px;
+	height:32px;
+	display:block;
+}
+
+.file-manager [view=list] .fm-list-item:hover {
+	border-color:black;
+}
+
+.file-manager [view=list] .fm-list-item-name,
+.file-manager [view=list] .fm-list-item-details {
+	margin-left:40px;
+	margin-right:40px;
+}
+
+.file-manager [view=list] .predeleting {
+	display:none;
+}
+
+/*
+.file-manager [view=list] .predeleting {
+	transition:opacity 1s ease;
+	opacity:0.5;
+}
+
+.file-manager [view=list] .deleting {
+	transition:height 1s ease, opacity 1s ease, padding 1s ease, margin 1s ease;
+	height:0;
+	overflow:hidden;
+	border:none;
+	padding:0;
+	margin:0;
+	opacity:0;
+}*/
+
+
+/*//////////////////////*/
+
+.file-manager [view=grid] .fm-list-item {
+	float:left;
+	margin:8px;
+}
+
+.file-manager [view=grid] .fm-list-item-icon {
+	border:solid transparent 1px;
+	width:96px;
+	height:96px;
+}
+
+.file-manager [view=grid] .fm-list-item-icon:hover {
+	border-color:gray;
+}
+
+.file-manager [view=grid] .fm-list-item-name,
+.file-manager [view=grid] .fm-list-item-details {
+	width:96px;
+	text-align:center;
+}
+
+.file-manager [view=grid] .fm-list-item-name {
+	font-size:11px;
+}
+
+.file-manager [view=grid] .fm-list-item-delete {
+	position:absolute;
+	width:32px;
+	height:32px;
+	margin-left:-20px;
+	margin-top:-20px;
+}
+
+.file-manager [view=grid] .predeleting {
+	display:none;
+}
+
+/*
+.file-manager [view=grid] .predeleting {
+	transition:opacity 1s ease;
+	opacity:0.5;
+}
+
+.file-manager [view=grid] .deleting {
+	transition:width 1s ease, height 1s ease, opacity 1s ease, padding 1s ease, margin 1s ease;
+	width:0;
+	height:0;
+	overflow:hidden;
+	border:none;
+	padding:0;
+	margin:0;
+	opacity:0;
+}
+*/
+
+
+/* ANIMATIONS */
+
+.file-manager .fm-list .fm-list-item-delete {
+	-moz-transition:all 0.8s ease;
+	-webkit-transition:all 0.8s ease;
+	-o-transition:all 0.8s ease;
+	transition:all 0.8s ease;
+}
+
+
+
+/* BAR */
+
+.file-manager .fm-bar {
+	padding:16px;
+	text-align:center;
+}
+
+.file-manager .fm-bar A {
+	color:blue;
+	text-decoration:none;
+}
+
+/* SEARCH BAR */
+.file-manager .fm-bar .comGraphicInputButton {
+	width:50%;
+	margin:auto;
+}
+
+
+/* ADDER */
+.file-manager .fm-adder {
+	padding:16px;
+	text-align:center;
+}
+
+
+
+
+
+/* ICONS AND IMAGES */
+
+.file-manager [data-mime="application/pdf"] .fm-list-item-icon {
+	background-image:url('data:image/png;base64,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');
+}
+
+.file-manager .fm-list-item-icon {
+	background-image:url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABHNCSVQICAgIfAhkiAAAAwNJREFUWIXll09u1DAYxX+24zhRJ3QkhACpp+ICZdFd78CWJasuK/UEXKS3KFJZFSSGVEwSOyxaW47zZzIVOz7JiuN47Pe99/wlA/97iHTg6urqQ5ZlN0CllEJKiXMOa21oXdeFa9xfGgN2Xdd9vLm5+Rrvl40QCXF9cXFRPffDeN/3g3nx/cp+dXl5eQ0sA7DWbgFub28RQiClDFcpJUoplFIIIVBKsd1u0VoPnqd9IQT7/Z6mabbpfjId6PseIURoQFjQN89O13UYY0a/921NjBhwzoUNYgbSJqWkKIowfyo8EJ/IFKgRA865EQuxBDEo5xxN0xzMcomNEQBrbejPseCfKaXQWh9kYQnIJAPp5um9tZY8zynLkrqu6bouzFvKfBUAz8CcCQGMMRRFQV3XZFlGnucDrecyfxGAWHt/72k3xmCMoW3bVa5fDWDKhCkjPtq2BfDVbnHToxlIsxdC0DQNWutQXPzzx8fH5fRh0qwHJYhdL6WkqiqyLEMIwcnJSeiXZTmYP8XCiyWITai1xlobKmHXdWHe0nFczYDXMs3eZxBL4pwLDHhAPsspJo6SINW+73usteFF5GmPwdZ1jXNuVoajAMQLCyHIsoyqqgZz67oOcnhPKKVGmxzNQEq1ByClHPjDGEOe5wGsUmp1WZ4FkJ7n1AdxKKUGDHip0qq4FKuOoS82sf7+7HvN4zqx2+1WA5j6IhpQJYRgs9lQluXIYJvNBq31YL4xJjCxBsSiCb0PsiwbjHtgbduOJIhfWmti1gOxCdPwY74ITcWhojQLIJVg7iUDTxKkADzoh4eHEWurAYSHUgad4/AAd7vdCKA/Baenp0GKoz7J4gW966dY6PserfUkOF9H/PflUqSnoJJS/ur7/tXZ2VkYnNO5KIrFxdPym+f5DngH/AT2KYAKeHN/f//5/Pz8E1Aurr4y8jynaRqEEH/u7u6+AO8BBXwHXJxaDrwFXgNbwDxP/Bfxh6dka+AH8A34DRN/Tp83Lp4BrStnh8MBLU+074FgjL+2Ou4M8fmt9gAAAABJRU5ErkJggg==');
+}
+
+.file-manager .fm-list-item-delete {
+	background-image:url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAQAAABKfvVzAAAALHRFWHRDcmVhdGlvbiBUaW1lAFN1biAxOCBPY3QgMjAwOSAxMDowMjo0MCAtMDAwMJA/7VAAAAAHdElNRQfZChIKHwiHU2OIAAAACXBIWXMAAAsSAAALEgHS3X78AAAABGdBTUEAALGPC/xhBQAAAHZJREFUeNpj/M9AGmAiUT0DCzbBRrC19YxYdfzHgA3/n4Bhw///WGQZ/6OYigsgbENyUj3DUyQlN5FYr7D7oZEoTzMiXNL4H5sdIPORvY8WrFuheAMQb4FiCuNhVMPw0OANxQFA7APFqAAlxxGTXhlpXgiQrAEAqc4zxVjDvIoAAAAASUVORK5CYII=");
+}

@@ -1,0 +1,8 @@
+{
+    "name": "DocumentPartType",
+    "native": false,
+    "fields": {
+        "Name": "Text"
+    },
+    "data": []
+}

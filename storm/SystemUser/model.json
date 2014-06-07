@@ -1,0 +1,27 @@
+{
+    "name": "SystemUser",
+    "native": false,
+    "fields": {
+        "Name": "Text",
+        "Login": "Text",
+        "Password": "Text"
+    },
+    "data": [
+        {
+            "id": "1",
+            "__timestamp__": "1386874822",
+            "__operation__": "UPDATE",
+            "Name": "Invitado",
+            "Login": "invitado",
+            "Password": ""
+        },
+        {
+            "id": "2",
+            "__timestamp__": "1392482086",
+            "__operation__": "UPDATE",
+            "Name": "Administrador",
+            "Login": "admin",
+            "Password": "39304b2126effd154c6db7ac3fd92cb4"
+        }
+    ]
+}

@@ -1,0 +1,13 @@
+{
+    "name": "EmailerLog",
+    "native": false,
+    "fields": {
+        "From": "Text",
+        "To": "Text",
+        "Timestamp": "Number",
+        "Email": "EmailerHistory",
+        "Parameters": "Text",
+        "Result": "Number"
+    },
+    "data": []
+}

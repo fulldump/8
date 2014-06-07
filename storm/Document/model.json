@@ -1,0 +1,12 @@
+{
+    "name": "Document",
+    "native": false,
+    "fields": {
+        "Title": "Text",
+        "Keywords": "Text",
+        "Description": "Text",
+        "DateCreation": "Number",
+        "Author": "SystemUser"
+    },
+    "data": []
+}

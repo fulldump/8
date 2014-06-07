@@ -1,0 +1,8 @@
+SetEnv PHP_VER 5_4
+
+RewriteEngine On
+
+RewriteCond %{REQUEST_URI} !/developer.php|/install.php
+RewriteRule (.*) index.php [L,QSA]
+
+

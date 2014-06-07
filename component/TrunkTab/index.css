@@ -1,0 +1,21 @@
+[component="TrunkTab"] {
+  border-bottom: solid silver 1px;
+}
+
+[component="TrunkTab"] [component="TrunkButton"] {
+  margin-right: 2px;
+  margin-bottom: -1px;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+  border-bottom-color: white;
+}
+
+[component="TrunkTab"] [component="TrunkButton"]:hover {
+  background-color: white;
+  border-bottom-color: white;
+}
+
+[component="TrunkTab"] [component="TrunkButton"].none,
+[component="TrunkTab"] [component="TrunkButton"].none:hover {
+  border-bottom-color: silver;
+}

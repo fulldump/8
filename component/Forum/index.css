@@ -1,0 +1,102 @@
+.margen {
+    padding: 8px;
+}
+
+.foro-elem {
+	margin:4px;
+	border-radius:8px;
+	border:solid silver 1px;
+	overflow:auto;
+}
+
+.foro-hijos {
+	padding-left: 32px;
+}
+
+.foro-elem:target {
+	border-color:blue;
+}
+
+.foro-elem CODE P {
+	margin:0;
+	padding:0;
+	display:inline;
+}
+
+.foro-elem-user {
+	border-color:orange;
+}
+
+.foro-elem .fecha {
+	float:left;
+	color:gray;
+	width:48px;
+	text-align:center;
+	font-weight:bold;
+}
+
+.foro-elem .fecha .dia {
+	font-size:28px;
+}
+
+.foro-elem .fecha .mes {
+	
+}
+
+.foro-elem .fecha .ano {
+	font-size:10px;
+}
+
+
+.foro-elem .texto {
+	margin-left:48px;
+}
+
+.foro-elem .botones {
+	float:right;
+	clear:right;
+}
+
+.foro-elem .botones A {
+	text-decoration:none;
+	display:inline-block;
+}
+
+.foro-elem .pie {
+	overflow:auto;
+	font-size:12px;
+	color:gray;
+	padding-bottom:8px;
+}
+
+.foro-elem .autor {
+	float:left;
+}
+
+.foro-elem .comentarios {
+	float:right;
+}
+
+#make-question {
+	background-color:silver;
+	border-radius:8px;
+	margin:4px;
+}
+
+/* DEVICE ADAPTATION (anidation control) */
+@media (min-width:1000px) {
+	.foro-hijos .foro-hijos .foro-hijos .foro-hijos .foro-hijos .foro-hijos .foro-hijos .foro-hijos {
+		padding-left:0 !important;
+	}
+	
+}
+
+@media (max-width:999px) {
+	.foro-hijos {
+		padding-left:16px;
+	}
+
+	.foro-hijos .foro-hijos .foro-hijos {
+		padding-left:0 !important;
+	}
+}

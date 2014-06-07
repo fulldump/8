@@ -1,0 +1,8 @@
+{
+    "name": "LOGIN_DELAY",
+    "type": "NUMBER",
+    "description": "Number of delay seconds since login request is sent",
+    "default": 1,
+    "callback_before": null,
+    "callback_after": null
+}

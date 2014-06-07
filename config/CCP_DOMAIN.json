@@ -1,0 +1,8 @@
+{
+    "name": "CCP_DOMAIN",
+    "type": "STRING",
+    "description": "Dominio en el que estará alojado CCP",
+    "default": "cuantocomicplus.com",
+    "callback_before": null,
+    "callback_after": null
+}

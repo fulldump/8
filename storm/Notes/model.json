@@ -1,0 +1,10 @@
+{
+    "name": "Notes",
+    "native": false,
+    "fields": {
+        "Name": "Text",
+        "Configuration": "Text",
+        "Creation": "Number"
+    },
+    "data": []
+}

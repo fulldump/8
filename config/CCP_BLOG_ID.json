@@ -1,0 +1,8 @@
+{
+    "name": "CCP_BLOG_ID",
+    "type": "NUMBER",
+    "description": "Id del blog cuanto comic plus",
+    "default": 0,
+    "callback_before": null,
+    "callback_after": null
+}

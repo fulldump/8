@@ -1,0 +1,24 @@
+/* SIMPLE LIST */
+
+.simple-list {
+	overflow-y:auto;
+}
+
+.simple-list BUTTON {
+	display:block;
+	border:none;
+	padding:8px;
+	width:100%;
+	background-color:transparent;
+	cursor:pointer;
+	text-align:left;
+}
+
+.simple-list BUTTON:hover {
+	background-color:#EEEEEE;
+}
+
+.simple-list BUTTON.selected {
+	font-weight:bold;
+	color:#DD4B39;
+}

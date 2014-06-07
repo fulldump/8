@@ -1,0 +1,8 @@
+{
+    "name": "PROFILING_ENABLED",
+    "type": "BOOLEAN",
+    "description": "",
+    "default": false,
+    "callback_before": null,
+    "callback_after": null
+}

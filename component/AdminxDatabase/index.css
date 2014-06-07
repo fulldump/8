@@ -1,0 +1,20 @@
+[component="AdminxDatabase"] {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+}
+
+[component="AdminxDatabase"] .AdminxDatabase-current {
+  padding: 9px;
+  text-align: center;
+  height: 17px;
+  color: dodgerblue;
+  font-weight: bold;
+  font-size: 15px;
+}
+
+.left-panel .graphicList-listItem-Button {
+  background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAAfRJREFUSMe1lT+vEkEUxX+zf/LgUWCMNK/R2Jj4FQgt9ZZQ01HaEkr4CrR0BBMSaCwIHa2JRhstfYkNhSLIwu7szFj4XDE7S3yEd5PNTM65OTc5995ZeOAQgP+yP4ovLewWiubjq+DKA0pqv6NarVoTP3/b8eJx6V5cojVv370HuPYAXx9C1lHCJkoyyT++fuHWe24tkMeVfBd12AP4HkCy27CTCtcRWQ/9Kyt+iltHCcl2DYAHoA8hn968tooYrdh8cO/NOYXr9F6ZzWbmcDiY/X6f+RaLhRU/xYVhaCaTyU/giQeglMIYQ5Jke6C1tuKnOCEEWuu/FiVJgjEmBY9DKWXFT3GO4yClTPegMh6PV47jXHQPlFKy0WjceABxHBMEAVEUZRKXyyW1Ws0qkse5rst0Oo1Ti6SUaK1RSmWSpZRW/BQnhEh74x17afPzT/G8AjbOGJMWFkBlMBisLv0WGWNku92+Saeo2WwShmEmcT6fU6/XrSJ5XKFQYDQaxf9YlDem51h0vB9pkx+qgAAq/X5/lSdy9o9GCNnpdH73wBhDq9Viu91mEqfTKUEQWEXyuGKxyHA4/L8enPNUHI9pWkAIQblctgrl4Xnc8QIKoNLtdi++B1rrXa/XeyaAR8DTu/NiewZ8B24F4AOlu/OSEQPhL6n+pVFThctrAAAAAElFTkSuQmCC');
+}

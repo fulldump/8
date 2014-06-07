@@ -1,0 +1,32 @@
+.graphicPopup {
+	position:fixed;
+	z-index:99999;
+	top:0;
+	left:0;
+	right:0;
+	bottom:0;
+	background-color:rgba(255,255,255,0.7);
+}
+
+.graphicPopup-frame {
+	position:absolute;
+	background-color:white;
+	border-radius:8px;
+	top:50%;
+	left:50%;
+	border:solid gray 1px;
+	box-shadow:4px 4px 4px rgba(0,0,0,0.4);
+}
+
+.graphicPopup-content {
+	padding:16px;
+}
+
+.graphicPopup-buttons {
+	padding:16px;
+	text-align:right;
+}
+
+.graphicPopup-buttons .shadow-button{
+	margin-left:4px;
+}

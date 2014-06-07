@@ -1,0 +1,8 @@
+{
+    "name": "GUEST_USER_ID",
+    "type": "NUMBER",
+    "description": "",
+    "default": 2,
+    "callback_before": null,
+    "callback_after": null
+}

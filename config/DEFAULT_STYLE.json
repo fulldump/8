@@ -1,0 +1,8 @@
+{
+    "name": "DEFAULT_STYLE",
+    "type": "STRING",
+    "description": "",
+    "default": "Default",
+    "callback_before": null,
+    "callback_after": null
+}

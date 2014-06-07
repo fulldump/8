@@ -1,0 +1,11 @@
+
+/cache/*
+/cache/img/*
+/files/*
+/rack/*
+/profiling/*
+/storm/*/alter.json
+
+!empty_dir
+
+.file_store

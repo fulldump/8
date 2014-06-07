@@ -1,0 +1,131 @@
+[component="TrunkButton"] {
+  display: inline-block;
+  text-decoration: none;
+  padding: 8px 12px;
+  margin: 0px;
+  border-radius: 4px;
+  cursor: pointer;
+  border: solid 1px;
+  text-transform: capitalize;
+  font-size: 14px;
+  text-align: center;
+  background-image: none;
+  background-repeat: no-repeat;
+  background-position: center center;
+
+  /* custom styles */
+  color: #333;
+  background-color: white;
+  border-color: #adadad;
+}
+
+[component="TrunkButton"]:hover {
+  background-color: #ebebeb;
+  border-color: #adadad;
+}
+
+[component="TrunkButton"].blue {
+  color: #fff;
+  background-color: #428bca;
+  border-color: #357ebd;
+}
+
+[component="TrunkButton"].blue:hover {
+  color: #fff;
+  background-color: #3276b1;
+  border-color: #285e8e;
+}
+
+[component="TrunkButton"].green {
+  color: #fff;
+  background-color: #5cb85c;
+  border-color: #4cae4c;
+}
+
+[component="TrunkButton"].green:hover {
+  color: #fff;
+  background-color: #47a447;
+  border-color: #398439;
+}
+
+[component="TrunkButton"].aqua {
+  color: #fff;
+  background-color: #5bc0de;
+  border-color: #46b8da;
+}
+
+[component="TrunkButton"].aqua:hover {
+  color: #fff;
+  background-color: #39b3d7;
+  border-color: #269abc;
+}
+
+[component="TrunkButton"].orange {
+  color: #fff;
+  background-color: #f0ad4e;
+  border-color: #eea236;
+}
+
+[component="TrunkButton"].orange:hover {
+  color: #fff;
+  background-color: #ed9c28;
+  border-color: #d58512;
+}
+
+[component="TrunkButton"].red {
+  color: #fff;
+  background-color: #d9534f;
+  border-color: #d43f3a;
+}
+
+[component="TrunkButton"].red:hover {
+  color: #fff;
+  background-color: #d2322d;
+  border-color: #ac2925;
+}
+
+[component="TrunkButton"].purple {
+  color: #fff;
+  background-color: #ca8bca;
+  border-color: #bd7ebd;
+}
+
+[component="TrunkButton"].purple:hover {
+  color: #fff;
+  background-color: #b176b1;
+  border-color: #8e5e8e;
+}
+
+[component="TrunkButton"].gray {
+  color: #fff;
+  background-color: #888888;
+  border-color: #777777;
+}
+
+[component="TrunkButton"].gray:hover {
+  color: #fff;
+  background-color: #555555;
+  border-color: #555555;
+}
+
+[component="TrunkButton"].none {
+  color: #428bca;
+  background-color: transparent;
+  border-color: transparent;
+}
+
+[component="TrunkButton"].none:hover {
+  color: #2a6496;
+  border-color: #2a6496;
+}
+
+[component="TrunkButton"]:focus,
+[component="TrunkButton"]:focus {
+  outline: none;
+  box-shadow: 0 0 4px dodgerblue;
+}
+
+[component="TrunkButton"][disabled] {
+  opacity: 0.65;
+  cursor: none;
+}

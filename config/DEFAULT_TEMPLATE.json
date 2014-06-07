@@ -1,0 +1,8 @@
+{
+    "name": "DEFAULT_TEMPLATE",
+    "type": "STRING",
+    "description": "",
+    "default": "Pencil",
+    "callback_before": null,
+    "callback_after": null
+}

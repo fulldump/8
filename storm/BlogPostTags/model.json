@@ -1,0 +1,9 @@
+{
+    "name": "BlogPostTags",
+    "native": false,
+    "fields": {
+        "Post": "BlogPost",
+        "Tag": "BlogTag"
+    },
+    "data": []
+}

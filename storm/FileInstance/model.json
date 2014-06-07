@@ -1,0 +1,11 @@
+{
+    "name": "FileInstance",
+    "native": false,
+    "fields": {
+        "Label": "Label",
+        "Type": "Number",
+        "Url": "Text",
+        "File": "Text"
+    },
+    "data": []
+}

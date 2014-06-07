@@ -1,0 +1,146 @@
+HTML {
+	font-size:13px;
+	font-family:Arial,sans-serif;
+}
+
+/* Objeto margen */
+.margen {
+	padding:16px;
+}
+
+/* Contenido */
+#content {
+	position:absolute;
+	left:0;
+	right:0;
+	bottom:0;
+	top:29px;
+	overflow:hidden;
+}
+
+
+/* app-bar + formularios */
+
+#app-bar {
+	position:absolute;
+	top:0;
+	left:0;
+	right:0;
+	height:29px;
+	padding-left:48px;
+	background:url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABMAAAAYCAYAAAAYl8YPAAAAAXNSR0IArs4c6QAAAAZiS0dEAP8A/wD/oL2nkwAAAAlwSFlzAAALEwAACxMBAJqcGAAAAAd0SU1FB9sKBhcGNlt/htsAAAG6SURBVDjLrdTNi41hGAbw3zmMoSYz46N8JRQZUWIhlCg7aSKl+AssFP6BsbOepSTNVlkoJZuRlI2GGh+RhinJYsxiQmMm49hcp95O57xnznCv3t7nea7nuq/7up5KrVbzv2p5m/UtOIPVqOAOvrTaXGnCrA97MIBtGMVjXME6PMEkPpSBrQmL7fiM13iB2az34iD6cQgjeNOqzcuYxhAWmnQxE5awr9meauF7JKw2LkLrtxjEylZgm/E9DNrV3XRxrFmb50N9OICLqRn8aGR2Ku0NYaoDW/VivhHsKO63EL2sXuJcsdVqfHMRezsEG8MtnI5EqngUQS/geIeAE0nEr+I0x/EMW9scXtFohwxsdxFsGU7ieWHTpsSpXqtwDTsawO4lGT11ayzgYSzyFa/wB2dxG++zNhnDdodAVzLcjWpj0PuwHzvTzq5cdB1XcQOHcQRz8eksHmCiUvKeVQJ4KUJvwE2szQXz+F30Wtl7VsuU5iL8z/yfbnWg2mZ6/dFlKrqUVjuwgeTvY/T8J7ADeBdj9iSPSwJbH7HHIvi3MF0S2GDCXH+2n+JEptwRWFdARgv/xvGp7CX+CwnqaNCG9fYTAAAAAElFTkSuQmCC') no-repeat 16px center;
+	background-color:#2D2D2D;
+}
+
+#app-bar A {
+	color:#CCCCCC;
+	display:inline-block;
+	height:15px;
+	padding:6px;
+	border-top:solid transparent 2px;
+	text-decoration:none;
+	outline:none;
+}
+
+#app-bar A:hover {
+	background-color:#4C4C4C;
+}
+
+#app-bar A.selected {
+	border-top-color:#DD4B39;
+	color:white;
+	font-weight:bold;
+}
+
+#app-bar-right {
+	float:right;
+}
+
+#form-login {
+	position:absolute;
+	margin:0;
+	padding:0;
+	top:29px;
+	right:0;
+	display:none;
+	background-color:silver;
+	color:white;
+	z-index:999;
+}
+
+#form-login INPUT {
+	border:none;
+	padding:0;
+	margin:0;
+}
+
+#form-register {
+	position:absolute;
+	margin:0;
+	padding:0;
+	top:32px;
+	right:0;
+	display:none;
+	background-color:silver;
+	color:white;
+	z-index:999;
+}
+
+#form-register INPUT {
+	border:none;
+	padding:0;
+	margin:0;
+}
+
+#form-logout {
+	display:none;
+}
+
+
+/* SHADOW BUTTON */
+
+.shadow-button {
+	color:white;
+	padding:7px;
+	margin:0px;
+	border-radius:3px;
+	background-color: silver;
+	border:0px;
+	cursor:pointer;
+	border:solid silver 1px;
+	font-weight:bold;
+	text-transform:uppercase;
+	font-size:12px;
+}
+
+.shadow-button:hover {
+	box-shadow:2px 2px 2px rgba(0,0,0,0.1);
+	border-color:gray;
+}
+
+.shadow-button-blue {
+	background-color:#4D90FE;
+}
+
+.shadow-button-red {
+	background-color:#DD4B39;
+}
+
+.shadow-button-green {
+	background-color:#3D9400;
+}
+
+.shadow-button-white {
+	background-color:white;
+	color:silver;
+	cursor:default;
+}
+
+.shadow-button-white:hover {
+	box-shadow:none;
+	border-color:silver;
+}
+
+
+
+

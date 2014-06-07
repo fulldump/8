@@ -1,0 +1,36 @@
+[component="TrunkDetail"] {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+}
+
+[component="TrunkDetail"] > .top {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  height: 34px;
+}
+
+[component="TrunkDetail"] > .center {
+  position: absolute;
+  top: 34px;
+  right: 0;
+  left: 0;
+  bottom: 34px;
+}
+
+[component="TrunkDetail"] > .bottom {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  height: 34px;
+}
+
+[component="TrunkDetail"] > .top > [component="TrunkButton"],
+[component="TrunkDetail"] > .bottom > [component="TrunkButton"] {
+  margin-right: 4px;
+}

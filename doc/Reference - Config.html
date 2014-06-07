@@ -1,0 +1,109 @@
+<h1>Intro</h1>
+
+<p><em>Config</em> is the prefered method to store and manage configuration values that can be shared across all packages. The system is based on a key-values pairs list. To avoid name conflicts, each package has it own list. The typical usage is:</p>
+
+<code lang="php">
+use \treeweb\Config;
+
+$my_configuration_value = Config::get('my/great/package', 'MY_CONFIGURATION_KEY');
+
+Config::set('my/great/package', 'MY_CONFIGURATION_KEY', 'my configuration value');
+</code>
+
+<h1>Scopes</h1>
+
+<p>TreeWeb can be installed in a <a href="#TODO">multiple domain configuration</a>. For the same key, the system can store a different value per each domain.</p>
+
+<p>Each key has two different scopes, the domain scope and the global scope. The domain scope store all values are associated to the current domain name. Besides the global scope stores the same value for all domains.</p>
+
+<p>As a general rule, the domain scope has preference over the global scope. For example, when I use the method <em>get</em> first the domain scope is checked. If there is no a value stored then the global scope is checked.</p>
+
+<p>To force working only with the global scope an extra parameter must be passed. Fore example:</p>
+
+<code lang="php">
+use \treeweb\Config;
+
+Config::set('my/great/package', 'MY_CONFIGURATION_KEY', <b>'global value'</b>, true);
+Config::set('my/great/package', 'MY_CONFIGURATION_KEY', <b>'domain value'</b>);
+
+$global_value = Config::get('package', 'CONFIGURATION_KEY', true);  // returns 'global value'
+$domain_value = Config::get('package', 'CONFIGURATION_KEY');        // returns 'domain value'
+</code>
+
+
+
+<h1>How to define new keys</h1>
+
+<p>The typical code to define new keys:</p>
+
+<code class="php">use \treeweb\Config;
+
+Config::create('app', 'LIST_FRUITS');
+Config::setDescription('app', 'LIST_FRUITS', 'A sample list of fruites.');
+Config::setType('app', 'LIST_FRUITS', 'APPLE, ORANGE, BANANA, LEMON');
+Config::setDefault('app', 'LIST_FRUITS', 'LEMON');</code>
+
+<p>That generates a JSON file stored inside the directory 'config' inside a package. The generated file:</p>
+
+<code>{
+"package": "app",
+"name": "LIST_FRUITS",
+"type": "APPLE, ORANGE, BANANA, LEMON",
+"description": "A sample list of fruites.",
+"default": "LEMON"
+}</code>
+
+<p>We can define new configuration keys using the API. Each key has different attributes described below:</p>
+
+<h2>Description</h2>
+
+<p>A small description of the configuration key. Can be empty.</p>
+
+<h2>Type</h2>
+
+<p>Each type has a validation, for example, BOOLEAN only accepts 'true' or 'false'.</p>
+
+<ul>
+	<li>NUMBER - Real numbers</li>
+	<li>STRING - A unlimited length string</li>
+	<li>MD5 - MD5 hash. Its default value is md5('')</li>
+	<li>EMAIL - List of comma separated emails.</li>
+	<li>BOOLEAN - Bool. Defaul</li>
+	<li>{list} - A comma-separated list of values.</li>
+</ul>
+
+<p>Notice: the validation of the {list} only allow values defined in the list.</p>
+
+<h2>Default value</h2>
+
+<p>The default value must follow the type validation</p>
+
+<h1>Class reference</h1>
+
+<h1>Tricks</h1>
+
+<p>Some cases with useful configurations.</p>
+
+<h2>A subdomain per language</h2>
+
+<p>We can use subdomains to determine the current language. For example we could have a main domain mydomain.com and two subdomains with other languages: es.mydomain.com and fr.mydomain.com. (<a href="http://wikipedia.org">Wikipedia</a> uses a similar configuration.)</p>
+
+<p>To resolve this, we can overwrite the global keys 'DEFAULT_LANGUAGE' and 'AVAILABLE_LANGUAGES' as follows:</p>
+
+<table border=1 style="width: 100%; text-align: center; border-color: silver; border-collapse: collapse;">
+	<tr>
+		<th>Scopes			</th><th>DEFAULT_LANGUAGE 	</th><th>AVAILABLE_LANGUAGES</th>
+	</tr>
+	<tr>
+		<td>mydomain.com 	</td><td>en 				</td><td>en					</td>
+	</tr>
+	<tr>
+		<td>es.mydomain.com	</td><td>es 				</td><td>es					</td>
+	</tr>
+	<tr>
+		<td>fr.mydomain.com	</td><td>en 				</td><td>fr					</td>
+	</tr>
+	<tr>
+		<td>global			</td><td>en 				</td><td>en,es,fr			</td>
+	</tr>
+</table>

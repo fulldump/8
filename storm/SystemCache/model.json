@@ -1,0 +1,10 @@
+{
+    "name": "SystemCache",
+    "native": false,
+    "fields": {
+        "Timestamp": "Number",
+        "Hash": "Text",
+        "Flags": "Text"
+    },
+    "data": []
+}

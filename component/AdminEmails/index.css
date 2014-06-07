@@ -1,0 +1,258 @@
+.AdminEmails {
+	/* layout */
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	margin: 16px;
+}
+
+.AdminEmails .AdminEmails-left {
+	/* layout */
+	position: absolute;
+	top: 0;
+	left: 0;
+	bottom: 0;
+	width: 300px;
+
+	/* colors */
+}
+
+.AdminEmails .AdminEmails-left .graphicList-listItem-Button {
+	background-image:url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAD6ElEQVRIx+1VXUybZRR+vr/261cY/UEQimMEBg6wHWPMGQY4ugGObIIu/qBzS2RsF9uFMWpczOaSOc3IMq8Z0s2bxSVqvGF22DnMdBkCGn4UFVIIA4SVtsD6UWj7HS8+ysJwOlxivPAkT97kzXmf57znfc85wP/2N8Y8yOGSkvNmWaY3DXGxO4dvXnuhr+9M190+/D8jPrc2EmGPrkmzvHzwQC66u2LwkeP3BgCb7/blVkbsKMzI2O14zJp+Zt+rJdaamkcxNswhPl2L0Lw2ZXRo/qp/6oehFd9g65NNz0p63bt5+Zm59u25sCRpIIpAjE6BeyyEbIuI6mdyccW5sd491LTpvgSqqx2amZnIAYPB8PamJ7KTioqzYDaxkERAJwKr4oBPL96GbaMeHAfoDBxKywoLJm/VlroHG6/cU2DXribzXFB5I3aV+XD5DqtUUJCKVbGAJKnEggYQOGDsZgi8DtCLHBgAjAI8vzsHLmd+vXuwMX+ZQGVlY0Ykwhy1pFj2bClej5ycBMToVWJRBLQCwPMAx6m4fHkKW8vMAAEsAzAMEJvAodReuME7Wbfd7W5oWRSoqnJsS001tdTVFSExyQhFUQ8IvApeADhW3WNZ4Pu2ALLWaaHhGLAL+1E892I2vnbln3K7kbf4izLXliUIgr7WPerHjetDcA94MO2XAQL0Egt9DL9IpCgEZ7MHhVviwXHqraLgOMBkZDE4LD48Mabc8Pnb+xcLrerpj785cXpPkVcGEAlidiYAv+c2/J5ZBOUItIIAo0kPOcCgsMgIk1m3LHpAXX8aUHCotqm7vWO/dbEOLCkFvQjH7c+1JYJneBjjJKQkG5CVGQ+bNQHrso1IeUTE6lQNzGZpyXtEwbIqEh9i0D8oJU6MoZONCrhcR9paWztb+XAEPAtoFsAvRMnzLCRJC6NR/6fk0XSFFMDpkjE+4kUo7LUu+aayPPr6F5/1tL/0ig1KCBCEpfmNRhh97GhqOA4IBIAWpw8XLrShq+er1vGJS+9PT/W2LCuwyh3nXL/+EqbhYaLxcaLJSSK/n2hmhigQIJJlomCQaG6OKBwmujVBdLZhlCrKP5lPTz94URTNeX/ZFuzbTq4/cbyTfD4ij4fI57tDPjurEkciREODCtWf6qeSkrPTaWk1HwJYc99N7akKh7P/txB5vXfIg0E14t7ueXrnyI+0+fHTI6tTd74FwLTidlxqP2k9fqyDZoMq+fwc0fXvAnT40DXK33CsJzm5eC8A8YEmUUV506W+nyP0ZbOX9u1tJpvttdb4+JzylQ6pezrb7e9lCrz525HRjqsDA59/IMuejv/cSP1X7A8jTZuhi8xgUAAAAABJRU5ErkJggg==');
+}
+
+.AdminEmails .AdminEmails-right {
+	/* layout */
+	position: absolute;
+	left: 300px;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	margin-left: 16px;
+	display: none;
+
+	/* colors */
+}
+
+.AdminEmails .AdminEmails-right .comGraphicTab {
+	/* layout */
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+}
+
+.AdminEmails .AdminEmails-right .AdminEmails-main {
+	/* layout */
+	position: absolute;
+	top: 32px;
+	bottom: 32px;
+	left: 0;
+	right: 0;
+	margin: 16px 0;
+
+	/* colors */
+	background: white;
+}
+
+.AdminEmails .AdminEmails-preview {
+	/* layout */
+	position: absolute;
+	top: 0;
+	left: 0;
+	bottom: 0;
+	right: 300px;
+	margin-right: 16px;
+	display: none;
+	overflow-y:auto;
+}
+
+.AdminEmails .NinjaEditor-content {
+	position: absolute;
+	bottom: 0;
+	right: 0;
+	left: 0;
+	top: 64px;
+	overflow-y: auto;
+	padding: 8px;
+	outline: none;
+}
+
+.AdminEmails .AdminEmails-html {
+	/* layout */
+	position: absolute;
+	top: 0;
+	left: 0;
+	bottom: 0;
+	right: 300px;
+	margin-right: 16px;
+	display: none;
+	
+}
+
+.AdminEmails .AdminEmails-test {
+	/* layout */
+	position: absolute;
+	top: 0;
+	left: 0;
+	bottom: 0;
+	right: 300px;
+	margin-right: 16px;
+	display: none;
+	
+}
+
+.AdminEmails .AdminEmails-parameters {
+	/* layout */
+	position: absolute;
+	top: 0;
+	left: 0;
+	bottom: 0;
+	right: 300px;
+	margin-right: 16px;
+	display: none;
+}
+
+.AdminEmails .AdminEmails-history {
+	/* layout */
+	position: absolute;
+	top: 0;
+	left: auto;
+	bottom: 0;
+	right: 0;
+	width: 300px;
+}
+
+.AdminEmails .AdminEmails-right .AdminEmails-history .graphicList-listItem-Button {
+	background-image:url('data:image/png;base64,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');
+}
+
+.AdminEmails .AdminEmails-right .AdminEmails-menu {
+	/* layout */
+	position: absolute;
+	left: 0;
+	right: 0;
+	bottom: 0;
+}
+
+
+
+
+
+
+/* == Animations == */
+.AdminEmails .AdminEmails-right .comGraphicTab {
+	/* animation */
+	-webkit-transition: opacity 0.5s ease;
+	-moz-transition: opacity 0.5s ease;
+	-ms-transition: opacity 0.5s ease;
+	-o-transition: opacity 0.5s ease;
+	transition: opacity 0.5s ease;
+
+	/* visual */
+	opacity: 0;
+}
+.AdminEmails .AdminEmails-right:hover .comGraphicTab {
+	/* visual */
+	opacity: 1;	
+}
+
+
+.AdminEmails .AdminEmails-right .comGraphicTab button {
+	/* animation */
+	-webkit-transition: opacity 0.5s ease;
+	-moz-transition: opacity 0.5s ease;
+	-ms-transition: opacity 0.5s ease;
+	-o-transition: opacity 0.5s ease;
+	transition: opacity 0.5s ease;
+
+	/* visual */
+	opacity: 0.25;
+}
+.AdminEmails .AdminEmails-right .comGraphicTab:hover button,
+.AdminEmails .AdminEmails-right .comGraphicTab button.shadow-button-blue {
+	/* visual */
+	opacity: 1;	
+}
+
+
+.AdminEmails .AdminEmails-left .graphicList-searchBox,
+.AdminEmails .AdminEmails-left .graphicList-newBox {
+	/* animation */
+	-webkit-transition: opacity 0.5s ease;
+	-moz-transition: opacity 0.5s ease;
+	-ms-transition: opacity 0.5s ease;
+	-o-transition: opacity 0.5s ease;
+	transition: opacity 0.5s ease;
+
+	/* visual */
+	opacity: 0;
+}
+.AdminEmails .AdminEmails-left:hover .graphicList-searchBox,
+.AdminEmails .AdminEmails-left:hover .graphicList-newBox {
+	/* visual */
+	opacity: 1;
+}
+
+.AdminEmails .AdminEmails-left .graphicList-listItem {
+	/* animation */
+	-webkit-transition: opacity 0.5s ease;
+	-moz-transition: opacity 0.5s ease;
+	-ms-transition: opacity 0.5s ease;
+	-o-transition: opacity 0.5s ease;
+	transition: opacity 0.5s ease;
+
+	/* visual */
+	opacity: 0.25;
+}
+.AdminEmails .AdminEmails-left:hover .graphicList-listItem,
+.AdminEmails .AdminEmails-left .graphicList-listItem-selected {
+	/* visual */
+	opacity: 1;
+}
+
+
+.AdminEmails .AdminEmails-history .graphicList-listItem,
+.AdminEmails .AdminEmails-right .AdminEmails-menu {
+	/* animation */
+	-webkit-transition: opacity 0.5s ease;
+	-moz-transition: opacity 0.5s ease;
+	-ms-transition: opacity 0.5s ease;
+	-o-transition: opacity 0.5s ease;
+	transition: opacity 0.5s ease;
+
+	/* visual */
+	opacity: 0;
+}
+.AdminEmails .AdminEmails-right:hover .graphicList-listItem,
+.AdminEmails .AdminEmails-right:hover .AdminEmails-menu  {
+	/* visual */
+	opacity: 0.25;
+}
+.AdminEmails .AdminEmails-history:hover .graphicList-listItem,
+.AdminEmails .AdminEmails-right:hover .AdminEmails-history .graphicList-listItem-selected,
+.AdminEmails .AdminEmails-right .AdminEmails-menu:hover  {
+	/* visual */
+	opacity: 1;
+}
+
+.AdminEmails .AdminEmails-right .NinjaEditor-toolbar {
+	/* animation */
+	-webkit-transition: opacity 0.5s ease;
+	-moz-transition: opacity 0.5s ease;
+	-ms-transition: opacity 0.5s ease;
+	-o-transition: opacity 0.5s ease;
+	transition: opacity 0.5s ease;
+
+	/* visual */
+	opacity: 0.25;	
+}
+
+.AdminEmails .AdminEmails-right:hover .NinjaEditor-toolbar {
+	/* visual */
+	opacity: 1;
+}
+
+

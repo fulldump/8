@@ -1,0 +1,8 @@
+{
+    "name": "FORUM_SENDER_EMAIL",
+    "type": "EMAIL",
+    "description": "",
+    "default": "email@example.com",
+    "callback_before": null,
+    "callback_after": null
+}

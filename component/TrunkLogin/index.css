@@ -1,0 +1,56 @@
+[component="TrunkLogin"] {
+  position:absolute;
+  margin-top:-100px;
+  top:40%;
+  left: 0;
+  right: 0;
+}
+
+[component="TrunkLogin"] form {
+  padding: 8px;
+  border:solid gray 1px;
+  max-width:300px;
+  margin: auto;
+  border-radius:3px;
+  box-shadow:2px 2px 8px rgba(0,0,0,0.4);
+
+  font-family: sans-serif;
+  font-size: 14px;
+}
+
+[component="TrunkLogin"] .errors,
+[component="TrunkLogin"] .inputs,
+[component="TrunkLogin"] .buttons {
+  margin: 8px;
+}
+
+[component="TrunkLogin"] .errors {
+  color: red;
+  margin-left: -8px;
+  margin-right: -8px;
+  padding:8px 16px;
+  background-color: #FFE0E0;
+  text-align: center;
+}
+
+[component="TrunkLogin"] .inputs label {
+  display:block;
+  border: solid silver 1px;
+  margin: 8px 0;
+}
+
+[component="TrunkLogin"] .inputs input {
+  border: 0;
+  margin: 0;
+  padding: 7px 0;
+  display: block;
+  width: 100%;
+  background-color: white;
+}
+
+[component="TrunkLogin"] .buttons {
+  text-align: right;
+  background-repeat: no-repeat !important;
+  background-position: 8px center !important;
+  background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAPNJREFUWMPtlTEKwkAQRZ+2qTT2egVBsBFS2gYPlSY5Qw6Qwt4mB7DxCpJa9AAB12YCS1hjYlYDuh8Gls3OzMvMLAv/rlHH8ztgCyyBBTCR/RtwBk7AAdjbhJwBKaDE7tq6bvq3VHx7KW5I1tbidxJPgcJC8soKidlKc6CslbNaX4AI2ACe5uPJXiRnlMG/lNgv/7w09PkKhB0qGIqPMkA0VqIwJM96zFBmgCi6DFxi4RYlbQbTN/Qts3iVM8M8+fVDK+Co9dy2qpk4Sq6nWgPBBwACif07yrW+5t96jHQpG7HGQ5fRATgAB+AAHIADGBzA6QGaI31VVX87mAAAAABJRU5ErkJggg==') !important;
+}

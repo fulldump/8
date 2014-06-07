@@ -1,0 +1,97 @@
+<h1>Dar de alta el blog</h1>
+
+<p>Vamos a /adminx/Data en la tabla ccBlog crear un blog:</p>
+
+<ul>
+	<li>Poner el nombre (el campo Name) por ejemplo 'La cocreta - fotos'</li>
+	<li>Poner el nombre de la clase que parsea por ejemplo 'ccParserCocretaFotos'</li>
+</ul>
+
+
+<h1>Crear la clase del parser</h1>
+
+<p>En el directorio /class/ creamos un archivo de php por ejemplo: /class/ccParserCocretaFotos.class.php</p>
+
+<p>Copiar y pegar el siguiente esqueleto:</p>
+
+<p>Recuerda cambiar el nombre de la clase, en este caso ccParserCocretaFotos</p>
+
+<code>
+&lt;?php
+
+class ccParserCocretaFotos extends ccParserAbstract {
+
+	protected static $base_url = 'http://lacroqueta.com/categoria/fotos';
+
+	public static function getRecentPage($n=10) {
+		return static::$base_url.'/pagina/'.$n.'/';
+	}
+
+	public static function getLastPage() {
+		$dom = static::getDOM(self::$base_url.'/');
+		$elements = $dom->find('.navigation .last');
+		if (!count($elements)) {
+			return 'FUCK YOU AND FIX THIS PARSER ('.__CLASS__.')!';
+		}
+		$element = array_pop($elements);
+		$url = parse_url($element->getAttribute('href'));
+		return $url['scheme'].'://'.$url['host'].$url['path'];
+	}
+
+	public static function getNextURL(&$dom, $current_url) {
+		$url = parse_url($current_url);
+
+		$path = explode('/', $url['path']);
+		array_pop($path);
+		$n = intval(array_pop($path));
+
+		if ($n>1) {
+			$path[] = $n-1;
+			$path[] = '';
+			return $url['scheme'].'://'.$url['host'].implode('/', $path);
+		} else {
+			return null;
+		}
+	}
+
+	public static function parse(&$dom) {
+		$items = array();
+		
+		$articles = $dom->find('#post-area div.post');
+
+		foreach ($articles as $article) {
+			$item = array();
+
+			$element_img = $article->find('.lacroqueta-content img', 0);
+			if (null == $element_img) continue;
+
+			// Hash
+			$item['hash'] = md5($article->getAttribute('id'));
+
+			// Title
+			$item['title'] = htmlspecialchars($element_img->getAttribute('title'), ENT_COMPAT, 'UTF-8');
+
+			// Image
+			$item['image'] = $element_img->getAttribute('src');
+
+			$items[] = $item;
+		}
+
+		return $items;
+	}
+
+}
+
+</code>
+
+<h1>Rellenar el atributo estático $base_url (sin barra al final normalmente)</h1>
+
+<code>
+	protected static $base_url = 'http://lacroqueta.com/categoria/fotos';
+</code>
+
+
+<h1>Calcular el hash</h1>
+
+<p>El hash debe ser único para los posts de un mismo <strong>blog</strong>, es decir, puede existir un mismo hash para diferentes blogs.</p>
+

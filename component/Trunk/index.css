@@ -1,0 +1,16 @@
+[component] {
+   font-family: sans-serif;
+}
+
+.TrunkMargin {
+   margin: 16px;
+}
+
+/* Mobile devices */
+@media (max-width: 1024px) {
+
+   .TrunkMargin {
+      margin: 0;
+   }
+
+}

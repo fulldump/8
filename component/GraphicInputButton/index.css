@@ -1,0 +1,32 @@
+.comGraphicInputButton {
+	text-align:center;
+	padding:0;
+	overflow:auto;
+}
+
+.comGraphicInputButton .inputdiv {
+	padding:6px;
+	margin:0;
+	border:solid silver 1px;
+	border-right:none;
+	margin-right:80px;
+	background-color:white;
+}
+
+.comGraphicInputButton INPUT {
+	padding:0;
+	margin:0;
+	height:19px;
+	border:none;
+	display:block;
+	width:100%;
+}
+
+.comGraphicInputButton BUTTON {
+	border-bottom-left-radius: 0;
+	border-top-left-radius: 0;
+	display:block;
+	float:right;
+	height:33px;
+	width:80px;
+}
