@@ -80,7 +80,7 @@
 			} else {
 				// CACHEO EL CONTENIDO:
 				if (!self::$error_404 && Config::get('CACHE_ENABLED')) {
-					SystemCache::INSERT(self::$path, self::$html);				
+					Cache::add(self::$path, self::$html);
 				}
 			}
 		}

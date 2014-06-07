@@ -9,10 +9,10 @@ self::$js = '<?php header(\'Content-Type: text/javascript; charset=UTF-8\');
 ?>'.self::$js;
 
 $hash_css = md5(self::$css);
-SystemCache::INSERT('/cache-css/'.$hash_css, self::$css);
+Cache::add('/cache-css/'.$hash_css, self::$css);
 
 $hash_js = md5(self::$js);
-SystemCache::INSERT('/cache-js/'.$hash_js, self::$js);
+Cache::add('/cache-js/'.$hash_js, self::$js);
 
 $ga = Config::get('GOOGLE_ANALYTICS');
 if (strlen($ga)) $ga = "\n\t\t".$ga;

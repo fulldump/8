@@ -18,7 +18,7 @@ if (count($url) == 2) {
 ?>'.$ajax;
 			eval(' ?>'.$ajax.'<?php ');
 			if (Config::get('CACHE_AJAX_ENABLED')) {
-				SystemCache::INSERT($path, $html);
+				Cache::add($path, $html);
 			}
 		}
 	}
