@@ -1,5 +1,5 @@
 <?php
 
-echo json_encode(Test::find('.'));
+echo json_encode(Test::find('tests'));
 
 ?>
