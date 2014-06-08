@@ -131,8 +131,3 @@ SECTION.main {
 #right A.selected {
 	color:red;
 }
-
-section.main img {
-	float: right;
-	clear: right;
-}
