@@ -439,6 +439,15 @@
             "CSS": "",
             "JS": "",
             "Template": ""
+        },
+        {
+            "id": "71",
+            "__timestamp__": "1402190640",
+            "__operation__": "UPDATE",
+            "HTML": "[[COMPONENT name=Admin]]",
+            "CSS": "",
+            "JS": "",
+            "Template": "AdminMyWeb"
         }
     ]
 }
