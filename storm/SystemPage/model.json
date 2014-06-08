@@ -46,7 +46,7 @@
         },
         {
             "id": "6",
-            "__timestamp__": "1395514810",
+            "__timestamp__": "1402179472",
             "__operation__": "UPDATE",
             "HTML": "[[COMPONENT name=EditorData error='Component \"EditorData\" does not exists.']]\n",
             "CSS": "",
@@ -262,7 +262,7 @@
         },
         {
             "id": "50",
-            "__timestamp__": "1399821504",
+            "__timestamp__": "1402169577",
             "__operation__": "UPDATE",
             "HTML": "<div id=\"container\"><\/div>",
             "CSS": "",
@@ -319,6 +319,123 @@
             "__timestamp__": "1402162638",
             "__operation__": "UPDATE",
             "HTML": "[[COMPONENT name=SimpleText text='rellenar este texto' id=4]]",
+            "CSS": "",
+            "JS": "",
+            "Template": ""
+        },
+        {
+            "id": "57",
+            "__timestamp__": "1402182295",
+            "__operation__": "UPDATE",
+            "HTML": "[[COMPONENT name=SimpleText text='rellenar este texto' id=5]]",
+            "CSS": "",
+            "JS": "",
+            "Template": ""
+        },
+        {
+            "id": "58",
+            "__timestamp__": "1402177881",
+            "__operation__": "UPDATE",
+            "HTML": "<div>El componente Label consiste en una <b>\u00fanica<\/b> l\u00ednea de texto <b>editable<\/b> y <b>sin formato<\/b>.<\/div>\n\n\n\n\n<h1>[[COMPONENT name=Label text='Label de ejemplo ' id=8]]<\/h1>\n\n<p>[[COMPONENT name=Label text='Label de ejemplo ' id=9]]<\/p>\n\n<button>[[COMPONENT name=Label text='Label de ejemplo ' id=10]]<\/button>\n\n<br>\n<br>\n\n<a href=\"http:\/\/www.google.es\/\">[[COMPONENT name=Label text='Label de ejemplo ' id=11]]<\/a>\n\n\n<table style=\"width: 100%;\">\n\t<tr>\n\t\t<td>[[COMPONENT name=Label text='Label de ejemplo ' id=12]]<\/td>\n\t\t<td>[[COMPONENT name=Label text='Label de ejemplo ' id=13]]<\/td>\n\t\t<td>[[COMPONENT name=Label text='Label de ejemplo ' id=14]]<\/td>\n\t\t<td>[[COMPONENT name=Label text='Label de ejemplo ' id=15]]<\/td>\n\t<\/tr>\n\n\t<tr>\n\t\t<td>[[COMPONENT name=Label text='Label de ejemplo ' id=16]]<\/td>\n\t\t<td>[[COMPONENT name=Label text='Label de ejemplo ' id=17]]<\/td>\n\t\t<td>[[COMPONENT name=Label text='Label de ejemplo ' id=18]]<\/td>\n\t\t<td>[[COMPONENT name=Label text='Label de ejemplo ' id=19]]<\/td>\n\t<\/tr>\n\n\t<tr>\n\t\t<td>[[COMPONENT name=Label text='Label de ejemplo ' id=20]]<\/td>\n\t\t<td>[[COMPONENT name=Label text='Label de ejemplo ' id=21]]<\/td>\n\t\t<td>[[COMPONENT name=Label text='Label de ejemplo ' id=22]]<\/td>\n\t\t<td>[[COMPONENT name=Label text='Label de ejemplo ' id=23]]<\/td>\n\t<\/tr>\n<\/table>",
+            "CSS": "",
+            "JS": "",
+            "Template": ""
+        },
+        {
+            "id": "59",
+            "__timestamp__": "1402178283",
+            "__operation__": "UPDATE",
+            "HTML": "El componente SimpleText permite editar texto enriquecido (negrita, cursiva, subrayado, tachado, super\u00edndice y sub\u00edndice), listas (ordenadas y normales), im\u00e1genes e hiperv\u00ednculos.\n<br><br>\n\n\n[[COMPONENT name=SimpleText text='rellenar este texto' id=7]]",
+            "CSS": "",
+            "JS": "",
+            "Template": ""
+        },
+        {
+            "id": "60",
+            "__timestamp__": "1402179169",
+            "__operation__": "UPDATE",
+            "HTML": "Docuss transforma html b\u00e1sico en un documento bien formateado, con \u00edndice y t\u00edtulo autom\u00e1tico. Muy \u00fatil para presentar documentaci\u00f3n.\n\n\n[[COMPONENT name=Docuss]]\n\n<div class=\"docuss\">\n\n\n<h1>T\u00edtulo uno<\/h1>\n\n<h2>Subt\u00edtulo a<\/h2>\n\n<p>P\u00e1rrafo con su texto con su texto con su texto con su texto con su texto con su texto con su texto con su texto con su texto con su texto con su texto con su texto con su texto con su texto con su texto con su texto con su texto con su texto con su texto con su texto con su texto con su texto con su texto con su texto con su texto con su texto con su texto con su texto con su texto con su texto.<\/p>\n\n\n<code lang=\"html\">\nUn ejemplo b\u00e1sico de documento ser\u00eda este:\n\n&lt;h1>T\u00edtulo&lt;\/h1>\n\n&lt;p>P\u00e1rrafo de ejemplo.&lt;\/p>\n\n&lt;p>P\u00e1rrafo de ejemplo.&lt;\/p>\n\n&lt;h1>T\u00edtulo 2&lt;\/h1>\n<\/code>\n\n\n<h2>Subt\u00edtulo b<\/h2>\n\n<p>P\u00e1rrafo con su texto con su texto con su texto con su texto con su texto con su texto con su texto con su texto con su texto con su texto con su texto con su texto con su texto con su texto con su texto con su texto con su texto con su texto con su texto con su texto con su texto con su texto con su texto con su texto con su texto con su texto con su texto con su texto con su texto con su texto.<\/p>\n\n<h2>Subt\u00edtulo c<\/h2>\n\n<p>P\u00e1rrafo con su texto con su texto con su texto con su texto con su texto con su texto con su texto con su texto con su texto con su texto con su texto con su texto con su texto con su texto con su texto con su texto con su texto con su texto con su texto con su texto con su texto con su texto con su texto con su texto con su texto con su texto con su texto con su texto con su texto con su texto.<\/p>\n\n\n<h1>T\u00edtulo dos<\/h1>\n\n\n<h2>Subt\u00edtulo a<\/h2>\n\n<p>P\u00e1rrafo con su texto con su texto con su texto con su texto con su texto con su texto con su texto con su texto con su texto con su texto con su texto con su texto con su texto con su texto con su texto con su texto con su texto con su texto con su texto con su texto con su texto con su texto con su texto con su texto con su texto con su texto con su texto con su texto con su texto con su texto.<\/p>\n\n\n<h2>Subt\u00edtulo b<\/h2>\n\n<p>P\u00e1rrafo con su texto con su texto con su texto con su texto con su texto con su texto con su texto con su texto con su texto con su texto con su texto con su texto con su texto con su texto con su texto con su texto con su texto con su texto con su texto con su texto con su texto con su texto con su texto con su texto con su texto con su texto con su texto con su texto con su texto con su texto.<\/p>\n\n\n<h2>Subt\u00edtulo c<\/h2>\n\n<p>P\u00e1rrafo con su texto con su texto con su texto con su texto con su texto con su texto con su texto con su texto con su texto con su texto con su texto con su texto con su texto con su texto con su texto con su texto con su texto con su texto con su texto con su texto con su texto con su texto con su texto con su texto con su texto con su texto con su texto con su texto con su texto con su texto.<\/p>\n\n\n\n<\/div>",
+            "CSS": "",
+            "JS": "",
+            "Template": ""
+        },
+        {
+            "id": "61",
+            "__timestamp__": "1402180117",
+            "__operation__": "UPDATE",
+            "HTML": "Favicon es un componente <b>javascript<\/b> que permite cambiar el icono de la web de forma din\u00e1mica. F\u00edjate en el icono de esta p\u00e1gina.\n\n\n[[COMPONENT name=Favicon]]\n\n<script>\n\nvar icons = [\n'data:image\/vnd.microsoft.icon;base64,AAABAAEAEBAQAAEABAAoAQAAFgAAACgAAAAQAAAAIAAAAAEABAAAAAAAgAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAND\/AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABERAAAAAAABEAEQAAAAAAEAABAAAAAAAQAAEAAAAAABEAEQAAAAAAAREQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAD\/\/wAA\/\/8AAP\/\/AAD\/\/wAA\/\/8AAPw\/AAD5nwAA+98AAPvfAAD5nwAA\/D8AAP\/\/AAD\/\/wAA\/\/8AAP\/\/AAD\/\/wAA',\n'data:image\/vnd.microsoft.icon;base64,AAABAAEAEBAQAAEABAAoAQAAFgAAACgAAAAQAAAAIAAAAAEABAAAAAAAgAAAAAAAAAAAAAAAEAAAAAAAAABNTU0AAAAAAADQ\/wD\/\/\/8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAERERERERERERERERERERERERERERERERERERERERERERERERERERERERESIiERERERESIRIhERERERIRESEREREREhERIRERERESIRIhEREREREiIgEREREREAMzABEREREAMzMwEREREQMzMzARERERAzMzABEREREQAAABERH\/\/wAA\/\/8AAP\/\/AAD\/\/wAA\/\/8AAPw\/AAD5nwAA+98AAPvfAAD5nwAA\/B8AAPgPAADwDwAA8A8AAPAPAAD4HwAA',\n'data:image\/vnd.microsoft.icon;base64,AAABAAEAEBAQAAEABAAoAQAAFgAAACgAAAAQAAAAIAAAAAEABAAAAAAAgAAAAAAAAAAAAAAAEAAAAAAAAABNTU0AAAAAAADQ\/wD\/\/\/8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEREREREREREREREREREREREREREREREREREREREAAREREREREAMAARERESIiMzMAERESIRIjMzARERIRESMzMBEREhERIzMwERESIRIjMwAREREiIgMzAREREAMzAAMBEREAMzMwABEREQMzMzARERERAzMzABEREREQAAABERH\/\/wAA\/\/8AAP\/\/AAD\/xwAA\/4EAAPwAAAD5gAAA+8AAAPvAAAD5gAAA\/AEAAPgBAADwAwAA8A8AAPAPAAD4HwAA',\n'data:image\/vnd.microsoft.icon;base64,AAABAAEAEBAQAAEABAAoAQAAFgAAACgAAAAQAAAAIAAAAAEABAAAAAAAgAAAAAAAAAAAAAAAEAAAAAAAAABNTU0AAAAAAADQ\/wD\/\/\/8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEREAAAAAEREREAMzMzAREREQMzMzMBERERAzMzMAAREREAMzMAMAARERAyIiMzMAERESIRIjMzARERIRESMzMBEREhERIzMwERESIRIjMwAREREiIgMzAREREAMzAAMBEREAMzMwABEREQMzMzARERERAzMzABEREREQAAABERHwDwAA4A8AAOAPAADgBwAA4AEAAPAAAAD5gAAA+8AAAPvAAAD5gAAA\/AEAAPgBAADwAwAA8A8AAPAPAAD4HwAA',\n'data:image\/vnd.microsoft.icon;base64,AAABAAEAEBAQAAEABAAoAQAAFgAAACgAAAAQAAAAIAAAAAEABAAAAAAAgAAAAAAAAAAAAAAAEAAAAAAAAABNTU0AAAAAAADQ\/wD\/\/\/8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEREAAAAAEREREAMzMzAREREQMzMzMBERERAzMzMAARERAAMzMAMAARADAyIiMzMAADMyIRIjMzADMzIRESMzMAMzMhERIzMwAzMyIRIjMwAAMzMiIgMzARAzMAMzAAMBEAAAMzMwABEREQMzMzARERERAzMzABEREREQAAABERHwDwAA4A8AAOAPAADgBwAAwAEAAIAAAAABgAAAA8AAAAPAAAABgAAAAAEAAIABAACAAwAA8A8AAPAPAAD4HwAA',\n'data:image\/vnd.microsoft.icon;base64,AAABAAEAEBAQAAEABAAoAQAAFgAAACgAAAAQAAAAIAAAAAEABAAAAAAAgAAAAAAAAAAAAAAAEAAAAAAAAABNTU0AAAAAAADQ\/wD\/\/\/8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEREAAAAAEREREAMzMzAREREQMzMzMBERERAzMzMAARERAAMzMAMAARADAyIiMzMAADMyIiIjMzADMzIiIiMzMAMzMiIiIzMwAzMyIiIjMwAAMzMiIgMzARAzMAMzAAMBEAAAMzMwABEREQMzMzARERERAzMzABEREREQAAABERHwDwAA4A8AAOAPAADgBwAAwAEAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAIABAACAAwAA8A8AAPAPAAD4HwAA',\n'data:image\/vnd.microsoft.icon;base64,AAABAAEAEBAQAAEABAAoAQAAFgAAACgAAAAQAAAAIAAAAAEABAAAAAAAgAAAAAAAAAAAAAAAEAAAAAAAAABNTU0AAAAAAP\/\/\/wAAAP8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEREAAAAAEREREAIiIiAREREQIiIiIBERERAiIiIAARERAAIiIAIAARACAjMzIiIAACIjMzMyIiACIiMzMzIiIAIiIzMzMiIgAiIjMzMyIgAAIiIzMwIiARAiIAIiAAIBEAAAIiIgABEREQIiIiARERERAiIiABEREREQAAABERHwDwAA4A8AAOAPAADgBwAAwAEAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAIABAACAAwAA8A8AAPAPAAD4HwAA',\n'data:image\/vnd.microsoft.icon;base64,AAABAAEAEBAQAAEABAAoAQAAFgAAACgAAAAQAAAAIAAAAAEABAAAAAAAgAAAAAAAAAAAAAAAEAAAAAAAAABNTU0AAAAAAADQ\/wD\/\/\/8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEREAAAAAEREREAMzMzAREREQMzMzMBERERAzMzMAARERAAMzMAMAARADAyIiMzMAADMyIiIjMzADMzIiIiMzMAMzMiIiIzMwAzMyIiIjMwAAMzMiIgMzARAzMAMzAAMBEAAAMzMwABEREQMzMzARERERAzMzABEREREQAAABERHwDwAA4A8AAOAPAADgBwAAwAEAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAIABAACAAwAA8A8AAPAPAAD4HwAA',\n'data:image\/vnd.microsoft.icon;base64,AAABAAEAEBAQAAEABAAoAQAAFgAAACgAAAAQAAAAIAAAAAEABAAAAAAAgAAAAAAAAAAAAAAAEAAAAAAAAABNTU0AAAAAAP\/\/\/wAAAP8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEREAAAAAEREREAIiIiAREREQIiIiIBERERAiIiIAARERAAIiIAIAARACAjMzIiIAACIjMzMyIiACIiMzMzIiIAIiIzMzMiIgAiIjMzMyIgAAIiIzMwIiARAiIAIiAAIBEAAAIiIgABEREQIiIiARERERAiIiABEREREQAAABERHwDwAA4A8AAOAPAADgBwAAwAEAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAIABAACAAwAA8A8AAPAPAAD4HwAA',\n];\n\nvar i = 0;\n\n\nsetInterval(function(){\n\tsetFavicon(icons[i%icons.length]);\n\ti++;\n}, 250);\n\n\n<\/script>",
+            "CSS": "",
+            "JS": "",
+            "Template": ""
+        },
+        {
+            "id": "63",
+            "__timestamp__": "1402180148",
+            "__operation__": "UPDATE",
+            "HTML": "[[COMPONENT name=FileManager]]",
+            "CSS": "",
+            "JS": "",
+            "Template": ""
+        },
+        {
+            "id": "64",
+            "__timestamp__": "1402180266",
+            "__operation__": "UPDATE",
+            "HTML": "[[COMPONENT name=Forum]]",
+            "CSS": "",
+            "JS": "",
+            "Template": ""
+        },
+        {
+            "id": "65",
+            "__timestamp__": "1402181265",
+            "__operation__": "UPDATE",
+            "HTML": "<div style=\"overflow: hidden;\">\n\n\n<div style=\"float: right;\">[[COMPONENT name=Image style=w:50:h:50; id=4]]<\/div>\n\n<div style=\"float: left;\">[[COMPONENT name=Image style=w:100;h:100; id=5]]<\/div>\n\n\n<div style=\"text-align: center; margin-top: 120px;\">[[COMPONENT name=Image style=w:200;h:200; id=6]]<\/div>\n\n\n<div style=\"float: left;\">[[COMPONENT name=Image style=w:50:h:50; id=7]]<\/div>\n\n<div style=\"float: right;\">[[COMPONENT name=Image style=w:100;h:100; id=8]]<\/div\n\n\n\n<\/div>",
+            "CSS": "",
+            "JS": "",
+            "Template": ""
+        },
+        {
+            "id": "66",
+            "__timestamp__": "1402181748",
+            "__operation__": "UPDATE",
+            "HTML": "[[COMPONENT name=Menu]]",
+            "CSS": "",
+            "JS": "",
+            "Template": ""
+        },
+        {
+            "id": "67",
+            "__timestamp__": "1402182054",
+            "__operation__": "UPDATE",
+            "HTML": "[[COMPONENT name=MenuLanguages]]",
+            "CSS": "",
+            "JS": "",
+            "Template": ""
+        },
+        {
+            "id": "68",
+            "__timestamp__": "1402182055",
+            "__operation__": "UPDATE",
+            "HTML": "[[COMPONENT name=Notes id=1]]",
+            "CSS": "",
+            "JS": "",
+            "Template": ""
+        },
+        {
+            "id": "69",
+            "__timestamp__": "1402182193",
+            "__operation__": "UPDATE",
+            "HTML": "[[COMPONENT name=TrunkDoc]]",
+            "CSS": "",
+            "JS": "",
+            "Template": ""
+        },
+        {
+            "id": "70",
+            "__timestamp__": "1402182738",
+            "__operation__": "UPDATE",
+            "HTML": "\n[[COMPONENT name=GraphicSlideshow id=4]]",
             "CSS": "",
             "JS": "",
             "Template": ""
