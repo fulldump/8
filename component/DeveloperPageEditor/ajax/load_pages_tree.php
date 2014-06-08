@@ -5,7 +5,7 @@ function pages_tree ($node) {
 	$result = array();
 	$children = $node->getChildren();
 	foreach ($children as $c) {
-		if ($c->getController() == 'page' && $c->getTitle() != 'adminx_' && $c->getTitle() != 'admin' && $c->getTitle() != 'profile')
+		if ($c->getController() == 'page' && $c->getTitle() != 'adminx' && $c->getTitle() != 'admin' && $c->getTitle() != 'profile')
 		$result[] = array(
 			'id'=>$c->getId(),
 			'title'=>$c->getTitle(),
