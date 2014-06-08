@@ -2,7 +2,7 @@
     "name": "IF_MODIFIED_SINCE_ENABLED",
     "type": "BOOLEAN",
     "description": "",
-    "default": true,
+    "default": false,
     "callback_before": null,
     "callback_after": null
 }
