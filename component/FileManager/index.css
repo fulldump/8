@@ -50,15 +50,15 @@
 
 .file-manager .fm-list-item-name {
 	color:black;
-	height:20px;
+	height:18px;
 	overflow:hidden;
 	font-weight:bold;
 }
 
 .file-manager .fm-list-item-details {
-	height:12px;
+	height:14px;
 	overflow:hidden;
-	font-size:10px;
+	font-size:9px;
 	color:gray;
 }
 
