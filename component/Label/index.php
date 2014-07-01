@@ -1,8 +1,10 @@
 <?php
 	$id=0;
 	eval ('$id='.$data['id'].';');
+
+	$edit = !in_array('noedit', $flags);
 ?>
-<?php if (array_key_exists('edit', $_GET) && Session::isLoggedIn()) { ?>
+<?php if (array_key_exists('edit', $_GET) && Session::isLoggedIn() && $edit) { ?>
 <span id="Label<?= $id ?>" edit_id="<?= $id ?>" style="display:inherit;"><?=Label::ROW($id)->getText() ?></span>
 <?php } else { ?>
 <?=Label::ROW($id)->getText() ?>
