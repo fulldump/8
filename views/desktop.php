@@ -33,7 +33,7 @@ self::$html = '<?php
 		<meta name="description" content="'.htmlentities(self::$description, ENT_COMPAT, 'UTF-8').'">
 		<meta name="apple-touch-fullscreen" content="YES">
 		<meta name="apple-mobile-web-app-capable" content="yes">
-		<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
 		<link rel="stylesheet" type="text/css" href="/cache-css/'.$hash_css.'" title="default">
 		<script src="/cache-js/'.$hash_js.'" type="text/javascript"></script>
 		<link href="/favicon.ico" rel="icon" type="image/x-icon">'.$ga.'
