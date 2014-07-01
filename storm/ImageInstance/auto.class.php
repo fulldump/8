@@ -13,8 +13,8 @@
 		public static $fields = array (
   'Image' => 
   array (
-    'type' => 'Image',
-    'native' => false,
+    'type' => 'Text',
+    'native' => true,
   ),
   'Description' => 
   array (
@@ -150,29 +150,8 @@
 		}
 
 		// Setters and Getters
+public function setImage($value) { $this->row['Image'] = $value; $value = mysql_real_escape_string($value); $timestamp = time(); $sql = "UPDATE `ImageInstance` SET `Image`='$value',`__timestamp__` = $timestamp, `__operation__` = 'UPDATE' WHERE `id`='{$this->id}'"; Database::getInstance()->sql($sql);} public function getImage() { return $this->row['Image']; }
 
-		public function setImage($value) {
-			if (is_object($value) && $value->getClassName() == 'Image') {
-				$id = $value->getId();
-				$db = Database::getInstance();
-				$sql = "UPDATE `ImageInstance` SET `Image`='".$id."',	`__timestamp__` = ".time()." WHERE `id`='".$this->id."'";
-				$db->sql($sql);
-				$this->row['Image'] = $id;
-			} else if ($value === null) {
-				$db = Database::getInstance();
-				$sql = "UPDATE `ImageInstance` SET `Image`='0', `__timestamp__` = ".time()." WHERE `id`='".$this->id."'";
-				$db->sql($sql);
-				$this->row['Image'] = 0;
-			}
-		}
-
-		public function getImage() {
-			if ($this->row['Image'] == 0) {
-				return null;
-			} else {
-				return Image::ROW($this->row['Image']);
-			}
-		}
 public function setDescription($value) { $this->row['Description'] = $value; $value = mysql_real_escape_string($value); $timestamp = time(); $sql = "UPDATE `ImageInstance` SET `Description`='$value',`__timestamp__` = $timestamp, `__operation__` = 'UPDATE' WHERE `id`='{$this->id}'"; Database::getInstance()->sql($sql);} public function getDescription() { return $this->row['Description']; }
 
 public function setWidth($value) { $value = str_replace(',', '.', $value); $this->row['Width'] = $value; $value = mysql_real_escape_string($value); $timestamp = time(); $sql = "UPDATE `ImageInstance` SET `Width`='$value', `__timestamp__` = $timestamp, `__operation__` = 'UPDATE'  WHERE `id`='{$this->id}'"; Database::getInstance()->sql($sql); } public function getWidth() { $value = $this->row['Width']; settype($value, 'float'); return $value; }
