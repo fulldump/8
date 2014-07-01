@@ -6,7 +6,8 @@ if (count($url) == 1) {
 	$file = File::ROW($url[0]);
 	array_shift($url);
 	if ($file != null) {
-		$path = 'files/'.$file->getId();
+		$path = Rack::Path('file', md5($file->ID()));
+
 		if (file_exists($path)) {
 			header("Content-type: ".$file->getMime());
 			header('Content-Disposition: attachment; filename="'.$file->getName().'"');

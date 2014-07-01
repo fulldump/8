@@ -30,7 +30,7 @@
 				$file->_setCounter(1);
 				$file->setUser(Session::getUser());
 				$file->setTimestamp(time());
-				copy($file_path, 'files/'.$file->getId());
+				Rack::Write('file', md5($file->ID()), $file_path);
 				$file->updateSearchIndex();
 			}
 			
