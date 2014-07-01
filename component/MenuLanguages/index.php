@@ -1,4 +1,4 @@
-<ul>
+<ul component="MenuLanguages">
 <?php
 
 $url = ControllerPage::$path;
@@ -17,9 +17,12 @@ if(in_array($url[0], $languages) && $url[0] !=$language) {
 
 // Cargo info extra de idiomas
 $extra = array();
-foreach (Languages::SELECT() as $l) {
+$table_languages = Languages::SELECT();
+foreach ($table_languages as $l) {
 	$extra[$l->getCode()] = $l;
 }
+
+Image::PREFETCH('Image', $table_languages);
 
 foreach ($languages as $l) {
 	$path = '/'.implode('/', $url);
@@ -34,7 +37,16 @@ foreach ($languages as $l) {
 	if ($l == $language)
 		$class = ' class="selected"';
 
-	echo '<li><a'.$class.' href="'.$path.'" hreflang="'.$l.'"><img src="/img/'.$extra[$l]->getImage()->ID().'/w:16;h:11;"></a></li>';
+
+	$a_text = $l;
+	if (array_key_exists($l, $extra)) {
+		$image = $extra[$l]->getImage();
+		if (null !== $image) {
+			$a_text = '<img src="/img/'.$extra[$l]->getImage()->ID().'/w:16;h:11;">';
+		}
+	}
+
+	echo '<li><a'.$class.' href="'.$path.'" hreflang="'.$l.'" title="'.$l.'">'.$a_text.'</a></li>';
 }
 
 ?>
