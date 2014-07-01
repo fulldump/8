@@ -20,7 +20,7 @@
 				
 				$component = SystemComponent::getComponentByName($name);
 				if ($component !== null) {
-					$text .= '<?php $data = '.var_export($token['data'], true).'; ?>';
+					$text .= '<?php $data = '.var_export($token['data'], true).'; $flags = '.var_export($token['flags'], true).'; ?>';
 					// Sustituyo esto:
 					//$text .= $component->getPHP();
 					
@@ -52,6 +52,12 @@
 				if (strpos($D, ' ') !== false) $D = "'".$D."'";
 				if (strpos($d, ' ') !== false) $d = "'".$d."'";
 				$result .= ' '.$D.'='.$d;
+			}
+
+			$flags =& $token['flags'];
+			// sort($flags); // TODO: check order
+			foreach ($flags as $f) {
+				$result .= " $f";
 			}
 			
 			$result .= ']]';

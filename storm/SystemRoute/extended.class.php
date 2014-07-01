@@ -30,12 +30,9 @@
 				return '';
 			}
 			
-			$id = 1;
 			$language = ControllerAbstract::$language;
-			if (is_object($language))
-				$id = $language->getId();			
-			if (array_key_exists($id, $array)) {
-				return $array[$id];
+			if (array_key_exists($language, $array)) {
+				return $array[$language];
 			} else {
 				reset($array);
 				return current($array);
@@ -46,16 +43,13 @@
 			$url = Lib::urlFriendize($this->getTitle());
 					
 			$language = ControllerAbstract::$language;
-			$id = 1;
-			if (is_object($language))
-				$id = $language->getId();
 				
 			$array = unserialize(parent::getTitle());
 			if (!is_array($array)) {
 				$array = array();
 			}
 		
-			$array[$id] = strip_tags($title);
+			$array[$language] = strip_tags($title);
 			parent::setTitle(serialize($array));
 		
 		
@@ -108,7 +102,7 @@
 
 
 			if (ControllerAbstract::$language!==null && ControllerAbstract::$language != Config::get('DEFAULT_LANGUAGE'))
-				$path = '/'.ControllerAbstract::$language->getURL().$path;
+				$path = '/'.ControllerAbstract::$language.$path;
 			
 			
 
@@ -123,16 +117,13 @@
 
 		public function setDescription($value) {
 			$language = ControllerAbstract::$language;
-			$id = 1;
-			if (is_object($language))
-				$id = $language->getId();
 				
 			$array = unserialize(parent::getDescription());
 			if (!is_array($array)) {
 				$array = array();
 			}
 		
-			$array[$id] = strip_tags($value);
+			$array[$language] = strip_tags($value);
 			parent::setDescription(serialize($array));
 			$this->Modify();
 		}
@@ -142,9 +133,9 @@
 			if (!is_array($array) || !count($array))
 				return '';
 			
-			$id = ControllerAbstract::$language->getId();
-			if (array_key_exists($id, $array)) {
-				return $array[$id];
+			$language = ControllerAbstract::$language;
+			if (array_key_exists($language, $array)) {
+				return $array[$language];
 			} else {
 				reset($array);
 				return current($array);

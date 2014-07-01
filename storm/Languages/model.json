@@ -1,0 +1,9 @@
+{
+    "name": "Languages",
+    "native": false,
+    "fields": {
+        "Code": "Text",
+        "Image": "Image"
+    },
+    "data": []
+}

@@ -1,4 +1,3 @@
-<nav class="menu">
 <?php
 if (!isset($data['type']))
 	$data['type'] = 1;
@@ -6,12 +5,14 @@ if (!isset($data['type']))
 if (!isset($data['root']))
 	$data['root'] = 'default';
 
-if (!isset($data['showroot']))
-	$data['showroot'] = true;
 
+$showroot = true;
+if (isset($data['showroot']) && $data['showroot'] == 'false')
+	$showroot = false;
 
-if ($data['showroot'] == 'false')
-	$data['showroot'] = false;
+$class = 'menu';
+if (isset($data['class']))
+	$class = $data['class'];
 
 
 if ($data['root'] == 'default') {
@@ -21,15 +22,15 @@ if ($data['root'] == 'default') {
 } else {
 	$node = SystemRoute::ROW($data['root']);
 }
-
-
-
+?>
+<nav class="<?=$class?>">
+<?php
 
 if ($data['type']==1)
-	Lib::menu1($node, $data['showroot']);
+	Lib::menu1($node, $showroot);
 
 if ($data['type']==2)
-	Lib::menu2(ControllerPage::$node, $node->getId(), $data['showroot']);
+	Lib::menu2(ControllerPage::$node, $node->getId(), $showroot);
 
 
 ?>

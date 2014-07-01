@@ -2,7 +2,7 @@
     "name": "ImageInstance",
     "native": false,
     "fields": {
-        "Image": "Image",
+        "Image": "Text",
         "Description": "Text",
         "Width": "Number",
         "Height": "Number",

@@ -4,7 +4,7 @@ $id = $_POST['id'];
 $value = $_POST['value'];
 $lang = $_POST['lang'];
 
-ControllerPhp::$language = SystemLanguage::getLanguageByCode($lang);
+ControllerPhp::$language = $lang;
 
 SystemRoute::ROW($id)->setDescription($value);
 

@@ -1,8 +1,6 @@
 <div class="migas">
-<nav class="breadcrumb">
+	<nav class="breadcrumb">
 <?php
-
-print_r($ControllerAbstract::$language);
 
 $node = ControllerPage::$node;
 
@@ -14,10 +12,10 @@ while (!$node->isRoot() && !$node->isDefault()) {
 }
 
 if ($node->isDefault()) {
-	echo ' / <a href="'.$node->getPath().'">'.$node->getTitle().'</a>';
+	echo '<a href="'.$node->getPath().'">'.$node->getTitle().'</a>';
 }
 
 echo $migas;
 ?>
-</nav>
+	</nav>
 </div>

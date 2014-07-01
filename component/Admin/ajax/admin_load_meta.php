@@ -1,57 +1,53 @@
 <?php
 
+$result = array();
+
+
+// Calculate language
 $url = $_POST['url'];
 $purl = parse_url($url);
 
+$path = explode('/',$purl['path']);
+array_shift($path);
 
-$url = explode('/',$purl['path']); array_shift($url);
+$default_language = Config::get('DEFAULT_LANGUAGE');
+$available_languages = explode(',', Config::get('AVAILABLE_LANGUAGES'));
 
-// Determino el idioma
-$language = SystemLanguage::getLanguageByCode($url[0]);
-if(is_null($language) || $url[0]==Configuration::get('DEFAULT_LANGUAGE')) {
-	$language = SystemLanguage::getLanguageByCode(Configuration::get('DEFAULT_LANGUAGE'));
+if($path[0] != $default_language && in_array($path[0], $available_languages)) {
+	$language = $path[0];
+	array_shift($path);
 } else {
-	array_shift($url);
+	$language = $default_language;
 }
 
-// Determino la vista
-$view = SystemView::getViewByCode($url[0]);
-if(is_null($view) || $url[0]==Configuration::get('DEFAULT_VIEW')) {
-	$view = SystemView::getViewByCode(Configuration::get('DEFAULT_VIEW'));
-} else {
-	array_shift($url);
-}
+$result['lang'] = $language;
 
 // Determino el nodo en el que empiezo a buscar:
-$node = SystemRoute::ROW(Configuration::get('DEFAULT_PAGE'));
-if ($node->getChildByUrl($url[0])===null) {
+
+$node = SystemRoute::ROW(Config::get('DEFAULT_PAGE'));
+if (count($path) && $node->getChildByUrl($path[0])===null) {
 	$root = SystemRoute::getRoot();
-	$root_child = $root->getChildByUrl($url[0]);
-	if ($root->getChildByUrl($url[0])!==null
-		&& $root_child->getId() != $node->getId()) {
+	$root_child = $root->getChildByUrl($path[0]);
+	if ($root->getChildByUrl($path[0])!==null && $root_child->getId() != $node->getId()) {
 		$node = $root;
 	}
 }
 
-
 // Busco las rutas a partir del nodo elegido:
 $new_node = $node;
-while( count($url) && !is_null($new_node) ) {
-	$new_node = $new_node->getChildByUrl($url[0]);
+while( count($path) && !is_null($new_node) ) {
+	$new_node = $new_node->getChildByUrl($path[0]);
 	if (!is_null($new_node)) {
 		$node = $new_node;
-		array_shift($url);
+		array_shift($path);
 	}
 }
 
 ControllerPhp::$language = $language;
 
-$result = array(
-	'id'=>$node->getId(),
-	'lang'=>$language->getUrl(),
-	'title'=>$node->getTitle(),
-	'description'=>$node->getDescription()
-);
+$result['id'] = $node->getId();
+$result['title'] = $node->getTitle();
+$result['description'] = $node->getDescription();
 
 echo json_encode($result);
 

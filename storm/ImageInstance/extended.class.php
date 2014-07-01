@@ -13,4 +13,15 @@
 			return $row;
 		}
 
+		public function getImage() {
+			return Image::ROW(Multilingual::get(parent::getImage()));
+		}
+
+		public function setImage($value) {
+			if (is_object($value) && $value->getClassName() == 'Image') {
+				$id = $value->getId();
+				parent::setImage(Multilingual::set(parent::getImage(), $id));
+			}
+		}
+
 	}
