@@ -17,11 +17,11 @@
         },
         {
             "id": "2",
-            "__timestamp__": "1392482086",
+            "__timestamp__": "1409744274",
             "__operation__": "UPDATE",
             "Name": "Administrador",
             "Login": "admin",
-            "Password": "39304b2126effd154c6db7ac3fd92cb4"
+            "Password": "21232f297a57a5a743894a0e4a801fc3"
         }
     ]
 }
