@@ -9,5 +9,5 @@
 
 	require_once('class/Main.class.php');
 
-	Main::goDebug();
+	Main::go();
 
