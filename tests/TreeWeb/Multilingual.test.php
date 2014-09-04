@@ -367,14 +367,8 @@ $tests['Performance json_decode vs unserialize'] = function() {
 	echo "\n\nTEST: $n big arrays\n";
 	performance_json_unserialize($n, $data);
 
-
-
 	return true;
 };
-
-
-
-
 
 
 Test::addFunctions($tests);
