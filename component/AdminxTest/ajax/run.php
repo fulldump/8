@@ -1,6 +1,6 @@
 <?php // run
 
-// usleep(500000);
+error_reporting(E_ALL & ~E_STRICT & ~E_NOTICE & ~E_DEPRECATED);
 
 $file = $_POST['file'];
 $test = $_POST['test'];

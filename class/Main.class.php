@@ -106,7 +106,7 @@
 		}
 
 		public static function goDebug() {
-			self::go(E_ALL & ~E_STRICT & ~E_NOTICE);
+			self::go(E_ALL & ~E_STRICT & ~E_NOTICE & ~E_DEPRECATED);
 		}
 
 	}
