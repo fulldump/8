@@ -450,11 +450,199 @@ $tests['Insert e before d'] = function() {
 	// Run
 	$e->insertBefore('e', $d);
 
+	// Check
+	if (!checkLinked($e->parent, $d->parent)) {
+		$pass = false;
+		echo "The parent of 'e' is not correct\n";
+	}
+
+	if (!checkLinked($e, $root->get('a/b/e'))) {
+		$pass = false;
+		echo "'e' has not been inserted correctly\n";
+	}
+
+	if (null !== $root->get('a/e')) {
+		$pass = false;
+		echo "'e' has not been removed from origin\n";
+	}
+
 	// Print
 	$root->print_r();
 
 	return $pass;
 };
 
+$tests['Insert e after d'] = function() {
+	$pass = true;
+
+	// Prepare
+	$root = buildBasicHierarchy();
+	$e = $root->get('a/e');
+	$d = $root->get('a/b/d');
+
+	// Run
+	$e->insertAfter('e', $d);
+
+	// Check
+	if (!checkLinked($e->parent, $d->parent)) {
+		$pass = false;
+		echo "The parent of 'e' is not correct\n";
+	}
+
+	if (!checkLinked($e, $root->get('a/b/e'))) {
+		$pass = false;
+		echo "'e' has not been inserted correctly\n";
+	}
+
+	if (null !== $root->get('a/e')) {
+		$pass = false;
+		echo "'e' has not been removed from origin\n";
+	}
+
+	// Print
+	$root->print_r();
+
+	return $pass;
+};
+
+$tests['fromArray toArray'] = function() {
+	$pass = true;
+
+	// Prepare
+	$json = '{"id":"c170ad596fb6f987f0b34bf58099ca63","properties":[],"children":{"a":{"id":"2d63f222710222663373b0692b273103","properties":[],"children":{"b":{"id":"dc3a2e4652f068bad6f78e71920483f8","properties":[],"children":{"c":{"id":"63f5f8032383f518381541e2053b9213","properties":[],"children":[]},"d":{"id":"1f3b9cf313b126f9ed03739730d58eed","properties":[],"children":[]}}},"e":{"id":"5049e43d9fd9576aa0e715d9bd8dea20","properties":[],"children":{"f":{"id":"f8a45a93ed68521a7d4c23b7918b13b3","properties":[],"children":[]},"g":{"id":"a95c67d9ebdbc4f3fb175242fb1307eb","properties":[],"children":[]}}}}}}}';
+	$array = json_decode($json, true);
+
+	// Run
+	$root = new Router();
+	$root->fromArray($array);
+	$result = $root->toArray();
+
+	$result_json = json_encode($result);
+
+	// Check
+	if ($json !== $result_json) {
+		$pass = false;
+		echo "Serialization fail\n";
+	}
+
+	// Print
+	echo "$json\n$result_json";
+
+	return $pass;
+};
+
+$tests['get property'] = function() {
+	$pass = true;
+
+	// Prepare
+	$hash_red = md5(microtime());
+	$hash_blue = md5(microtime());
+	$hash_pink = md5(microtime());
+
+	$root = buildBasicHierarchy();
+	$a = $root->get('a');
+	$b = $root->get('a/b');
+	$c = $root->get('a/b/c');
+	$d = $root->get('a/b/d');
+	$e = $root->get('a/e');
+	$f = $root->get('a/e/f');
+	$g = $root->get('a/e/g');
+
+	$root->properties['red'] = $hash_red;
+	$b->properties['blue'] = $hash_red;
+	$e->properties['red'] = $hash_pink;
+
+	// Run & check
+	if (false
+		|| $root->getProperty('red') !== $hash_red
+		|| $a->getProperty('red') !== $hash_red
+		|| $b->getProperty('red') !== $hash_red
+		|| $c->getProperty('red') !== $hash_red
+		|| $d->getProperty('red') !== $hash_red
+	) {
+		$pass = false;
+		echo "red must be hash_red in nodes root, a, b, c, d";
+	}
+
+	if (false
+		|| $e->getProperty('red') !== $hash_pink
+		|| $f->getProperty('red') !== $hash_pink
+		|| $g->getProperty('red') !== $hash_pink
+	) {
+		$pass = false;
+		echo "red must be hash_pink in nodes e, f, g";
+	}
+
+	if (false
+		|| $root->getProperty('blue') !== null
+		|| $a->getProperty('blue') !== null
+		|| $e->getProperty('blue') !== null
+		|| $f->getProperty('blue') !== null
+		|| $g->getProperty('blue') !== null
+	) {
+		$pass = false;
+		echo "blue must be null in nodes root, a, e, f, g";
+	}
+
+	if (false
+		|| $a->getProperty('blue') !== null
+		|| $e->getProperty('blue') !== null
+		|| $f->getProperty('blue') !== null
+		|| $g->getProperty('blue') !== null
+	) {
+		$pass = false;
+		echo "blue must be hash_blue in nodes b,c,d";
+	}
+
+	// Print
+	$root->print_r();
+
+	return $pass;
+};
+
+$tests['get inherited properties'] = function() {
+	$pass = true;
+
+	// Prepare
+	$hash_red = md5(microtime());
+	$hash_green = md5(microtime());
+	$hash_blue = md5(microtime());
+	$hash_black = md5(microtime());
+
+	$root = buildBasicHierarchy();
+	$a = $root->get('a');
+	$b = $root->get('a/b');
+	$c = $root->get('a/b/c');
+
+	$root->properties['red'] = $hash_red;
+	$a->properties['green'] = $hash_green;
+	$b->properties['blue'] = $hash_blue;
+	$c->properties['red'] = $hash_black;
+
+	// Run
+	$result = $c->getInheritedProperties();
+
+	// Check
+	if (array_key_exists('red', $result)) {
+		$pass = false;
+		echo "'red' is not an inherited property because has been redefined\n";
+	}
+
+	if ($result['blue'] !== $hash_blue) {
+		$pass = false;
+		echo "'blue' must be an inherited property\n";
+	}
+
+	if ($result['green'] !== $hash_green) {
+		$pass = false;
+		echo "'green' must be an inherited property\n";
+	}
+
+	// Print
+	print_r($result);
+	$root->print_r();
+
+	return $pass;
+};
 
 Test::addFunctions($tests);
