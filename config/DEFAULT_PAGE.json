@@ -2,7 +2,7 @@
     "name": "DEFAULT_PAGE",
     "type": "NUMBER",
     "description": "",
-    "default": 62,
+    "default": 58,
     "callback_before": null,
     "callback_after": null
 }
