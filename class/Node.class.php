@@ -1,7 +1,7 @@
 <?php
 
 
-class Router {
+class Node {
 
 	public $id = null;
 	public $parent = null;
