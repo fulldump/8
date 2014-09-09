@@ -23,7 +23,6 @@ class Node {
 		foreach ($this->children as $C=>$child) {
 			$child->print_r($deep+1, $C);
 		}
-		// print_r($this);
 	}
 
 	public function get($key) {
@@ -108,7 +107,7 @@ class Node {
 
 	}
 
-	public function append($key, Router $route) {
+	public function append($key, Node $node) {
 		// Sanitize
 		if (false !== strpos($key, '/')) {
 			return false;
@@ -118,13 +117,13 @@ class Node {
 			return false;
 		}
 
-		if ($this->hasParent($route)) {
+		if ($this->hasParent($node)) {
 			return false;
 		}
 
-		$route->remove();
-		$this->children[$key] = $route;
-		$route->parent = $this;
+		$node->remove();
+		$this->children[$key] = $node;
+		$node->parent = $this;
 		return true;
 	}
 
@@ -183,7 +182,7 @@ class Node {
 		$this->children = array();
 
 		foreach ($array['children'] as $C=>$c) {
-			$child = new Router();
+			$child = new Node();
 			$child->fromArray($c);
 			$this->append($C, $child);
 		}

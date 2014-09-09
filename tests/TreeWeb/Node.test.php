@@ -11,15 +11,15 @@
  *				G
  */
 function buildBasicHierarchy() {
-	$root = new Router();
+	$root = new Node();
 
-	$a = new Router();	$root->append('a', $a);
-		$b = new Router();	$a->append('b', $b);
-			$c = new Router();	$b->append('c', $c);
-			$d = new Router();	$b->append('d', $d);
-		$e = new Router();	$a->append('e', $e);
-			$f = new Router();	$e->append('f', $f);
-			$g = new Router();	$e->append('g', $g);
+	$a = new Node();	$root->append('a', $a);
+		$b = new Node();	$a->append('b', $b);
+			$c = new Node();	$b->append('c', $c);
+			$d = new Node();	$b->append('d', $d);
+		$e = new Node();	$a->append('e', $e);
+			$f = new Node();	$e->append('f', $f);
+			$g = new Node();	$e->append('g', $g);
 
 	return $root;
 }
@@ -167,8 +167,8 @@ $tests['Append new node'] = function() {
 	$pass = true;
 
 	// Prepare environment
-	$root = new Router();
-	$page1 = new Router();
+	$root = new Node();
+	$page1 = new Node();
 
 	// Run test
 	$root->append('page1', $page1);
@@ -186,16 +186,16 @@ $tests['Append new deep node'] = function() {
 	$pass = true;
 
 	// Prepare environment
-	$root = new Router();
+	$root = new Node();
 
-	$page1 = new Router();
+	$page1 = new Node();
 	$root->append('page1', $page1);
 
-	$page2 = new Router();
+	$page2 = new Node();
 	$page1->append('page2', $page2);
 
 	// Run test
-	$pageN = new Router();
+	$pageN = new Node();
 	$root->append('page1/page2/pageN', $pageN);
 
 	// Print
@@ -343,7 +343,7 @@ $tests['Insert before null parent node'] = function() {
 
 	// Prepare
 	$root = buildBasicHierarchy();
-	$z = new Router();
+	$z = new Node();
 
 	// Run
 	$result = $root->insertBefore('my-key', $z);
@@ -366,7 +366,7 @@ $tests['Insert before existing key'] = function() {
 	// Prepare
 	$root = buildBasicHierarchy();
 	$a = $root->get('a');
-	$z = new Router();
+	$z = new Node();
 
 	// Run
 	$result = $a->insertBefore('a', $a);
@@ -389,7 +389,7 @@ $tests['Insert before OK'] = function() {
 	// Prepare
 	$root = buildBasicHierarchy();
 	$a = $root->get('a');
-	$z = new Router();
+	$z = new Node();
 
 	// Run
 	$result = $z->insertBefore('z', $a);
@@ -513,7 +513,7 @@ $tests['fromArray toArray'] = function() {
 	$array = json_decode($json, true);
 
 	// Run
-	$root = new Router();
+	$root = new Node();
 	$root->fromArray($array);
 	$result = $root->toArray();
 
