@@ -56,6 +56,8 @@ class Node {
 			return false;
 		}
 
+		$node_parent = $node->parent;
+
 		$new_children = array();
 		foreach($node->parent->children as $C=>$child) {
 			if ($child->id == $node->id) {
@@ -67,9 +69,9 @@ class Node {
 			}
 		}
 
-		$this->parent = $node->parent;
+		$this->parent = $node_parent;
 
-		$node->parent->children = $new_children;
+		$node_parent->children = $new_children;
 
 		return true;
 	}
