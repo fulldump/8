@@ -64,14 +64,16 @@ class Prim {
 		$src_w = $this->_image->getWidth() - $this->_crop_l - $this->_crop_r;
 		$src_h = $this->_image->getHeight() - $this->_crop_t - $this->_crop_b;
 
+
+
 		// TODO: Calc result width and height
 		$dst_x = 0;
 		$dst_y = 0;
 
 		if (null == $this->_width && null == $this->_height) {
 			// None dimension is setted
-			$dst_w = $this->_image->getWidth();
-			$dst_h = $this->_image->getHeight();
+			$dst_w = $src_w;
+			$dst_h = $src_h;
 		} else if (null != $this->_width && null != $this->_height) {
 			// Both dimensions are setted
 			// TODO: cover posibility
@@ -79,12 +81,12 @@ class Prim {
 			$dst_h = $this->_height;
 		} else if (null == $this->_width && null != $this->_height) {
 			// Only Height is setted
-			$dst_w = $this->_height * $this->_image->getWidth() / $this->_image->getHeight();
+			$dst_w = $this->_height * $src_w / $src_h;
 			$dst_h = $this->_height;
 		} else if (null != $this->_width && null == $this->_height) {
 			// Only Width is setted
 			$dst_w = $this->_width;
-			$dst_h = $this->_width * $this->_image->getHeight() / $this->_image->getWidth();
+			$dst_h = $this->_width * $src_h / $src_w;
 		}
 
 		// Calculate the mode
