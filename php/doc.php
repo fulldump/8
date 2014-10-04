@@ -5,7 +5,7 @@ function render404() {
 	ControllerAbstract::setUrl('/__no_exists__/'.md5(microtime()));
 }
 
-if (true || Config::get('DOC_ENABLED')) {
+if (Config::get('DOC_ENABLED')) {
 
 	$path = 'doc/';
 

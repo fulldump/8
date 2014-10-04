@@ -1,8 +1,18 @@
 [[INCLUDE component=Ajax]]
 [[INCLUDE component=GraphicPopupFile]]
 
+
+
 function Table(table_name, dom) {
 
+	lpad = function(s, padString, length) {
+		var str = s+'';
+		while (str.length < length)
+			str = padString + str;
+		return str;
+	}
+
+	
 	dom.setAttribute('component', 'Table');
 
 	var data = null;
@@ -72,6 +82,30 @@ function Table(table_name, dom) {
 					value: this.innerText,
 				});
 			}
+		};
+		
+		var save_date = function(e) {
+			var that = this;
+			this.classList.add('saving');
+			
+			parts = this.value.split("T");
+			alert(parts);
+			
+			
+			
+			/*
+			var ajax = new Ajax('[[AJAX name=save]]');
+			ajax.setCallback200(function(text){
+				//that.innerText = text;
+				that.classList.remove('saving');
+			});
+			ajax.query({
+				table: table_name,
+				row: this.row.id,
+				field: this.field.name,
+				value: this.innerText,
+			});
+			*/
 		};
 		
 		var save_combo = function(e) {
@@ -155,11 +189,36 @@ function Table(table_name, dom) {
 				var td = document.createElement('td');
 				td.setAttribute('type', field.type);
 				if (field.native) {
-					td.row = row;
-					td.field = field;
-					td.innerText = row[field_id];
-					td.setAttribute('contenteditable', true);
-					td.addEventListener('blur', save_native, true);
+					if ('Date' == field.type) {
+						dtl = document.createElement('input');
+						dtl.setAttribute('type', 'datetime-local');
+						dtl.row = row;
+						dtl.field = field;
+						
+						d = new Date(1000*row[field_id]);
+						s = 							
+							d.getUTCFullYear()
+							+'-'
+							+lpad(1+d.getUTCMonth(), '0', 2)
+							+'-'
+							+lpad(d.getUTCDate(), '0', 2)
+							+'T'
+							+lpad(d.getUTCHours(), '0', 2)
+							+':'
+							+lpad(d.getUTCMinutes(), '0', 2)
+							+':'
+							+lpad(d.getUTCSeconds(), '0', 2);
+						
+						dtl.setAttribute('value', s);
+						dtl.addEventListener('blur', save_date, true);
+						td.appendChild(dtl);
+					} else {
+						td.row = row;
+						td.field = field;
+						td.innerText = row[field_id];
+						td.setAttribute('contenteditable', true);
+						td.addEventListener('blur', save_native, true);
+					}
 				} else {
 					if ('File' == field.type) {
 						var upload = document.createElement('button');

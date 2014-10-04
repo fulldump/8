@@ -1,8 +1,6 @@
-[component="Table"] td.saving {
-  color: blue;
-}
-
-[component="Table"] select.saving {
+[component="Table"] td.saving,
+[component="Table"] select.saving,
+[component="Table"] input[type="datetime-local"].saving {
   color: blue;
 }
 
