@@ -19,11 +19,12 @@ newGraphicSimpleTreeNode = function(tree) {
 	}, false);
 	info.addEventListener('drop', function(event) {
 		event.preventDefault();
-		event.stopPropagation();}, false);
+		event.stopPropagation();
+	}, false);
 	info.addEventListener('dragend', function(event) {
 	}, false);
 	info.addEventListener('dragstart', function(event) {
-		event.dataTransfer.setData('Text', 'hola');
+		event.dataTransfer.setData('origin', this.parentNode.id);
 	}, false);
 
 
@@ -44,21 +45,42 @@ newGraphicSimpleTreeNode = function(tree) {
 	label_pre.setAttribute('class', 'comGraphic-simple-tree-node-pre');
 	label_pre.addEventListener('dragenter', function(event){this.setAttribute('class', 'comGraphic-simple-tree-node-pre comGraphic-simple-tree-node-pre-drag');}, false);
 	label_pre.addEventListener('dragleave', function(event){this.setAttribute('class', 'comGraphic-simple-tree-node-pre')}, false);
-	label_pre.addEventListener('drop', function(event){this.setAttribute('class', 'comGraphic-simple-tree-node-pre')}, false);
+	label_pre.addEventListener('drop', function(event){
+		this.setAttribute('class', 'comGraphic-simple-tree-node-pre');
+		var destination = this.parentNode.parentNode.id;
+		var origin = event.dataTransfer.getData('origin');
+		if (null !== tree.callback_drop) {
+			tree.callback_drop(event, origin, destination, 'insert_before');
+		}
+	}, false);
 	info.appendChild(label_pre);
 
 	var label = document.createElement('div');
 	label.setAttribute('class', 'comGraphic-simple-tree-node-label');
 	label.addEventListener('dragenter', function(event){this.setAttribute('class', 'comGraphic-simple-tree-node-label comGraphic-simple-tree-node-label-drag');}, false);
 	label.addEventListener('dragleave', function(event){this.setAttribute('class', 'comGraphic-simple-tree-node-label')}, false);
-	label.addEventListener('drop', function(event){this.setAttribute('class', 'comGraphic-simple-tree-node-label')}, false);
+	label.addEventListener('drop', function(event){
+		this.setAttribute('class', 'comGraphic-simple-tree-node-label');
+		var destination = this.parentNode.parentNode.id;
+		var origin = event.dataTransfer.getData('origin');
+		if (null !== tree.callback_drop) {
+			tree.callback_drop(event, origin, destination, 'append');
+		}
+	}, false);
 	info.appendChild(label);
 
 	var label_post = document.createElement('div');
 	label_post.setAttribute('class', 'comGraphic-simple-tree-node-post');
 	label_post.addEventListener('dragenter', function(event){this.setAttribute('class', 'comGraphic-simple-tree-node-pre comGraphic-simple-tree-node-pre-drag');}, false);
 	label_post.addEventListener('dragleave', function(event){this.setAttribute('class', 'comGraphic-simple-tree-node-pre')}, false);
-	label_post.addEventListener('drop', function(event){this.setAttribute('class', 'comGraphic-simple-tree-node-pre')}, false);
+	label_post.addEventListener('drop', function(event){
+		this.setAttribute('class', 'comGraphic-simple-tree-node-pre');
+		var destination = this.parentNode.parentNode.id;
+		var origin = event.dataTransfer.getData('origin');
+		if (null !== tree.callback_drop) {
+			tree.callback_drop(event, origin, destination, 'insert_after');
+		}
+	}, false);
 	info.appendChild(label_post);
 
 	var children = document.createElement('div');
@@ -88,7 +110,8 @@ newGraphicSimpleTree = function() {
 	dom.setAttribute('class', 'comGraphic-simple-tree');
 
 	dom.callback_delete = null;
-
+	dom.callback_drop = null;
+	
 	dom.last_selected = null;
 
 	dom.clear = function() {
@@ -121,6 +144,10 @@ newGraphicSimpleTree = function() {
 	dom.setCallbackDblClick = function(cb) {
 		dom.callback_dblclick = cb;
 	}
+	
+	dom.setCallbackDrop = function(cb) {
+		dom.callback_drop = cb;
+	};
 
 	dom.callback_click = null;
 	dom.callback_click_default = function(event) {

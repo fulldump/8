@@ -38,14 +38,30 @@
 		
 		var tree = this.tree = newGraphicSimpleTree();
 		this.panels.left.appendChild(this.tree);
+
+		tree.setCallbackDrop(function(event, origin, destination, place){
+
+			var ajax = new Ajax('[[AJAX name=move_node]]');
+			ajax.setCallback200(function(text){
+				console.log(text);
+				// Ñap solution:
+				that.loadTree();
+			});
+			ajax.query({
+				origin:origin,
+				destination: destination,
+				place: place,
+			});
+		});
 		
 		tree.setCallbackClick(function(event){
 			event.stopPropagation();
-			
-			var current_node = this;
-						
+
 			that.current.innerHTML = this.getText();
 			that.panels.detailed(true);
+			
+			
+			var current_node = this;
 			
 			var key = prompt('');
 			
@@ -67,6 +83,7 @@
 				'key': key,
 				'type': 'page',
 			});
+			
 			
 		});
 

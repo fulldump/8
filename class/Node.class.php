@@ -238,4 +238,19 @@ class Node {
 		return $result;
 	}
 
+	// TODO: Tests for this
+	public function getKey() {
+		if (null == $this->parent) {
+			return null;
+		}
+
+		foreach ($this->parent->children as $key=>$child) {
+			if ($this->id == $child->id) {
+				return $key;
+			}
+		}
+
+		return null;
+	}
+
 }
