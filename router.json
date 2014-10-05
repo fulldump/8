@@ -1,0 +1,31 @@
+{
+    "id": "root",
+    "properties": {
+        "type": "root"
+    },
+    "children": {
+        "a": {
+            "id": "ce29d375c99ce66e3ef894356a176de9",
+            "properties": {
+                "type": "page"
+            },
+            "children": {
+                "b": {
+                    "id": "0ac66143ca8c7666bf5b59069e7746ae",
+                    "properties": {
+                        "type": "page"
+                    },
+                    "children": {
+                        "c": {
+                            "id": "861f9326bc9c68908fbbce41b453f097",
+                            "properties": {
+                                "type": "page"
+                            },
+                            "children": []
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
