@@ -1,8 +1,6 @@
 <?php
-
-	require_once ('class/ControllerAbstract.class.php');
 	
-	class ControllerPage extends ControllerAbstract {
+	class ControllerPage {
 	
 		public static $page=null;
 

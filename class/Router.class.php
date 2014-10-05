@@ -1,10 +1,5 @@
 <?php
 
-
-
-
-
-
 class Router {
 
 	public static $filename = 'router.json';
@@ -17,26 +12,31 @@ class Router {
 	public $node;
 
 	public function __construct($url=null) {
+		self::load();
+
 		$this->requested_url = $url;
 
-		// Explode
-		$this->parts = explode('/', $url);
-		if ($this->parts[0] == '') {
-			array_shift($this->parts);
-		}
+		$this->_preprocess_url();
 
-		// Extract language
 		$this->_extract_language();
 
-		// If auto url decode
-		// if (true) {
-		// 	foreach ($this->_parts as $i=>$part) {
-		// 		$this->_parts[$i] = rawurldecode($part);
-		// 	}
-		// }
+		// Select starting node:
+		////////////////////////
+		$start = static::$root->getById(Config::get('DEFAULT_PAGE'));
 
-		// Find node
-		$this->node = static::$root;
+		// Only to fix the extreme case with corrupt configuration
+		if (null === $start) {
+			$start = static::$root;
+		}
+
+		// If home page does not match
+		if (count($this->parts) && !$this->_node_match($start, $this->parts[0])) {
+			$start = static::$root;
+		}
+
+		// Search from starting node:
+		/////////////////////////////
+		$this->node = $start;
 		foreach ($this->parts as $part) {
 
 			$found = false;
@@ -59,7 +59,6 @@ class Router {
 			}
 
 		}
-
 	}
 
 	private static function isParameter($part) {
@@ -76,6 +75,46 @@ class Router {
 		} else {
 			$this->language = $default_language;
 		}
+	}
+
+	private function _preprocess_url() {
+		// Parse url
+		$parse = parse_url('http://dummy:80'.$this->requested_url);
+		$path = $parse['path'];
+		$query = $parse['query'];
+
+		// Split by '/'
+		$this->parts = explode('/', $path);
+
+
+		// Remove first if empty
+		if (count($this->parts) && '' === $this->parts[0]) {
+			array_shift($this->parts);
+		}
+
+		// Remove last if empty
+		if (count($this->parts) && '' === end($this->parts)) {
+			array_pop($this->parts);
+		}
+
+		// Decode url parts
+		foreach ($this->parts as $i=>$part) {
+			$this->parts[$i] = rawurldecode($part);
+		}
+	}
+
+	private function _node_match($node, $key) {
+		if (null === $node) {
+			return false;
+		}
+
+		foreach ($node->children as $k=>$child) {
+			if ($k == $key || self::isParameter($k)) {
+				return true;
+			}
+		}
+
+		return false;
 	}
 
 	public static function load() {

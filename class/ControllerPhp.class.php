@@ -1,20 +1,26 @@
 <?php
 
-	require_once ('class/ControllerAbstract.class.php');
 	
-	class ControllerPhp extends ControllerAbstract {
+	class ControllerPhp {
 	
-		public static $php=null;
+		private $router = null;
+		private $php = null;
 
-		public static function compile() {
-			self::$php = SystemPhp::get(self::$node->getReference());
+		private function __construct($router) {
+			$this->router = $router;
 			
-			if (null === self::$php) {
-				// TODO: ERROR 500
-			} else {
-				include(self::$php->getFilename());
+
+			$this->php = SystemPhp::get($router->node->getProperty('reference'));
+
+			if (null !== $this->php) {
+				include($this->php->getFilename());
 			}
+		}
+
+		public static function compile($router) {
+			
+			return new ControllerPhp($router);
 
 		}
-		
+
 	}

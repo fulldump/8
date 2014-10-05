@@ -30,7 +30,7 @@
 		private static function sessionStart() {
 			Session::getSessionId();
 		}
-		
+
 		private static function magicQuotes() {
 			if (get_magic_quotes_gpc())
 				$_POST = array_map('stripslashes_deep', $_POST);
@@ -78,8 +78,29 @@
 
 		public static function serveWeb() {
 			if (Config::get('PROFILING_ENABLED')) Profiling::start('index');
-			$url = explode('?',$_SERVER['REQUEST_URI']);
-			ControllerAbstract::setUrl($url[0]);
+
+			$url = $_SERVER['REQUEST_URI'];
+
+			$hash = md5($url);
+
+			if (file_exists('cache/'.$hash)) {
+				include('cache/'.self::$hash);
+			} else {
+				$router = new Router($url);
+				switch( $router->node->getProperty('type')) {
+					case 'page':
+						echo 'soy una página';
+						$router->node->print_r();
+						break;
+					case 'php':
+						ControllerPhp::Compile($router);
+						break;
+				}
+				
+			}
+
+
+			
 			if (Config::get('PROFILING_ENABLED')) Profiling::end();				
 		}
 
