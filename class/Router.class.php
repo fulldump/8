@@ -7,6 +7,7 @@
 
 class Router {
 
+	public static $filename = 'router.json';
 	public static $root = null;
 
 	public $requested_url = '';
@@ -75,6 +76,25 @@ class Router {
 		} else {
 			$this->language = $default_language;
 		}
+	}
+
+	public static function load() {
+		if (null !== self::$root) {
+			return;
+		}
+
+		self::$root = new Node();
+
+		$data = json_decode(@file_get_contents(self::$filename), true);
+		if (null !== $data) {
+			self::$root->fromArray($data);
+		}
+	}
+
+	public static function save() {
+		file_put_contents(
+			self::$filename,
+			json_encode(self::$root->toArray(), JSON_PRETTY_PRINT));
 	}
 
 }
