@@ -1,2 +1,4 @@
 ISSUES
 ======
+
+05/10/2014	Class 'Nodes': When try to insert (after or before) a parent into a children, the parent dissapears.
