@@ -78,7 +78,7 @@ newGraphicSimpleTreeNode = function(tree) {
 	}
 
 	return dom;
-}
+};
 
 
 
@@ -132,4 +132,4 @@ newGraphicSimpleTree = function() {
 
 	return dom;
 
-}
+};
