@@ -645,4 +645,71 @@ $tests['get inherited properties'] = function() {
 	return $pass;
 };
 
+$tests['Get by id - base case'] = function() {
+	$pass = true;
+
+	// Prepare
+	$root = buildBasicHierarchy();
+
+	// Run
+	$node = $root->getById($root->id);
+
+	// Check
+	if ($node !== $root) {
+		$pass = false;
+		echo "returned node must be the root node";
+	}
+
+	// Print
+	echo "Node id: ".$node->id;
+	echo "\n\n";
+	$root->print_r();
+
+	return $pass;
+};
+
+$tests['Get by id - recursive case'] = function() {
+	$pass = true;
+
+	// Prepare
+	$root = buildBasicHierarchy();
+
+	// Run
+	$node = $root->getById($root->children['a']->id);
+
+	// Check
+	if ($node !== $root->children['a']) {
+		$pass = false;
+		echo "returned node must be the 'a' node";
+	}
+
+	// Print
+	echo $node->id;
+	echo "\n\n";
+	$root->print_r();
+
+	return $pass;
+};
+
+$tests['Get by id - unexisting node'] = function() {
+	$pass = true;
+
+	// Prepare
+	$root = buildBasicHierarchy();
+
+	// Run
+	$node = $root->getById('unexisting id');
+
+	// Check
+	if ($node !== null) {
+		$pass = false;
+		echo "returned node must be null";
+	}
+
+	// Print
+	$root->print_r();
+
+	return $pass;
+};
+
 Test::addFunctions($tests);

@@ -42,6 +42,23 @@ class Node {
 		return null;
 	}
 
+	public function getById($id) {
+		// Is this node?
+		if ($id == $this->id) {
+			return $this;
+		}
+
+		// Search children
+		foreach ($this->children as $children) {
+			$node = $children->getById($id);
+			if ($node !== null) {
+				return $node;
+			}
+		}
+
+		return null;
+	}
+
 	public function insertBefore($key, $node) {
 
 		if (null === $node) {
@@ -150,7 +167,6 @@ class Node {
 		if ($node === null) {
 			return false;
 		}
-
 
 		$current = $this;
 		while ($current !== null) {
