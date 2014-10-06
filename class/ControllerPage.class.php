@@ -34,7 +34,24 @@
 
 			$this->render_view();
 
-			echo $this->html;
+
+			// Inicializo el contexto
+			// $this->html = 
+			// '<?php
+			// 	ControllerPage::$page = SystemPage::ROW('.$this->page->getId().');
+			// 	ControllerAbstract::$node = SystemRoute::ROW('.$node->getId().');
+			// 	ControllerAbstract::$url = '.var_export(self::$url,true).';
+			// 	ControllerAbstract::$language = \''.ControllerAbstract::$language.'\';
+			// 	header(\'Expires: '.date('r', time()+5).'\');
+			// 	'.$if_modified_since.'
+			// ? >'.self::$html;
+
+			ob_start();
+			
+			eval('?>'.$this->html.'<?');
+
+
+			// echo $this->html;
 
 		}
 
@@ -42,13 +59,9 @@
 			// MODIFICACIONES DE LA VISTA (alucinógeno)
 			
 
-			$this->css = '<?php header(\'Content-Type: text/css; charset=UTF-8\');
-			 header("Expires: ".date("r", time()+9999999));
-			?>'.$this->css;
+			$this->css = '<?php header(\'Content-Type: text/css; charset=UTF-8\'); header("Expires: ".date("r", time()+9999999)); ?>'.$this->css;
 
-			$this->js = '<?php header(\'Content-Type: text/javascript; charset=UTF-8\');
-			 header("Expires: ".date("r", time()+9999999));
-			?>'.$this->js;
+			$this->js = '<?php header(\'Content-Type: text/javascript; charset=UTF-8\'); header("Expires: ".date("r", time()+9999999)); ?>'.$this->js;
 
 			$hash_css = md5($this->css);
 			Cache::add('/cache-css/'.$hash_css, $this->css);
@@ -60,35 +73,35 @@
 			if (strlen($ga)) $ga = "\n\t\t".$ga;
 
 			$this->html = '<?php
-				header(\'Content-Type: text/html; charset=UTF-8\');
+	header(\'Content-Type: text/html; charset=UTF-8\');
 
-				require_once(\'class/Main.class.php\');
+	require_once(\'class/Main.class.php\');
 
-				ob_start();?>'.$this->html.'<?php
-				$_HTML = ob_get_clean();
-			?><!DOCTYPE HTML>
-			<html lang="'.$this->router->language.'">
-				<head>
-					<meta http-equiv="Content-Type" CONTENT="text/html; charset=UTF-8">
-					<title>'.htmlentities($this->title, ENT_COMPAT, 'UTF-8').'</title>
-					<meta name="keywords" content="'.htmlentities($this->keywords, ENT_COMPAT, 'UTF-8').'">
-					<meta name="description" content="'.htmlentities($this->description, ENT_COMPAT, 'UTF-8').'">
-					<meta name="apple-touch-fullscreen" content="YES">
-					<meta name="apple-mobile-web-app-capable" content="yes">
-					<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
-					<link rel="stylesheet" type="text/css" href="/cache-css/'.$hash_css.'" title="default">
-					<script src="/cache-js/'.$hash_js.'" type="text/javascript"></script>
-					<link href="/favicon.ico" rel="icon" type="image/x-icon">'.$ga.'
-				</head>
-				<body>
-			<?php echo $_HTML; ?> 
-				</body>
-			</html>';
+	ob_start();?>'.$this->html.'<?php
+	$_HTML = ob_get_clean();
+?><!DOCTYPE HTML>
+<html lang="'.$this->router->language.'">
+	<head>
+		<meta http-equiv="Content-Type" CONTENT="text/html; charset=UTF-8">
+		<title>'.htmlentities($this->title, ENT_COMPAT, 'UTF-8').'</title>
+		<meta name="keywords" content="'.htmlentities($this->keywords, ENT_COMPAT, 'UTF-8').'">
+		<meta name="description" content="'.htmlentities($this->description, ENT_COMPAT, 'UTF-8').'">
+		<meta name="apple-touch-fullscreen" content="YES">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+		<link rel="stylesheet" type="text/css" href="/cache-css/'.$hash_css.'" title="default">
+		<script src="/cache-js/'.$hash_js.'" type="text/javascript"></script>
+		<link href="/favicon.ico" rel="icon" type="image/x-icon">'.$ga.'
+	</head>
+	<body>
+<?php echo $_HTML; ?> 
+	</body>
+</html>';
 
 		}
 
 		public function render_template() {
-			$template = SystemTemplate::get('Trunk');
+			$template = SystemTemplate::get('Empty');
 			// if (null === $template) {
 			// 	$template = SystemTemplate::get(Config::get('DEFAULT_TEMPLATE'));
 			// }
@@ -157,41 +170,27 @@
 
 
 
-		public static function compile_delete_this($router) {
-
-
+		// public static function compile_delete_this($router) {
+		
+		// 	ob_start();
 			
-			// Inicializo el contexto
-			self::$html = 
-'<?php
-	ControllerPage::$page = SystemPage::ROW('.self::$page->getId().');
-	ControllerAbstract::$node = SystemRoute::ROW('.self::$node->getId().');
-	ControllerAbstract::$url = '.var_export(self::$url,true).';
-	ControllerAbstract::$language = \''.ControllerAbstract::$language.'\';
-	header(\'Expires: '.date('r', time()+5).'\');
-	'.$if_modified_since.'
-?>'.self::$html;
-
+		// 	eval('? >'.self::$html.'<?');
 			
-			ob_start();
-			
-			eval('?>'.self::$html.'<?');
-			
-			if (count(self::$url) || $error_invalid_page_reference) {
-				// Todavía quedan parámetros sin procesar
-				self::$error_404 = true;
-				header("HTTP/1.0 404 Not Found");
-				self::$url = array();
-				ob_clean();
-				self::$node = SystemRoute::ROW(Config::get('404_PAGE'));
-				self::compile();
-			} else {
-				// CACHEO EL CONTENIDO:
-				if (!self::$error_404 && Config::get('CACHE_ENABLED')) {
-					Cache::add(self::$path, self::$html);
-				}
-			}
-		}
+		// 	if (count(self::$url) || $error_invalid_page_reference) {
+		// 		// Todavía quedan parámetros sin procesar
+		// 		self::$error_404 = true;
+		// 		header("HTTP/1.0 404 Not Found");
+		// 		self::$url = array();
+		// 		ob_clean();
+		// 		self::$node = SystemRoute::ROW(Config::get('404_PAGE'));
+		// 		self::compile();
+		// 	} else {
+		// 		// CACHEO EL CONTENIDO:
+		// 		if (!self::$error_404 && Config::get('CACHE_ENABLED')) {
+		// 			Cache::add(self::$path, self::$html);
+		// 		}
+		// 	}
+		// }
 		
 		
 		private function appendJS($js, $component = null) {
@@ -201,7 +200,7 @@
 					$this->requireComponent($token['data']['component']);
 				} else if ($token['type'] == 'tag' && $token['name'] == 'AJAX') {
 
-					if ($this->router->$language != Config::get('DEFAULT_LANGUAGE')) {
+					if ($this->router->language != Config::get('DEFAULT_LANGUAGE')) {
 						$this->js .= '/'.$this->router->language;
 					}
 					
@@ -224,7 +223,6 @@
 					$this->appendJS($component->getJS(), $name);					
 					$this->css = $component->getCSS().$this->css;
 				}
-			} 
+			}
 		}
-		
 	}

@@ -1,6 +1,6 @@
-// Component TrunkDouble
-[[INCLUDE component:Trunk]]
+[[INCLUDE component:TrunkButton]]
 
+// Component TrunkDouble
 (function(){
 	'use strict';
 

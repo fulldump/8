@@ -4,6 +4,34 @@
         "type": "root"
     },
     "children": {
+        "__ajax__": {
+            "id": "cdd955001ad979dca1815ea94560ea3eeasw",
+            "properties": {
+                "type": "php",
+                "reference": "ajax"
+            },
+            "children": {
+                "{component}": {
+                    "id": "cdd955001ad979dca18d15ea94560ea3eeasw",
+                    "properties": {
+                        "type": "php",
+                        "reference": "ajax"
+                    },
+                    "children": {
+                        "{call}": {
+                            "id": "cdd9550301ad979dca18d15ea94560ea3eeasw",
+                            "properties": {
+                                "type": "php",
+                                "reference": "ajax"
+                            },
+                            "children": {
+                                
+                            }
+                        }
+                    }
+                }
+            }
+        },
         "sitemap.xml": {
             "id": "cdd955001a979dca1815ea94560ea3eeasw",
             "properties": {

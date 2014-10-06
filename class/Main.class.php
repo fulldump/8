@@ -85,7 +85,7 @@
 			$hash = md5($url);
 
 			if (file_exists('cache/'.$hash)) {
-				include('cache/'.self::$hash);
+				include('cache/'.$hash);
 			} else {
 				$router = new Router($url);
 				switch( $router->node->getProperty('type')) {
