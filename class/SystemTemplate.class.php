@@ -46,25 +46,6 @@
 
 			return $select;
 		}
-
-		public function render() {
-			$html = $this->getPHP();
-            $tokens = TreeScript::getParse($html);
-            $text = '';
-            foreach ($tokens as $token) {
-				if ($token['type'] == 'tag' && $token['name'] == 'BODY') {
-					$text .= ControllerPage::$html;
-				} else {
-					RenderToken::tokenDefault($token, $text);
-				}
-            }
-			
-			ControllerPage::$html = $text;
-			// Meto el CSS
-			ControllerPage::appendCSS($this->getCSS());
-			// Meto el JS
-			ControllerPage::appendJS($this->getJS());
-		}
 		
 		/**
 		 * VULNERABILITY: User could create files outside the folder 'component/'

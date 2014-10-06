@@ -37,26 +37,5 @@
 		private static function validateHTML(&$token, $code) {
 			eval($code);
 		}
-		
-		public function render() {
-			$html = $this->getHTML();
-            $tokens = TreeScript::getParse($html);
-
-			$text = '';
-            foreach ($tokens as $token)
-				RenderToken::tokenDefault($token, $text);
-
-			
-			ControllerPage::appendHTML($text);
-
-			$template = SystemTemplate::get($this->getTemplate());
-			if (null === $template) {
-				$template = SystemTemplate::get(Config::get('DEFAULT_TEMPLATE'));
-			}
-			$template->render();
-
-			ControllerPage::appendCSS($this->getCSS());
-			ControllerPage::appendJS($this->getJS());
-		}
 
 	}

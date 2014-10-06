@@ -50,83 +50,98 @@
         "Adminx": {
             "id": "4bb314b548061af9f6cab4dea093ccdb",
             "properties": {
-                "type": "page"
+                "type": "page",
+                "reference": "4",
+                "title": "el título",
+                "keywords": "las keywords",
+                "description": "la description"
             },
             "children": {
                 "Model": {
                     "id": "27f1fc111e79800b55e08b3c39852f35",
                     "properties": {
-                        "type": "page"
+                        "type": "page",
+                        "reference": "5"
                     },
                     "children": []
                 },
-                "{Data}": {
+                "Data": {
                     "id": "c0272b94e3785df2564e7e5fbff62d84",
                     "properties": {
-                        "type": "page"
+                        "type": "page",
+                        "reference": "6"
                     },
                     "children": []
                 },
                 "Template": {
                     "id": "1812559df255cdb25f1067a7e9d36d2d",
                     "properties": {
-                        "type": "page"
+                        "type": "page",
+                        "reference": "7"
                     },
                     "children": []
                 },
                 "Component": {
                     "id": "7ad0fe753e9165c0f4723b597e831d64",
                     "properties": {
-                        "type": "page"
+                        "type": "page",
+                        "reference": "8"
                     },
                     "children": []
                 },
                 "Pages": {
                     "id": "c94d70ba2470bf130e8ee061a1dd6ee2",
                     "properties": {
-                        "type": "page"
+                        "type": "page",
+                        "reference": "9"
                     },
                     "children": []
                 },
                 "Configuration": {
                     "id": "ccea7eab8e18af5204322a54e003df07",
                     "properties": {
-                        "type": "page"
+                        "type": "page",
+                        "reference": "11"
                     },
                     "children": []
                 },
                 "Profiling": {
                     "id": "ab888190142c923a5cb2c0c991f48909",
                     "properties": {
-                        "type": "page"
+                        "type": "page",
+                        "reference": "12"
                     },
                     "children": []
                 },
                 "Emails": {
                     "id": "b81f29e51038de3ef7c2cca05fa1a3d8",
                     "properties": {
-                        "type": "page"
+                        "type": "page",
+                        "reference": "30"
                     },
                     "children": []
                 },
                 "Database": {
                     "id": "b7ed8d05cc216ec226034176af20d0c4",
                     "properties": {
-                        "type": "page"
+                        "type": "page",
+                        "reference": "43"
                     },
                     "children": []
                 },
                 "Test": {
                     "id": "65a7a57aee59e085ab83a329896a030d",
                     "properties": {
-                        "type": "page"
+                        "type": "page",
+                        "reference": "50"
                     },
                     "children": []
                 },
                 "NewPages": {
                     "id": "5c9e6fd1fc0bd22c53eea0d3a5b7f0de",
                     "properties": {
-                        "type": "page"
+                        "type": "page",
+                        "reference": "77"
                     },
                     "children": []
                 }

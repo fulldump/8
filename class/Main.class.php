@@ -76,6 +76,7 @@
 			}
 		}
 
+		/** This method is the main controller */
 		public static function serveWeb() {
 			if (Config::get('PROFILING_ENABLED')) Profiling::start('index');
 
@@ -89,18 +90,14 @@
 				$router = new Router($url);
 				switch( $router->node->getProperty('type')) {
 					case 'page':
-						echo 'soy una página';
-						$router->node->print_r();
+						ControllerPage::compile($router);
 						break;
 					case 'php':
-						ControllerPhp::Compile($router);
+						ControllerPhp::compile($router);
 						break;
 				}
-				
 			}
 
-
-			
 			if (Config::get('PROFILING_ENABLED')) Profiling::end();				
 		}
 
