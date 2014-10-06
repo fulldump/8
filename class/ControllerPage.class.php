@@ -101,10 +101,10 @@
 		}
 
 		public function render_template() {
-			$template = SystemTemplate::get('Empty');
-			// if (null === $template) {
-			// 	$template = SystemTemplate::get(Config::get('DEFAULT_TEMPLATE'));
-			// }
+			$template = SystemTemplate::get($this->router->node->getProperty('template'));
+			if (null === $template) {
+				$template = SystemTemplate::get(Config::get('DEFAULT_TEMPLATE'));
+			}
 
 			$html = $template->getPHP();
 			$tokens = TreeScript::getParse($html);

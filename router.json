@@ -82,7 +82,8 @@
                 "reference": "4",
                 "title": "el título",
                 "keywords": "las keywords",
-                "description": "la description"
+                "description": "la description",
+                "template": "Adminx"
             },
             "children": {
                 "Model": {
@@ -178,34 +179,40 @@
         "MyWeb": {
             "id": "4088030be80ddc966b5a959115dec4d8",
             "properties": {
-                "type": "page"
+                "template": "Pencil",
+                "type": "page",
+                "reference": "53"
             },
             "children": {
                 "Contacto": {
                     "id": "2643a3c9544c6b567d2924aebfaee2db",
                     "properties": {
-                        "type": "page"
+                        "type": "page",
+                        "reference": "54"
                     },
                     "children": []
                 },
                 "Mapa": {
                     "id": "8937a77b1912de2826ebabcd4c7fcc06",
                     "properties": {
-                        "type": "page"
+                        "type": "page",
+                        "reference": "55"
                     },
                     "children": []
                 },
                 "Servicios": {
                     "id": "be6a0442c8715f804417a344877889e7",
                     "properties": {
-                        "type": "page"
+                        "type": "page",
+                        "reference": "56"
                     },
                     "children": []
                 },
                 "Quienes-somos": {
                     "id": "4cc2df4f6f8b9d101a257f34f8e0b0eb",
                     "properties": {
-                        "type": "page"
+                        "type": "page",
+                        "reference": "76"
                     },
                     "children": []
                 }
