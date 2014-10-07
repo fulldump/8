@@ -5,52 +5,104 @@ class Router {
 	public static $filename = 'router.json';
 	public static $root = null;
 
-	public $requested_url = '';
-	public $language;
-	public $parts;
-	public $parameters = array();
-	public $node;
+	public static $url;
+	public static $parts;
+	public static $parameters;
+	public static $language;
+	public static $node;
 
-	public function __construct($url=null) {
+	private function __construct() {}
+
+	public static function setUrl($url) {
 		self::load();
 
-		$this->requested_url = $url;
+		// TODO: [OPTIONAL] save previous state in $history
 
-		$this->_preprocess_url();
+		// Reset all static vars
+		self::$url = $url;
+		self::$parts = array();
+		self::$parameters = array();
+		self::$language = '';
+		self::$node = null;
 
-		$this->_extract_language();
+		// Calculate vars
+		self::_preprocess_url();
+		self::_extract_language();
+		self::_select_starting_node();
+		self::_search_node();
 
-		// Select starting node:
-		////////////////////////
-		$start = static::$root->getById(Config::get('DEFAULT_PAGE'));
+		self::print_r();
+	}
+
+	private static function _preprocess_url() {
+		// Parse url
+		$parse = parse_url('http://dummy:80'.self::$url);
+		$path = $parse['path'];
+		$query = $parse['query'];
+
+		// Split by '/'
+		self::$parts = explode('/', $path);
+
+
+		// Remove first if empty
+		if (count(self::$parts) && '' === self::$parts[0]) {
+			array_shift(self::$parts);
+		}
+
+		// Remove last if empty
+		if (count(self::$parts) && '' === end(self::$parts)) {
+			array_pop(self::$parts);
+		}
+
+		// Decode url parts
+		foreach (self::$parts as $i=>$part) {
+			self::$parts[$i] = rawurldecode($part);
+		}
+	}
+
+	private static function _extract_language() {
+		$default_language = Config::get('DEFAULT_LANGUAGE');
+		$available_languages = explode(',', Config::get('AVAILABLE_LANGUAGES'));
+		$tentative_language = self::$parts[0];
+		if ($tentative_language != $default_language && in_array($tentative_language, $available_languages)) {
+			array_shift(self::$parts);
+			self::$language = $tentative_language;
+		} else {
+			self::$language = $default_language;
+		}
+	}
+
+	private static function _select_starting_node() {
+		$start = self::$root->getById(Config::get('DEFAULT_PAGE'));
 
 		// Only to fix the extreme case with corrupt configuration
 		if (null === $start) {
-			$start = static::$root;
+			$start = self::$root;
 		}
 
 		// If home page does not match
-		if (count($this->parts) && !$this->_node_match($start, $this->parts[0])) {
-			$start = static::$root;
+		if (count(self::$parts) && !self::_node_match($start, self::$parts[0])) {
+			$start = self::$root;
 		}
 
-		// Search from starting node:
-		/////////////////////////////
-		$this->node = $start;
-		foreach ($this->parts as $part) {
+		self::$node = $start;
+	}
+
+	private static function _search_node() {
+		foreach (self::$parts as $part) {
 
 			$found = false;
-			foreach ($this->node->children as $key=>$node) {
+			foreach (self::$node->children as $key=>$node) {
 				if ($key == $part) {
 					// do nothing
-				} else if (self::isParameter($key)) {
-					$this->parameters[$key] = $part;
+				} else if (self::_is_parameter($key)) {
+					self::$parameters[$key] = $part;
 				} else {
 					continue;
 				}
 				$found = true;
-				$this->node = $node;
-				array_shift($this->parts);
+				self::$node = $node;
+				array_shift(self::$parts);
 				break;
 			}
 			
@@ -61,55 +113,17 @@ class Router {
 		}
 	}
 
-	private static function isParameter($part) {
+	private static function _is_parameter($part) {
 		return '{' == mb_substr($part, 0, 1) && mb_substr($part, -1, 1) == '}';
 	}
 
-	private function _extract_language() {
-		$default_language = Config::get('DEFAULT_LANGUAGE');
-		$available_languages = explode(',', Config::get('AVAILABLE_LANGUAGES'));
-		$tentative_language = $this->parts[0];
-		if ($tentative_language != $default_language && in_array($tentative_language, $available_languages)) {
-			array_shift($this->parts);
-			$this->language = $tentative_language;
-		} else {
-			$this->language = $default_language;
-		}
-	}
-
-	private function _preprocess_url() {
-		// Parse url
-		$parse = parse_url('http://dummy:80'.$this->requested_url);
-		$path = $parse['path'];
-		$query = $parse['query'];
-
-		// Split by '/'
-		$this->parts = explode('/', $path);
-
-
-		// Remove first if empty
-		if (count($this->parts) && '' === $this->parts[0]) {
-			array_shift($this->parts);
-		}
-
-		// Remove last if empty
-		if (count($this->parts) && '' === end($this->parts)) {
-			array_pop($this->parts);
-		}
-
-		// Decode url parts
-		foreach ($this->parts as $i=>$part) {
-			$this->parts[$i] = rawurldecode($part);
-		}
-	}
-
-	private function _node_match($node, $key) {
+	private static function _node_match($node, $key) {
 		if (null === $node) {
 			return false;
 		}
 
 		foreach ($node->children as $k=>$child) {
-			if ($k == $key || self::isParameter($k)) {
+			if ($k == $key || self::_is_parameter($k)) {
 				return true;
 			}
 		}
@@ -134,6 +148,17 @@ class Router {
 		file_put_contents(
 			self::$filename,
 			json_encode(self::$root->toArray(), JSON_PRETTY_PRINT));
+	}
+
+
+	public static function print_r() {
+		echo '<pre>';
+		print_r(self::$url); echo "\n";
+		print_r(self::$parts); echo "\n";
+		print_r(self::$parameters); echo "\n";
+		print_r(self::$language); echo "\n";
+		print_r(self::$node); echo "\n";
+		echo '</pre>';
 	}
 
 }
