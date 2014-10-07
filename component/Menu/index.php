@@ -16,11 +16,11 @@ if (isset($data['class']))
 
 
 if ($data['root'] == 'default') {
-	$node = SystemRoute::ROW(Config::get('DEFAULT_PAGE'));
+	$node = Router::$root->getById(Config::get('DEFAULT_PAGE'));
 } else if ($data['root'] == 'page' ) {
-	$node = ControllerPage::$node;
+	$node = Router::$node;
 } else {
-	$node = SystemRoute::ROW($data['root']);
+	$node = Router::$root->getById($data['root']); 
 }
 ?>
 <nav class="<?=$class?>">

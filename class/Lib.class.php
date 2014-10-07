@@ -277,33 +277,30 @@
 			/* Cada llamada imprime el nombre de los hijos */
 	
 
-			$children = $node->getChildren();
+			$children = $node->children;
 			if (count($children)) {
 				echo '<ul class="menu menu-'.$l.'">';
 				if ($show_parent) {
 					$selected = '';
-					if (ControllerPage::$page->getId() == $node->getReference())
+					if (Router::$node->id == '$node->getReference()')
 						$selected = ' selected';
 				
 					echo '<li class="'.$selected.'">';
-					echo '<a class="'.$selected.'" href="'.$node->getPath().'">'.$node->getTitle().'</a>';
+					echo '<a class="'.$selected.'" href="'.'$node->getPath()'.'">'.'$node->getTitle()'.'</a>';
 					echo '</li>';
 				}
 				foreach ($children as $n) {
-					$n_url = $n->getUrl();
-					if ($n_url != 'adminx' && $n_url != 'admin' && $n_url != 'profile') {
-						$selected = '';
-						if (ControllerPage::$page->getId() == $n->getReference())
-							$selected = ' selected';
-						
-						$path = $n->getPath();
-						if (array_key_exists('edit', $_GET))
-							$path .= '?edit';
-						echo '<li class="'.$selected.'">';
-						echo '<a class="'.$selected.'" href="'.$path.'">'.$n->getTitle().'</a>';
-						self::menu1($n, false, $l+1);
-						echo '</li>';
-					}
+					$selected = '';
+					// if (ControllerPage::$page->getId() == $n->getReference())
+					// 	$selected = ' selected';
+					
+					// $path = $n->getPath();
+					// if (array_key_exists('edit', $_GET))
+					// 	$path .= '?edit';
+					echo '<li class="'.$selected.'">';
+					echo '<a class="'.$selected.'" href="'.$path.'">'.'$n->getTitle()'.'</a>';
+					self::menu1($n, false, $l+1);
+					echo '</li>';
 				}
 				echo '</ul>';
 			}

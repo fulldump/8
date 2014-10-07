@@ -7,10 +7,10 @@
 	</header>
 	<div id="body">
 		<div id="marco_migas">
-			[ [COMPONENT name=Breadcrumb]]		
+			[[COMPONENT name=Breadcrumb]]		
 		</div>
 		<div id="right">
-			[ [COMPONENT name=Menu]]
+			[[COMPONENT name=Menu]]
 		</div>
 		<section class="main">
 			[[BODY]]

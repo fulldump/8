@@ -2,17 +2,17 @@
 	<nav class="breadcrumb">
 <?php
 
-$node = ControllerPage::$node;
+$node = Router::$node;
 
 $migas = '';
 
-while (!$node->isRoot() && !$node->isDefault()) {
-	$migas = ' / <a href="'.$node->getPath().'">'.$node->getTitle().'</a>'.$migas;
-	$node = $node->getParent();
+while (null != $node->parent && $node->id != Config::get('DEFAULT_PAGE')) {
+	$migas = ' / <a href="'.'$node->getPath()'.'">'.'$node->getTitle()'.'</a>'.$migas;
+	$node = $node->parent;
 }
 
-if ($node->isDefault()) {
-	echo '<a href="'.$node->getPath().'">'.$node->getTitle().'</a>';
+if (null != $node->parent) {
+	echo '<a href="'.'$node->getPath()'.'">'.'$node->getTitle()'.'</a>';
 }
 
 echo $migas;
