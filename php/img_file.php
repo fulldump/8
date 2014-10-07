@@ -1,13 +1,13 @@
 <?php
 
-$id = $this->router->parameters['{id}'];
+$id = Router::$parameters['{id}'];
 
 $image = Image::ROW($id);
 if (null == $image) {
 	exit();
 }
 
-$parts = $this->router->parts;
+$parts = Router::$parts;
 
 if (0 == count($parts)) {
 	$path = Rack::Path('img', md5($image->getId()));

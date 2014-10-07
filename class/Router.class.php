@@ -30,8 +30,6 @@ class Router {
 		self::_extract_language();
 		self::_select_starting_node();
 		self::_search_node();
-
-		self::print_r();
 	}
 
 	private static function _preprocess_url() {
@@ -157,7 +155,7 @@ class Router {
 		print_r(self::$parts); echo "\n";
 		print_r(self::$parameters); echo "\n";
 		print_r(self::$language); echo "\n";
-		print_r(self::$node); echo "\n";
+		self::$node->print_r(); echo "\n";
 		echo '</pre>';
 	}
 

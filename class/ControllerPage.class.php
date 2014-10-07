@@ -2,7 +2,6 @@
 	
 	class ControllerPage {
 
-		private $router = null;
 		private $php = null;
 
 		private $title = '';
@@ -15,19 +14,17 @@
 		
 		private $components_loaded = array();
 		
-		private function __construct($router) {
-			$this->router = $router;
-			
-			$this->page = SystemPage::ROW($router->node->getProperty('reference'));
+		private function __construct() {
+			$this->page = SystemPage::ROW(Router::$node->getProperty('reference'));
 
 			if (null === $this->page) {
 				// ERROR: Reference to a invalid page
 				return;
 			}
 			
-			$this->title = $this->router->node->getProperty('title');
-			$this->keywords = $this->router->node->getProperty('keywords');
-			$this->description = $this->router->node->getProperty('description');
+			$this->title = Router::$node->getProperty('title');
+			$this->keywords = Router::$node->getProperty('keywords');
+			$this->description = Router::$node->getProperty('description');
 
 
 			$this->render_page();
@@ -80,7 +77,7 @@
 	ob_start();?>'.$this->html.'<?php
 	$_HTML = ob_get_clean();
 ?><!DOCTYPE HTML>
-<html lang="'.$this->router->language.'">
+<html lang="'.Router::$language.'">
 	<head>
 		<meta http-equiv="Content-Type" CONTENT="text/html; charset=UTF-8">
 		<title>'.htmlentities($this->title, ENT_COMPAT, 'UTF-8').'</title>
@@ -101,7 +98,7 @@
 		}
 
 		public function render_template() {
-			$template = SystemTemplate::get($this->router->node->getProperty('template'));
+			$template = SystemTemplate::get(Router::$node->getProperty('template'));
 			if (null === $template) {
 				$template = SystemTemplate::get(Config::get('DEFAULT_TEMPLATE'));
 			}
@@ -164,8 +161,8 @@
 			}
 		}
 
-		public static function compile($router) {
-			return new ControllerPage($router);
+		public static function compile() {
+			return new ControllerPage();
 		}
 
 
@@ -200,8 +197,8 @@
 					$this->requireComponent($token['data']['component']);
 				} else if ($token['type'] == 'tag' && $token['name'] == 'AJAX') {
 
-					if ($this->router->language != Config::get('DEFAULT_LANGUAGE')) {
-						$this->js .= '/'.$this->router->language;
+					if (Router::$language != Config::get('DEFAULT_LANGUAGE')) {
+						$this->js .= '/'.Router::$language;
 					}
 					
 					$this->js .= '/__ajax__/'.$component.'/'.$token['data']['name'];

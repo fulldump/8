@@ -37,7 +37,7 @@ class Multilingual {
 
 	public static function config() {
 		if (null === self::$available_languages || null === self::$default_language) {
-			self::$default_language = ControllerAbstract::$language;
+			self::$default_language = Router::$language;
 			self::$available_languages = array_map(trim ,explode(',', Config::get('AVAILABLE_LANGUAGES')));
 		}
 	}

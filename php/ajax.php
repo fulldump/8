@@ -2,7 +2,7 @@
 
 header('Content-Type: application/json');
 
-$param = $this->router->parameters;
+$param = Router::$parameters;
 
 if (!array_key_exists('{component}', $param)) {
 	echo 'show all component list if mode debug on. Else 404';

@@ -17,7 +17,7 @@
 			if (!is_array($array) || !count($array))
 				return '';
 			
-			$language = ControllerAbstract::$language;
+			$language = Router::$language;
 			if (array_key_exists($language, $array)) {
 				return $array[$language];
 			} else {
@@ -27,7 +27,7 @@
 		}
 		
 		public function setText($value) {
-			$language = ControllerAbstract::$language;
+			$language = Router::$language;
 				
 			$array = unserialize(parent::getText());
 			if (!is_array($array)) {

@@ -87,13 +87,13 @@
 			if (file_exists('cache/'.$hash)) {
 				include('cache/'.$hash);
 			} else {
-				$router = new Router($url);
-				switch( $router->node->getProperty('type')) {
+				Router::setUrl($url);
+				switch( Router::$node->getProperty('type')) {
 					case 'page':
-						ControllerPage::compile($router);
+						ControllerPage::compile();
 						break;
 					case 'php':
-						ControllerPhp::compile($router);
+						ControllerPhp::compile();
 						break;
 				}
 			}
