@@ -60,21 +60,21 @@ $tests['Get default language'] = function() {
 	$default_language = get_default_language();
 
 	// Run
-	$router = new Router("/$default_language/example/path");
+	$router = Router::setUrl("/$default_language/example/path");
 
 	// Check
-	if ($default_language != $router->language) {
+	if ($default_language != Router::$language) {
 		$pass = false;
 		echo "Default language does not match\n";
 	}
 
-	if ($router->parts[0] != $default_language) {
+	if (Router::$parts[0] != $default_language) {
 		$pass = false;
 		echo "Url must not be consumed\n";
 	}
 
 	// Print
-	print_r($router);
+	Router::print_r();
 
 	return $pass;
 };
@@ -87,21 +87,21 @@ $tests['Get not default language'] = function() {
 	$not_default_language = get_not_default_language();
 
 	// Run
-	$router = new Router("/$not_default_language/example/path");
+	$router = Router::setUrl("/$not_default_language/example/path");
 
 	// Check
-	if ($not_default_language != $router->language) {
+	if ($not_default_language != Router::$language) {
 		$pass = false;
 		echo "Language does not match\n";
 	}
 
-	if ($router->parts[0] != 'example') {
+	if (Router::$parts[0] != 'example') {
 		$pass = false;
 		echo "Url must be consumed\n";
 	}
 
 	// Print
-	print_r($router);
+	Router::print_r();
 
 	return $pass;
 };
@@ -115,21 +115,21 @@ $tests['Get not existing language'] = function() {
 	$not_existing_language = get_not_existing_language();
 
 	// Run
-	$router = new Router("/$not_existing_language/example/path");
+	$router = Router::setUrl("/$not_existing_language/example/path");
 
 	// Check
-	if ($default_language != $router->language) {
+	if ($default_language != Router::$language) {
 		$pass = false;
 		echo "Language does not match\n";
 	}
 
-	if ($router->parts[0] != $not_existing_language) {
+	if (Router::$parts[0] != $not_existing_language) {
 		$pass = false;
 		echo "Url must NOT be consumed\n";
 	}
 
 	// Print
-	print_r($router);
+	Router::print_r();
 
 	return $pass;
 };
@@ -141,22 +141,22 @@ $tests['Get existing node'] = function() {
 	Router::$root = build_basic_hierarchy();
 
 	// Run
-	$router = new Router('/a/b/c');
+	$router = Router::setUrl('/a/b/c');
 
 	// Check
-	if (0 != count($router->parts)) {
+	if (0 != count(Router::$parts)) {
 		$pass = false;
 		echo "All parts must be consumed\n";
 	}
 
-	if ($router->node->id != Router::$root->get('a/b/c')->id) {
+	if (Router::$node->id != Router::$root->get('a/b/c')->id) {
 		$pass = false;
 		echo "Returned node is not the correct one\n";
 	}
 
 	// Print
-	$router->node->print_r();
-	print_r($router);
+	Router::$node->print_r();
+	Router::print_r();
 
 	return $pass;
 };
@@ -169,27 +169,27 @@ $tests['Combined test - get language and node'] = function() {
 	$not_default_language = get_not_default_language();
 
 	// Run
-	$router = new Router("/$not_default_language/a/b");
+	$router = Router::setUrl("/$not_default_language/a/b");
 
 	// Check
-	if (0 != count($router->parts)) {
+	if (0 != count(Router::$parts)) {
 		$pass = false;
 		echo "All parts must be consumed\n";
 	}
 
-	if ($router->node->id != Router::$root->get('a/b')->id) {
+	if (Router::$node->id != Router::$root->get('a/b')->id) {
 		$pass = false;
 		echo "Returned node is not the correct one\n";
 	}
 
-	if ($not_default_language != $router->language) {
+	if ($not_default_language != Router::$language) {
 		$pass = false;
 		echo "Language does not match\n";
 	}
 
 
 	// Print
-	print_r($router);
+	Router::print_r();
 
 	return $pass;
 };
@@ -203,20 +203,20 @@ $tests['Get parametrized'] = function() {
 	$e->insertBefore('{parameter}', $e);
 
 	// Run
-	$router = new Router("/a/my-parameter/f");
+	$router = Router::setUrl("/a/my-parameter/f");
 
 	// Check
-	if (0 != count($router->parts)) {
+	if (0 != count(Router::$parts)) {
 		$pass = false;
 		echo "All parts must be consumed\n";
 	}
 
-	if (1 != count($router->parameters)) {
+	if (1 != count(Router::$parameters)) {
 		$pass = false;
 		echo "Must be 1 parameter\n";
 	}
 
-	if ($router->parameters['{parameter}'] !== 'my-parameter') {
+	if (Router::$parameters['{parameter}'] !== 'my-parameter') {
 		$pass = false;
 		echo "parameters['{parameter}'] MUST BE 'my-parameter'\n";
 	}
