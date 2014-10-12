@@ -2,7 +2,7 @@
     "name": "JSON_ENCODE_OPTIONS",
     "type": "NUMBER",
     "description": "",
-    "default": 320,
+    "default": 448,
     "callback_before": null,
     "callback_after": null
 }

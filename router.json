@@ -24,9 +24,7 @@
                                 "type": "php",
                                 "reference": "ajax"
                             },
-                            "children": {
-                                
-                            }
+                            "children": []
                         }
                     }
                 }
@@ -38,7 +36,7 @@
                 "type": "php",
                 "reference": "sitemap"
             },
-            "children": {}
+            "children": []
         },
         "favicon.ico": {
             "id": "cdd955001a979dca1815ea94560ea3eeas",
@@ -46,7 +44,7 @@
                 "type": "php",
                 "reference": "favicon"
             },
-            "children": {}
+            "children": []
         },
         "robots.txt": {
             "id": "cdd955001a979dca1815ea94560ea3eea",
@@ -54,7 +52,7 @@
                 "type": "php",
                 "reference": "robots"
             },
-            "children": {}
+            "children": []
         },
         "img": {
             "id": "cdd955001a979dca1815ea94560ea3eec",
@@ -69,9 +67,7 @@
                         "type": "php",
                         "reference": "img_file"
                     },
-                    "children": {
-                        
-                    }
+                    "children": []
                 }
             }
         },

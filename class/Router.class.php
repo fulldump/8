@@ -145,7 +145,7 @@ class Router {
 	public static function save() {
 		file_put_contents(
 			self::$filename,
-			json_encode(self::$root->toArray(), JSON_PRETTY_PRINT));
+			json_encode(self::$root->toArray(), Config::get('JSON_ENCODE_OPTIONS')));
 	}
 
 
