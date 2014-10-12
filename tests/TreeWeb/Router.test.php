@@ -199,8 +199,10 @@ $tests['Get parametrized'] = function() {
 
 	// Prepare
 	Router::$root = $root = build_basic_hierarchy();
+	$a = $root->get('a');
 	$e = $root->get('a/e');
-	$e->insertBefore('{parameter}', $e);
+	$e->remove();
+	$a->append('{parameter}', $e);
 
 	// Run
 	$router = Router::setUrl("/a/my-parameter/f");
