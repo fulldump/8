@@ -32,6 +32,18 @@ class Router {
 		self::_search_node();
 	}
 
+	public static function export() {
+		return '<?php '
+		.'Router::$root = new Node();'
+		.'Router::$root->fromArray('.var_export(self::$root->toArray(), true).');'
+		.'Router::$node = Router::$root->getById('.var_export(self::$node->id, true).');'
+		.'Router::$url = '.var_export(self::$url, true).';'
+		.'Router::$parts = '.var_export(self::$parts, true).';'
+		.'Router::$parameters = '.var_export(self::$parameters, true).';'
+		.'Router::$language = '.var_export(self::$language, true).';'
+		.'?>';
+	}
+
 	public static function getNodeUrl($node, $query=false) {
 		$parts = array();
 
@@ -167,7 +179,8 @@ class Router {
 
 		self::$root = new Node();
 
-		$data = json_decode(@file_get_contents(self::$filename), true);
+		$content = @file_get_contents(self::$filename);
+		$data = json_decode($content, true);
 		if (null !== $data) {
 			self::$root->fromArray($data);
 		}
@@ -178,7 +191,6 @@ class Router {
 			self::$filename,
 			json_encode(self::$root->toArray(), Config::get('JSON_ENCODE_OPTIONS')));
 	}
-
 
 	public static function print_r() {
 		echo '<pre>';
