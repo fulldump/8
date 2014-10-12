@@ -16,8 +16,13 @@
 		private static $_system_session = null;
 		private static $_data_hash = '';
 		
+		private static function is_md5($md5) {
+			return !empty($md5) && preg_match('/^[a-f0-9]{32}$/', $md5);
+		}
+
+
 		private function __construct() {
-			if (isset($_COOKIE[Config::get('COOKIE_NAME')]) && Lib::is_md5($_COOKIE[Config::get('COOKIE_NAME')])) {
+			if (isset($_COOKIE[Config::get('COOKIE_NAME')]) && self::is_md5($_COOKIE[Config::get('COOKIE_NAME')])) {
 			    self::openSession();
 			} else {
 			    self::createSession();
@@ -47,7 +52,7 @@
 
 		private static function openSession() {
 			$session_id = $_COOKIE[Config::get('COOKIE_NAME')];
-			if (Lib::is_md5($session_id)) {
+			if (self::is_md5($session_id)) {
 				Database::getInstance();
 				$sessions = SystemSession::SELECT("SessionId = '".$session_id."'");
 				if (count($sessions)==1) {
