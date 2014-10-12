@@ -1,11 +1,21 @@
 <?php
 
-$url = &ControllerPhp::$url;
-
-if (count($url) == 1) {
-	$node = SystemRoute::ROW($url[0]);
-	if ($node != null)
-		header('Location: '.$node->getPath().'?edit');
+if(1 != count(Router::$parts)) {
+	return;
 }
+
+$id = Router::$parts[0];
+if ($id == Router::$node->id) {
+	// Avoid circular reference
+	return;
+}
+
+$node = Router::$root->getById($id);
+if (null === $node) {
+	// Id must exists
+	return;
+}
+
+header('Location: '.Router::getNodeUrl($node, true));
 
 ?>

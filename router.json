@@ -40,6 +40,15 @@
             },
             "children": []
         },
+        "u": {
+            "id": "4es75rd86tf9yhjh97tf",
+            "properties": {
+                "type": "php",
+                "reference": "unique",
+                "sitemap": false
+            },
+            "children": []
+        },
         "doc": {
             "id": "cdd955001a979dc2342342a1815ea94560ea3eeasw",
             "properties": {
@@ -101,7 +110,7 @@
                 "reference": "4",
                 "title": "AdminX",
                 "keywords": "las keywords",
-                "description": "la description",
+                "description": "",
                 "template": "Adminx",
                 "sitemap": false
             },
