@@ -1,7 +1,5 @@
 <?php
 
-header('Content-Type: application/json');
-
 $param = Router::$parameters;
 
 if (!array_key_exists('{component}', $param)) {
@@ -26,19 +24,18 @@ if (null === $ajax) {
 	return;
 }
 
+eval('?>'.$ajax);
 
 // TODO: fix this !!!
+if (Config::get('CACHE_AJAX_ENABLED')) {
+	$cached = Router::export().$ajax;
 
-// $html = '<?php
-// ControllerAbstract::$node = unserialize(\''.serialize(ControllerAbstract::$node).'\');
-// ControllerAbstract::$url = '.var_export(ControllerAbstract::$url,true).';
-// ControllerAbstract::$language = \''.ControllerAbstract::$language.'\';
-// ? >'.$ajax;
-eval(' ?>'.$ajax.'<?php ');
+	Cache::add(Router::$url, $cached);
 
-// TODO: fix this !!!
-// if (Config::get('CACHE_AJAX_ENABLED')) {
-// 	Cache::add($path, $html);
-// }
+	$filename = 'cache/'.md5(Router::$url);
+
+	file_put_contents($filename, php_strip_whitespace($filename));
+
+}
 
 ?>
