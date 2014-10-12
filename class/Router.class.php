@@ -32,6 +32,37 @@ class Router {
 		self::_search_node();
 	}
 
+	public static function getNodeUrl($node, $query=false) {
+		$parts = array();
+
+		$default_page_id = Config::get('DEFAULT_PAGE');
+
+		$current = $node;
+		while (null !== $current->parent && $default_page_id != $current->id) {
+			$parts[] = $current->key;
+
+
+			$current = $current->parent;
+		}
+
+
+
+		$url = '/'.implode('/', array_reverse($parts));
+
+		if (self::$language != Config::get('DEFAULT_LANGUAGE')) {
+			$url = '/'.self::$language.$url;
+		}
+
+		if ($query) {
+			$query = http_build_query($_GET);
+			if ('' != $query) {
+				$url .= '?'.$query;
+			}
+		}
+
+		return $url;
+	}
+
 	private static function _preprocess_url() {
 		// Parse url
 		$parse = parse_url('http://dummy:80'.self::$url);

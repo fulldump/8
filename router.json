@@ -8,7 +8,8 @@
             "id": "cdd955001ad979dca1815ea94560ea3eeasw",
             "properties": {
                 "type": "php",
-                "reference": "ajax"
+                "reference": "ajax",
+                "sitemap": false
             },
             "children": {
                 "{component}": {
@@ -34,15 +35,35 @@
             "id": "cdd955001a979dca1815ea94560ea3eeasw",
             "properties": {
                 "type": "php",
-                "reference": "sitemap"
+                "reference": "sitemap",
+                "sitemap": false
             },
             "children": []
+        },
+        "doc": {
+            "id": "cdd955001a979dc2342342a1815ea94560ea3eeasw",
+            "properties": {
+                "type": "php",
+                "reference": "doc_index",
+                "sitemap": false
+            },
+            "children": {
+                "{item}": {
+                    "id": "cdd932455001a979dc2342342a1815ea94560ea3eeasw",
+                    "properties": {
+                        "type": "php",
+                        "reference": "doc_item"
+                    },
+                    "children": []
+                }
+            }
         },
         "favicon.ico": {
             "id": "cdd955001a979dca1815ea94560ea3eeas",
             "properties": {
                 "type": "php",
-                "reference": "favicon"
+                "reference": "favicon",
+                "sitemap": false
             },
             "children": []
         },
@@ -50,7 +71,8 @@
             "id": "cdd955001a979dca1815ea94560ea3eea",
             "properties": {
                 "type": "php",
-                "reference": "robots"
+                "reference": "robots",
+                "sitemap": false
             },
             "children": []
         },
@@ -58,7 +80,8 @@
             "id": "cdd955001a979dca1815ea94560ea3eec",
             "properties": {
                 "type": "php",
-                "reference": "img_list"
+                "reference": "img_list",
+                "sitemap": false
             },
             "children": {
                 "{id}": {
@@ -79,7 +102,8 @@
                 "title": "el título",
                 "keywords": "las keywords",
                 "description": "la description",
-                "template": "Adminx"
+                "template": "Adminx",
+                "sitemap": false
             },
             "children": {
                 "Model": {
@@ -177,14 +201,16 @@
             "properties": {
                 "template": "Pencil",
                 "type": "page",
-                "reference": "53"
+                "reference": "53",
+                "title": "My web !"
             },
             "children": {
                 "Contacto": {
                     "id": "2643a3c9544c6b567d2924aebfaee2db",
                     "properties": {
                         "type": "page",
-                        "reference": "54"
+                        "reference": "54",
+                        "title": "Contacto"
                     },
                     "children": []
                 },
@@ -192,7 +218,8 @@
                     "id": "8937a77b1912de2826ebabcd4c7fcc06",
                     "properties": {
                         "type": "page",
-                        "reference": "55"
+                        "reference": "55",
+                        "title": "Mapa"
                     },
                     "children": []
                 },
@@ -200,7 +227,8 @@
                     "id": "be6a0442c8715f804417a344877889e7",
                     "properties": {
                         "type": "page",
-                        "reference": "56"
+                        "reference": "56",
+                        "title": "Servicios"
                     },
                     "children": []
                 },
@@ -208,7 +236,8 @@
                     "id": "4cc2df4f6f8b9d101a257f34f8e0b0eb",
                     "properties": {
                         "type": "page",
-                        "reference": "76"
+                        "reference": "76",
+                        "title": "¿Quiénes somos?"
                     },
                     "children": []
                 }

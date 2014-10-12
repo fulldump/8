@@ -23,12 +23,15 @@
 	}
 
 	function draw($node) {
-		if ('page' != type($node)) {
+		if (null === $node->parent) {
 			return;
 		}
 
+		if (false === $node->getProperty('sitemap')) {
+			return;
+		}
 
-		$url = "http://{$_SERVER['HTTP_HOST']}/{$node->id}";
+		$url = "http://{$_SERVER['HTTP_HOST']}".Router::getNodeUrl($node);
 ?><url>
         <loc><?=$url?></loc>
         <lastmod><?=date('Y-m-d', time())?></lastmod>
@@ -40,7 +43,5 @@
 
 	Router::load();
 	traverse(Router::$root);
-
-
 ?>
 </urlset>

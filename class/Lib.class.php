@@ -273,32 +273,26 @@
 		 * Documentar este tipo de menu
 		*/
 		public static function menu1($node, $show_parent=false, $l=1) {
-
-			/* Cada llamada imprime el nombre de los hijos */
-	
-
 			$children = $node->children;
 			if (count($children)) {
 				echo '<ul class="menu menu-'.$l.'">';
 				if ($show_parent) {
 					$selected = '';
-					if (Router::$node->id == '$node->getReference()')
+					if (Router::$node->id == $node->id) {
 						$selected = ' selected';
-				
+					}
 					echo '<li class="'.$selected.'">';
-					echo '<a class="'.$selected.'" href="'.'$node->getPath()'.'">'.'$node->getTitle()'.'</a>';
+					echo '<a class="'.$selected.'" href="'.Router::getNodeUrl($node, true).'">'.$node->getProperty('title').'</a>';
 					echo '</li>';
 				}
 				foreach ($children as $n) {
 					$selected = '';
-					// if (ControllerPage::$page->getId() == $n->getReference())
-					// 	$selected = ' selected';
-					
-					// $path = $n->getPath();
-					// if (array_key_exists('edit', $_GET))
-					// 	$path .= '?edit';
+					if (Router::$node->id === $n->id) {
+						$selected = ' selected';
+					}
+
 					echo '<li class="'.$selected.'">';
-					echo '<a class="'.$selected.'" href="'.$path.'">'.'$n->getTitle()'.'</a>';
+					echo '<a class="'.$selected.'" href="'.Router::getNodeUrl($n, true).'">'.$n->getProperty('title').'</a>';
 					self::menu1($n, false, $l+1);
 					echo '</li>';
 				}

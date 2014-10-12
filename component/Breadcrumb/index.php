@@ -7,12 +7,12 @@ $node = Router::$node;
 $migas = '';
 
 while (null != $node->parent && $node->id != Config::get('DEFAULT_PAGE')) {
-	$migas = ' / <a href="'.'$node->getPath()'.'">'.'$node->getTitle()'.'</a>'.$migas;
+	$migas = ' / <a href="'.Router::getNodeUrl($node, true).'">'.$node->getProperty('title').'</a>'.$migas;
 	$node = $node->parent;
 }
 
 if (null != $node->parent) {
-	echo '<a href="'.'$node->getPath()'.'">'.'$node->getTitle()'.'</a>';
+	echo '<a href="'.Router::getNodeUrl($node, true).'">'.$node->getProperty('title').'</a>';
 }
 
 echo $migas;
