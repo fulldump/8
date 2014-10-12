@@ -8,19 +8,17 @@
 		<div class="left">
 			<?php // Left menu
 
-			/*
-			$admin = SystemRoute::ROW(9);
-			$children = $admin->getChildren();
-			foreach ($children as $c) {
-				if ($c->getReference() == ControllerPage::$page->getId()) {
+			
+			$adminx = Router::$root->get('adminx');
+			foreach ($adminx->children as $child) {
+				if ($child->id == Router::$node->id) {
 					$selected = ' selected';
 				} else {
 					$selected = '';
 				}
-			?><a href="/adminx/<?=$c->getUrl()?>" class="link<?=$selected?>"><?=$c->getTitle()?></a><?php } 
-			*/
+			?><a href="<?=Router::getNodeUrl($child)?>" class="link<?=$selected?>"><?=$child->getProperty('title');?></a><?php
+			}
 			?>
-			<a href="/adminx/" class="link">Title</a>
 		</div>
 	</div>
 	<div class="shadow" onclick="this.parentNode.classList.remove('expanded');"></div>
