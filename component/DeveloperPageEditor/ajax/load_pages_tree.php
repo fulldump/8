@@ -16,7 +16,7 @@ function pages_tree ($node) {
 }
 
 
-$st = pages_tree(SystemRoute::getRoot());
+$st = pages_tree(SystemRoute::ROW(1));
 
 $result = array(
 	array(

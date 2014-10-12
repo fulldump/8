@@ -30,13 +30,13 @@
 				return '';
 			}
 			
-			$language = ControllerAbstract::$language;
-			if (array_key_exists($language, $array)) {
-				return $array[$language];
-			} else {
+			// $language = ControllerAbstract::$language;
+			// if (array_key_exists($language, $array)) {
+			// 	return $array[$language];
+			// } else {
 				reset($array);
 				return current($array);
-			}
+			// }
 		}		
 						
 		public function setTitle($title) {		
