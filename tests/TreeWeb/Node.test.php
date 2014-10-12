@@ -174,7 +174,9 @@ $tests['Append new node'] = function() {
 	$root->append('page1', $page1);
 
 	// Check
-	$pass = $root->children['page1'] == $page1;
+	$pass &= $root->children['page1'] == $page1;
+
+	$pass &= $page1->key == 'page1';
 
 	// Print result
 	$root->print_r();
@@ -198,6 +200,11 @@ $tests['Append new deep node'] = function() {
 	$pageN = new Node();
 	$root->append('page1/page2/pageN', $pageN);
 
+	// Check
+	$pass &= $root->key === Null;
+	$pass &= $page1->key === 'page1';
+	$pass &= $page2->key === 'page2';
+
 	// Print
 	$root->print_r();
 
@@ -219,6 +226,11 @@ $tests['Append cyclic node'] = function() {
 	if (false !== $result) {
 		$pass = false;
 		echo "append() must return false, because the node to insert is a parent\n";
+	}
+
+	if ($root->key !== null) {
+		$pass = false;
+		echo "root->key must be null";
 	}
 
 	// Print
@@ -252,6 +264,11 @@ $tests['Append existing node'] = function() {
 	if (null !== $root->get('a/e')) {
 		$pass = false;
 		echo "Node 'e' was NOT removed from 'a'\n";
+	}
+
+	if ($e->key !== 'e') {
+		$pass = false;
+		echo "e->key must be 'e'";
 	}
 
 	// Print
@@ -354,6 +371,11 @@ $tests['Insert before null parent node'] = function() {
 		echo "result must be false -> z does not have brother\n";
 	}
 
+	if (null !== $z->key) {
+		$pass = false;
+		echo "z->key must be null\n";
+	}
+
 	// Print
 	$root->print_r();
 
@@ -366,7 +388,7 @@ $tests['Insert before existing key'] = function() {
 	// Prepare
 	$root = buildBasicHierarchy();
 	$a = $root->get('a');
-	$z = new Node();
+	// $z = new Node();
 
 	// Run
 	$result = $a->insertBefore('a', $a);
@@ -398,6 +420,11 @@ $tests['Insert before OK'] = function() {
 	if ($z->parent->id != $a->parent->id) {
 		$pass = false;
 		echo "Parent is not correct\n";
+	}
+
+	if ('z' !== $z->key) {
+		$pass = false;
+		echo "z->key must be 'z'\n";
 	}
 
 	// Print
@@ -433,6 +460,38 @@ $tests['Insert before the same'] = function() {
 		echo "Key 'a2' must exist\n";
 	}
 
+	if ('a2' !== $a->key) {
+		$pass = false;
+	}
+
+	// Print
+	$root->print_r();
+
+	return $pass;
+};
+
+$tests['Insert after OK'] = function() {
+	$pass = true;
+
+	// Prepare
+	$root = buildBasicHierarchy();
+	$a = $root->get('a');
+	$z = new Node();
+
+	// Run
+	$result = $z->insertAfter('z', $a);
+
+	// Check
+	if ($z->parent->id != $a->parent->id) {
+		$pass = false;
+		echo "Parent is not correct\n";
+	}
+
+	if ('z' !== $z->key) {
+		$pass = false;
+		echo "z->key must be 'z'\n";
+	}
+
 	// Print
 	$root->print_r();
 
@@ -466,6 +525,11 @@ $tests['Insert e before d'] = function() {
 		echo "'e' has not been removed from origin\n";
 	}
 
+	if ('e' !== $e->key) {
+		$pass = false;
+		echo "e->key must be 'e' \n";
+	}
+
 	// Print
 	$root->print_r();
 
@@ -497,6 +561,80 @@ $tests['Insert e after d'] = function() {
 	if (null !== $root->get('a/e')) {
 		$pass = false;
 		echo "'e' has not been removed from origin\n";
+	}
+
+	if ('e' !== $e->key) {
+		$pass = false;
+		echo "e->key must be 'e'\n";
+	}
+
+	// Print
+	$root->print_r();
+
+	return $pass;
+};
+
+$tests['Append parent - check destruction'] = function() {
+	$pass = true;
+
+	// Prepare
+	$root = buildBasicHierarchy();
+	$a = $root->get('a');
+	$b = $root->get('a/b');
+
+	// Run
+	$result = $b->append('new_a', $a);
+
+	// Check
+	if (false !== $result) {
+		$pass = false;
+		echo "Must return false\n";
+	}
+
+	// Print
+	$root->print_r();
+
+	return $pass;
+};
+
+$tests['Insert before - check destruction'] = function() {
+	$pass = true;
+
+	// Prepare
+	$root = buildBasicHierarchy();
+	$a = $root->get('a');
+	$b = $root->get('a/b');
+
+	// Run
+	$result = $a->insertBefore('new_a', $b);
+
+	// Check
+	if (false !== $result) {
+		$pass = false;
+		echo "Must return false\n";
+	}
+
+	// Print
+	$root->print_r();
+
+	return $pass;
+};
+
+$tests['Insert after - check destruction'] = function() {
+	$pass = true;
+
+	// Prepare
+	$root = buildBasicHierarchy();
+	$a = $root->get('a');
+	$b = $root->get('a/b');
+
+	// Run
+	$result = $a->insertAfter('new_a', $b);
+
+	// Check
+	if (false !== $result) {
+		$pass = false;
+		echo "Must return false\n";
 	}
 
 	// Print

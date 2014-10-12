@@ -4,6 +4,7 @@
 class Node {
 
 	public $id = null;
+	public $key = null;
 	public $parent = null;
 	public $properties = array();
 	public $children = array();
@@ -73,6 +74,10 @@ class Node {
 			return false;
 		}
 
+		if ($node->hasParent($this)) {
+			return false;
+		}
+
 		$node_parent = $node->parent;
 
 		$new_children = array();
@@ -87,9 +92,8 @@ class Node {
 		}
 
 		$this->parent = $node_parent;
-
 		$node_parent->children = $new_children;
-
+		$this->key = $key;
 		return true;
 	}
 
@@ -107,6 +111,10 @@ class Node {
 			return false;
 		}
 
+		if ($node->hasParent($this)) {
+			return false;
+		}
+
 		$new_children = array();
 		foreach($node->parent->children as $C=>$child) {
 			if ($child->id != $this->id) {
@@ -119,9 +127,8 @@ class Node {
 		}
 
 		$this->parent = $node->parent;
-
 		$node->parent->children = $new_children;
-
+		$this->key = $key;
 		return true;
 
 	}
@@ -143,6 +150,7 @@ class Node {
 		$node->remove();
 		$this->children[$key] = $node;
 		$node->parent = $this;
+		$node->key = $key;
 		return true;
 	}
 
