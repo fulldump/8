@@ -84,9 +84,7 @@
 
 			$hash = md5($url);
 
-			if (file_exists('cache/'.$hash)) {
-				include('cache/'.$hash);
-			} else {
+			if (!(@include('cache/'.$hash))) {
 				Router::setUrl($url);
 				switch( Router::$node->getProperty('type')) {
 					case 'page':
