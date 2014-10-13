@@ -209,8 +209,10 @@ class Node {
 
 		foreach ($array['children'] as $C=>$c) {
 			$child = new Node();
+			$child->key = $C;
+			$child->parent = $this;
 			$child->fromArray($c);
-			$this->append($C, $child);
+			$this->children[$C] = $child;
 		}
 	}
 
