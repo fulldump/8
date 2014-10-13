@@ -26,35 +26,24 @@
 			$this->keywords = Router::$node->getProperty('keywords');
 			$this->description = Router::$node->getProperty('description');
 
-
 			$this->render_page();
 
 			$this->render_view();
-
-
-			// Inicializo el contexto
-			// $this->html = 
-			// '<?php
-			// 	ControllerPage::$page = SystemPage::ROW('.$this->page->getId().');
-			// 	ControllerAbstract::$node = SystemRoute::ROW('.$node->getId().');
-			// 	ControllerAbstract::$url = '.var_export(self::$url,true).';
-			// 	ControllerAbstract::$language = \''.ControllerAbstract::$language.'\';
-			// 	header(\'Expires: '.date('r', time()+5).'\');
-			// 	'.$if_modified_since.'
-			// ? >'.self::$html;
 
 			ob_start();
 			
 			eval('?>'.$this->html.'<?');
 
 
-			// echo $this->html;
-
+			if (Config::get('CACHE_ENABLED')) {
+				Cache::add(Router::$url, Router::export().$this->html);
+				$filename = 'cache/'.md5(Router::$url);
+				file_put_contents($filename, php_strip_whitespace($filename));
+			}
 		}
 
 		public function render_view() {
-			// MODIFICACIONES DE LA VISTA (alucinógeno)
-			
+			// MODIFICACIONES DE LA VISTA (advertencia: alto contenido alucinógeno)
 
 			$this->css = '<?php header(\'Content-Type: text/css; charset=UTF-8\'); header("Expires: ".date("r", time()+9999999)); ?>'.$this->css;
 
