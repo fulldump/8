@@ -200,6 +200,7 @@ class Router {
 		// NEW SAVE
 		$output = '<?php Router::$root = new Node(); Router::$root->fromArray('.var_export(self::$root->toArray(), true).');';
 		file_put_contents(self::$filename,$output);
+		file_put_contents(self::$filename, php_strip_whitespace(self::$filename));
 	}
 
 	public static function print_r() {
