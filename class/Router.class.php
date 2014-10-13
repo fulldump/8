@@ -34,8 +34,9 @@ class Router {
 
 	public static function export() {
 		return '<?php '
-		.'Router::$root = new Node();'
-		.'Router::$root->fromArray('.var_export(self::$root->toArray(), true).');'
+		.'Router::load();'
+		// .'Router::$root = new Node();'
+		// .'Router::$root->fromArray('.var_export(self::$root->toArray(), true).');'
 		.'Router::$node = Router::$root->getById('.var_export(self::$node->id, true).');'
 		.'Router::$url = '.var_export(self::$url, true).';'
 		.'Router::$parts = '.var_export(self::$parts, true).';'
