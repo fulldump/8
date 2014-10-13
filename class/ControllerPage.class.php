@@ -60,9 +60,6 @@
 
 			$this->html = '<?php
 	header(\'Content-Type: text/html; charset=UTF-8\');
-
-	require_once(\'class/Main.class.php\');
-
 	ob_start();?>'.$this->html.'<?php
 	$_HTML = ob_get_clean();
 ?><!DOCTYPE HTML>
