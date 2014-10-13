@@ -178,19 +178,28 @@ class Router {
 			return;
 		}
 
-		self::$root = new Node();
+		// // OLD LOAD
+		// self::$root = new Node();
 
-		$content = @file_get_contents(self::$filename);
-		$data = json_decode($content, true);
-		if (null !== $data) {
-			self::$root->fromArray($data);
-		}
+		// $content = @file_get_contents(self::$filename);
+		// $data = json_decode($content, true);
+		// if (null !== $data) {
+		// 	self::$root->fromArray($data);
+		// }
+
+		// NEW LOAD
+		@include(self::$filename);
 	}
 
 	public static function save() {
-		file_put_contents(
-			self::$filename,
-			json_encode(self::$root->toArray(), Config::get('JSON_ENCODE_OPTIONS')));
+		// // OLD SAVE
+		// file_put_contents(
+		// 	self::$filename,
+		// 	json_encode(self::$root->toArray(), Config::get('JSON_ENCODE_OPTIONS')));
+
+		// NEW SAVE
+		$output = '<?php Router::$root = new Node(); Router::$root->fromArray('.var_export(self::$root->toArray(), true).');';
+		file_put_contents(self::$filename,$output);
 	}
 
 	public static function print_r() {
