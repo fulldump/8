@@ -48,10 +48,10 @@
 			function __autoload($class_name) {
 				$path = Main::$cwd.'class/'.$class_name.'.class.php';
 				if (file_exists($path)) {
-					include_once($path);
+					include($path);
 				} else {
-					include_once(Main::$cwd.'storm/'.$class_name.'/auto.class.php');
-					include_once(Main::$cwd.'storm/'.$class_name.'/extended.class.php');
+					include(Main::$cwd.'storm/'.$class_name.'/auto.class.php');
+					include(Main::$cwd.'storm/'.$class_name.'/extended.class.php');
 				}
 			}
 

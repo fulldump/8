@@ -19,9 +19,6 @@ if (strlen($ga)) $ga = "\n\t\t".$ga;
 
 self::$html = '<?php
 	header(\'Content-Type: text/html; charset=UTF-8\');
-
-	require_once(\'class/Main.class.php\');
-
 	ob_start();?>'.self::$html.'<?php
 	$_HTML = ob_get_clean();
 ?><!DOCTYPE HTML>

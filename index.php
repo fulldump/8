@@ -7,7 +7,6 @@
 	 * 
 	*/
 
-	require_once('class/Main.class.php');
+	include('class/Main.class.php');
 
 	Main::go();
-

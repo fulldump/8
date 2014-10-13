@@ -6,8 +6,6 @@
 	* autor: gerardooscarjt@gmail.com
 	*/
 	
-	require_once('class/FileStore.class.php');
-	
 	class Database {
 		static $instance = null;
 		static $log = array();
