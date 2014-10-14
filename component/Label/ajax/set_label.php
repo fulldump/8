@@ -1,6 +1,7 @@
 <?php
 
-if (Session::isLoggedIn())
-	Label::ROW($_POST['id'])->setText($_POST['text']);
+if (Session::isLoggedIn()) {
+	Label::getByName($_POST['id'])->setText($_POST['text']);
+}
 
 ?>

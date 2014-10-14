@@ -2,9 +2,8 @@
     "name": "Label",
     "native": false,
     "fields": {
+        "Name": "Text",
         "Text": "Text"
     },
-    "data": [
-
-    ]
+    "data": []
 }

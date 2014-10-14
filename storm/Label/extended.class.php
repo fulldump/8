@@ -11,6 +11,15 @@
 			$row = parent::INSERT();
 			return $row;
 		}
+
+		public static function getByName($name) {
+			$name = mysql_real_escape_string($name);
+			$labels = self::SELECT("`Name` = '$name'");
+			if (1 != count($labels)) {
+				return null;
+			}
+			return $labels[0];
+		}
 		
 		public function getText() {
 			$array = unserialize(parent::getText());
