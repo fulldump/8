@@ -3,6 +3,7 @@
 !/cache/empty_dir
 /rack/*
 /profiling/*
+!/profiling/empty_dir
 /storm/*/alter.json
 
 
