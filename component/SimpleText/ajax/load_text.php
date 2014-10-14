@@ -2,6 +2,6 @@
 
 $id = $_POST['id'];
 
-echo SimpleText::ROW($id)->getText();
+echo SimpleText::getByName($_POST['id'])->getText();
 
 ?>

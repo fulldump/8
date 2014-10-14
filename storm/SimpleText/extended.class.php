@@ -12,6 +12,15 @@
 			return $row;
 		}
 		
+		public static function getByName($name) {
+			$name = mysql_real_escape_string($name);
+			$items = self::SELECT("`Name` = '$name'");
+			if (1 != count($items)) {
+				return null;
+			}
+			return $items[0];
+		}
+
 		public function getText() {
 			$array = unserialize(parent::getText());
 			if (!is_array($array) || !count($array))

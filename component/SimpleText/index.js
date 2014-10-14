@@ -3,20 +3,12 @@
 
 
 window.addEventListener('load', function(event){
-	var elements = document.getElementsByTagName('*');
-	var cadena;
-	var docs = [];
-	for (key in elements) {
-		cadena = elements[key].id;
-		if (typeof(cadena)=='string') {
-			var id = parseInt(cadena.replace('SimpleText', ''));
-			if (!isNaN(id))
-				docs[id] = elements[key];
-		}
+	var elements = document.querySelectorAll('[component="SimpleText"]');
+	for (var i = 0; i < elements.length; i++) {
+		var element = elements[i];
+		var edit_id = element.getAttribute('edit_id');
+		newSimpleText(element).loadDocument(edit_id);
 	}
-	for (key in docs) 
-		newSimpleText(docs[key]).loadDocument(key);
-	
 }, true);
 
 
@@ -58,7 +50,6 @@ var newSimpleText = function(dom) {
 		document.execCommand('removeFormat', false, null);
 	}, true);
 
-
 	var group4 = document.createElement('div'); toolbar.appendChild(group4);
 	group4.className = 'simpletext-group';
 	// Imagen
@@ -80,7 +71,6 @@ var newSimpleText = function(dom) {
 			document.execCommand('createLink', false, href);
 		}
 	}, true);	
-
 
 	var group2 = document.createElement('div'); toolbar.appendChild(group2);
 	group2.className = 'simpletext-group';
@@ -112,8 +102,6 @@ var newSimpleText = function(dom) {
 		document.execCommand('subscript', false, null);
 	}, true);
 	
-
-
 	var textarea = document.createElement('div'); textarea.innerHTML = 'loading...';
 	textarea.className = 'simpletext-textarea';
 	textarea.focused = false;
@@ -149,8 +137,6 @@ var newSimpleText = function(dom) {
 		textarea.focus();
 	}, true);
 
-
-
 	// CONSTRUCTOR:
 	var id_text=0;
 
@@ -167,11 +153,8 @@ var newSimpleText = function(dom) {
 	}
 
 	dom.getComponentVersion = function() {
-		return '0.0.1';
+		return '0.2.0';
 	}
 
-
 	return dom;
-}
-
-
+};
