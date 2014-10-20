@@ -3,7 +3,7 @@
 [[INCLUDE component=TrunkDouble]]
 [[INCLUDE component=GraphicSimpleTree]]
 [[INCLUDE component=Ajax]]
-
+[[INCLUDE component=TrunkButton]]
 
 (function(){
 	'use strict';
@@ -16,7 +16,9 @@
 		
 		
 		this.buildSkeleton();
-			this.buildTree();
+			this.buildLeftMargin();
+				this.buildButtons();
+				this.buildTree();
 		
 		
 		this.loadTree();
@@ -30,14 +32,19 @@
 		this.current.innerHTML = 'soy el current';
 		this.current.classList.add('AdminxPages-current');
 		this.panels.current_info.appendChild(this.current);
-
 	};
 	
+	AdminxPages.prototype.buildLeftMargin = function() {
+		this.left_margin = document.createElement('div');
+		this.left_margin.className = 'TrunkMargin';
+		this.panels.left.appendChild(this.left_margin);
+	};
+
 	AdminxPages.prototype.buildTree = function() {
 		var that = this;
 		
 		var tree = this.tree = newGraphicSimpleTree();
-		this.panels.left.appendChild(this.tree);
+		this.left_margin.appendChild(this.tree);
 
 		tree.setCallbackDrop(function(event, origin, destination, place){
 
@@ -59,32 +66,6 @@
 
 			that.current.innerHTML = this.getText();
 			that.panels.detailed(true);
-			
-			
-			var current_node = this;
-			
-			var key = prompt('');
-			
-			if (null === key) {
-				return;
-			}
-			
-			var ajax = new Ajax('[[AJAX name=append_node]]');
-			ajax.setCallback200(function(text){
-				if ('' == text) {
-					alert('Node could not be created');
-				} else {
-					var json = JSON.parse(text);
-					that._loadTreeRec(key, current_node, json);
-				}
-			});
-			ajax.query({
-				'id': this.id,
-				'key': key,
-				'type': 'page',
-			});
-			
-			
 		});
 
 		tree.setCallbackDelete(function(event){
@@ -101,15 +82,72 @@
 		});
 
 	};
+
+	AdminxPages.prototype.buildButtons = function() {
+		var that = this;
+
+		this.buttons_frame = document.createElement('div');
+		this.buttons_frame.className = 'buttons-frame';
+		this.left_margin.appendChild(this.buttons_frame);
+
+		this.buttons = document.createElement('div');
+		this.buttons.className = 'buttons';
+		this.buttons_frame.appendChild(this.buttons);
+
+		function addNode(type) {
+			var current_node = that.tree.getSelected();
+
+			var key = prompt('');
+			if (null === key) {
+				return;
+			}
+			
+			var ajax = new Ajax('[[AJAX name=append_node]]');
+			ajax.setCallback200(function(text){
+				if ('' == text) {
+					alert('Node could not be created');
+				} else {
+					var json = JSON.parse(text);
+					that._loadTreeRec(key, current_node, json);
+				}
+			});
+			ajax.query({
+				'id': current_node.id,
+				'key': key,
+				'type': type,
+			});
+		}
+
+		function addButton(name) {
+			var cell = document.createElement('div');
+			that.buttons.appendChild(cell);
+
+			var button = trunk.create('Button');
+			button.dom.textContent = name;
+			cell.appendChild(button.dom);
+
+			return button;
+		}
+
+		addButton('Add Page').dom.addEventListener('click', function(event) {
+			addNode('page');
+		}, true);
+		addButton('Add PHP').dom.addEventListener('click', function(event) {
+			addNode('php');
+		}, true);
+	};
 	
 	AdminxPages.prototype.loadTree = function() {
 		var that = this;
-				
+		
 		var ajax = new Ajax('[[AJAX name=load_tree]]');
 		ajax.setCallback200(function(text) {
 			var json = JSON.parse(text);
 			that.tree.clear();
 			that._loadTreeRec('ROOT', that.tree, json);
+
+
+			that.tree.select('root');
 		});
 		ajax.query({});
 	};
