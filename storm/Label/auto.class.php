@@ -11,12 +11,12 @@
 	class Label_auto {
 
 		public static $fields = array (
-  'Text' => 
+  'Name' => 
   array (
     'type' => 'Text',
     'native' => true,
   ),
-  'Name' => 
+  'Text' => 
   array (
     'type' => 'Text',
     'native' => true,
@@ -135,9 +135,9 @@
 		}
 
 		// Setters and Getters
-public function setText($value) { $this->row['Text'] = $value; $value = mysql_real_escape_string($value); $timestamp = time(); $sql = "UPDATE `Label` SET `Text`='$value',`__timestamp__` = $timestamp, `__operation__` = 'UPDATE' WHERE `id`='{$this->id}'"; Database::getInstance()->sql($sql);} public function getText() { return $this->row['Text']; }
-
 public function setName($value) { $this->row['Name'] = $value; $value = mysql_real_escape_string($value); $timestamp = time(); $sql = "UPDATE `Label` SET `Name`='$value',`__timestamp__` = $timestamp, `__operation__` = 'UPDATE' WHERE `id`='{$this->id}'"; Database::getInstance()->sql($sql);} public function getName() { return $this->row['Name']; }
+
+public function setText($value) { $this->row['Text'] = $value; $value = mysql_real_escape_string($value); $timestamp = time(); $sql = "UPDATE `Label` SET `Text`='$value',`__timestamp__` = $timestamp, `__operation__` = 'UPDATE' WHERE `id`='{$this->id}'"; Database::getInstance()->sql($sql);} public function getText() { return $this->row['Text']; }
 
 
 	}
