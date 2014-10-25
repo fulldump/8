@@ -50,7 +50,7 @@
 			if (file_exists($filename)) {
 				return null;
 			} else {
-				file_put_contents($filename, "<?php /* Your PHP here */ \n print_r($_POST); ?>"); chmod($filename, 0777);
+				file_put_contents($filename, '<?php echo(\'Your PHP here\'); ?>'); chmod($filename, 0777);
 				return self::get($name);
 			}
 		}
