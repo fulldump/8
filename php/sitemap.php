@@ -1,8 +1,8 @@
 <?php
-    header('Content-Type: text/xml; charset=UTF-8');
-	/*
-    echo '<?xml version="1.0" encoding="UTF-8"?>'."\n";
-    */
+	header('Content-Type: text/xml; charset=UTF-8');
+	
+	echo '<?xml version="1.0" encoding="UTF-8"?>'."\n";
+	
 ?>
 <urlset xmlns="http://www.google.com/schemas/sitemap/0.84">
 <?php
@@ -32,13 +32,16 @@
 		}
 
 		$url = "http://{$_SERVER['HTTP_HOST']}".Router::getNodeUrl($node);
-?><url>
-        <loc><?=$url?></loc>
-        <lastmod><?=date('Y-m-d', time())?></lastmod>
-        <changefreq>daily</changefreq>
-        <priority>0.8</priority>
-    </url>
-<?
+		$date = date('Y-m-d', time());
+		echo <<<heredoc
+	<url>
+		<loc>$url</loc>
+		<lastmod>$date</lastmod>
+		<changefreq>daily</changefreq>
+		<priority>0.8</priority>
+	</url>
+
+heredoc;
 	}
 
 	Router::load();
