@@ -4,24 +4,27 @@
     "fields": {
         "Name": "Text",
         "Login": "Text",
-        "Password": "Text"
+        "Password": "Text",
+        "Groups": "Text"
     },
     "data": [
         {
             "id": "1",
-            "__timestamp__": "1386874822",
+            "__timestamp__": "1414253495",
             "__operation__": "UPDATE",
             "Name": "Invitado",
             "Login": "invitado",
-            "Password": ""
+            "Password": "",
+            "Groups": "[\"guest\"]"
         },
         {
             "id": "2",
-            "__timestamp__": "1409744274",
+            "__timestamp__": "1414253491",
             "__operation__": "UPDATE",
             "Name": "Administrador",
             "Login": "admin",
-            "Password": "21232f297a57a5a743894a0e4a801fc3"
+            "Password": "21232f297a57a5a743894a0e4a801fc3",
+            "Groups": "[\"god\"]"
         }
     ]
 }

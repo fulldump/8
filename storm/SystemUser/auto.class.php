@@ -26,6 +26,11 @@
     'type' => 'Text',
     'native' => true,
   ),
+  'Groups' => 
+  array (
+    'type' => 'Text',
+    'native' => true,
+  ),
 );
 
 		protected static $data = array();
@@ -145,6 +150,8 @@ public function setName($value) { $this->row['Name'] = $value; $value = mysql_re
 public function setLogin($value) { $this->row['Login'] = $value; $value = mysql_real_escape_string($value); $timestamp = time(); $sql = "UPDATE `SystemUser` SET `Login`='$value',`__timestamp__` = $timestamp, `__operation__` = 'UPDATE' WHERE `id`='{$this->id}'"; Database::getInstance()->sql($sql);} public function getLogin() { return $this->row['Login']; }
 
 public function setPassword($value) { $this->row['Password'] = $value; $value = mysql_real_escape_string($value); $timestamp = time(); $sql = "UPDATE `SystemUser` SET `Password`='$value',`__timestamp__` = $timestamp, `__operation__` = 'UPDATE' WHERE `id`='{$this->id}'"; Database::getInstance()->sql($sql);} public function getPassword() { return $this->row['Password']; }
+
+public function setGroups($value) { $this->row['Groups'] = $value; $value = mysql_real_escape_string($value); $timestamp = time(); $sql = "UPDATE `SystemUser` SET `Groups`='$value',`__timestamp__` = $timestamp, `__operation__` = 'UPDATE' WHERE `id`='{$this->id}'"; Database::getInstance()->sql($sql);} public function getGroups() { return $this->row['Groups']; }
 
 
 	}
