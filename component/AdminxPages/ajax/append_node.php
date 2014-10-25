@@ -17,10 +17,9 @@ if (null !== $parent_node) {
 			$php = SystemPhp::INSERT($reference);
 			$new_node->properties['reference'] = $reference;
 		} else if ('page' == $type) {
-
+			$reference = SystemPage::INSERT()->ID();
+			$new_node->properties['reference'] = $reference;
 		}
-
-
 
 		echo json_encode($new_node->toArray());
 		Router::save();

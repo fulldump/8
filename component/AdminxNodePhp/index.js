@@ -1,5 +1,6 @@
 // Component AdminxNodePhp
 
+[[INCLUDE component=Ajax]]
 [[INCLUDE component=AdminxWorkspace]]
 [[INCLUDE component=AdminxPreview]]
 [[INCLUDE component=CodeMirror]]
@@ -17,7 +18,6 @@
 	'use strict';
 	
 	function AdminxNodePhp(node) {
-		
 		this.node = node;
 		this.dom = document.createElement('div');
 		this.dom.setAttribute('component', 'AdminxNodePhp');

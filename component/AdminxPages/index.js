@@ -5,6 +5,7 @@
 [[INCLUDE component=Ajax]]
 [[INCLUDE component=TrunkButton]]
 [[INCLUDE component=AdminxNodePhp]]
+[[INCLUDE component=AdminxNodePage]]
 
 (function(){
 	'use strict'; 
@@ -214,6 +215,8 @@
 
 			switch (json.type) {
 				case 'page':
+					var workspace = new AdminxNodePage(json);
+					that.right_margin.appendChild(workspace.dom);
 					break;
 				case 'php':
 					var workspace = new AdminxNodePhp(json);
