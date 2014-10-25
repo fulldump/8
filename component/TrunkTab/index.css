@@ -17,5 +17,5 @@
 
 [component="TrunkTab"] [component="TrunkButton"].none,
 [component="TrunkTab"] [component="TrunkButton"].none:hover {
-  border-bottom-color: silver;
+  border-bottom-color: transparent;
 }
