@@ -4,23 +4,23 @@
 [[INCLUDE component=GraphicSimpleTree]]
 [[INCLUDE component=Ajax]]
 [[INCLUDE component=TrunkButton]]
+[[INCLUDE component=AdminxNodePhp]]
 
 (function(){
-	'use strict';
+	'use strict'; 
 
-	
 	function AdminxPages() {
-		
+		this.node = null;
+
 		this.dom = document.createElement('div');
 		this.dom.setAttribute('component', 'AdminxPages');
-		
 		
 		this.buildSkeleton();
 			this.buildLeftMargin();
 				this.buildButtons();
 				this.buildTree();
-		
-		
+			this.buildRightMargin();
+
 		this.loadTree();
 	}
 	
@@ -50,7 +50,6 @@
 
 			var ajax = new Ajax('[[AJAX name=move_node]]');
 			ajax.setCallback200(function(text){
-				console.log(text);
 				// Ñap solution:
 				that.loadTree();
 			});
@@ -66,6 +65,8 @@
 
 			that.current.innerHTML = this.getText();
 			that.panels.detailed(true);
+			
+			that.loadNode(this.id);
 		});
 
 		tree.setCallbackDelete(function(event){
@@ -137,6 +138,40 @@
 		}, true);
 	};
 	
+	AdminxPages.prototype.buildRightMargin = function() {
+		this.right_margin = document.createElement('div');
+		this.right_margin.className = 'TrunkMargin';
+		this.panels.right.appendChild(this.right_margin);
+	};
+	
+	// AdminxPages.prototype.buildAdminxWorkspace = function() {
+	// 	var that = this;
+
+	// 	this.workspace = new AdminxWorkspace();
+		
+	// 	this.preview_content = new AdminxPreview();
+	// 	var preview = this.workspace.add('preview', this.preview_content.dom);
+	// 	preview.tab.dom.addEventListener('click', function(){
+	// 		that.preview_content.iframe.src = '/u/' + that.node.id;
+	// 	}, true);
+		
+	// 	var php_dom = document.createElement('div');
+	// 	php_dom.innerHTML = 'hola, soy el php';
+	// 	var php = this.workspace.add('php', php_dom);
+		
+	// 	var php_properties = document.createElement('div');
+	// 	php_properties.innerHTML = 'hola, soy el node properties';
+	// 	var properties = this.workspace.add('node properties', php_properties);
+	// 	properties.tab.dom.style.float = 'right';
+
+	// 	this.workspace.select(0);
+		
+	// 	this.workspace.setStatus('');
+		
+		
+	// 	this.right_margin.appendChild(this.workspace.dom);
+	// };
+
 	AdminxPages.prototype.loadTree = function() {
 		var that = this;
 		
@@ -147,7 +182,7 @@
 			that._loadTreeRec('ROOT', that.tree, json);
 
 
-			that.tree.select('root');
+			//that.tree.select('root');
 		});
 		ajax.query({});
 	};
@@ -165,6 +200,32 @@
 		for (var k in children) {
 			this._loadTreeRec(k, new_node, children[k]);
 		}
+	};
+
+
+	AdminxPages.prototype.loadNode = function(id) {
+		var that = this;
+
+		this.right_margin.innerHTML = '';
+
+		var ajax = new Ajax('[[AJAX name=load_node]]');
+		ajax.setCallback200(function(text) {
+			var json = that.node = JSON.parse(text);
+
+			switch (json.type) {
+				case 'page':
+					break;
+				case 'php':
+					var workspace = new AdminxNodePhp(json);
+					that.right_margin.appendChild(workspace.dom);
+					break;
+
+				case 'root':
+					break;
+			}
+
+		});
+		ajax.query({id: id});
 	};
 	
 	window.AdminxPages = AdminxPages;
