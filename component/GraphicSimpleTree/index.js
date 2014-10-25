@@ -152,9 +152,9 @@ newGraphicSimpleTree = function() {
 	dom.callback_click = null;
 	dom.callback_click_default = function(event) {
 		if (dom.last_selected != null)
-			dom.last_selected.info.className = 'comGraphic-simple-tree-node-info';
+			dom.last_selected.info.classList.remove('selected');
 		dom.last_selected = this;
-		dom.last_selected.info.className = 'comGraphic-simple-tree-node-info selected';
+		dom.last_selected.info.classList.add('selected');
 	}
 
 	return dom;
