@@ -3,6 +3,7 @@
 [[INCLUDE component=Ajax]]
 [[INCLUDE component=AdminxWorkspace]]
 [[INCLUDE component=AdminxPreview]]
+[[INCLUDE component=TrunkButton]]
 [[INCLUDE component=CodeMirror]]
 [[INCLUDE component=CodeMirrorMatchbrackets]]
 [[INCLUDE component=CodeMirrorHTMLMixed]]
@@ -35,6 +36,8 @@
 		this.buildCss();
 		this.buildJavascript();
 		this.buildProperties();
+
+		this.buildButtons();
 
 		this.workspace.setStatus('');
 		this.workspace.select(0);
@@ -204,6 +207,31 @@
 		this.workspace_properties = this.workspace.add('Properties', this.properties);
 
 		this.workspace_properties.tab.dom.style.float = 'right';
+	};
+
+	AdminxNodePage.prototype.buildButtons = function() {
+		var that = this;
+
+		var make_home = trunk.create('Button');
+		make_home.dom.innerHTML = 'Make home';
+		make_home.dom.addEventListener('click', function() {
+			if (confirm('Selected page will be home. Continue?')) {
+				var ajax = new Ajax('[[AJAX name=make_home]]');
+				ajax.query({id:that.node.id});
+			}
+		}, true);
+		this.workspace.buttons.appendChild(make_home.dom);
+
+
+		var make_404 = trunk.create('Button');
+		make_404.dom.innerHTML = 'Make 404';
+		make_404.dom.addEventListener('click', function() {
+			if (confirm('Selected page will be the 404. Continue?')) {
+				var ajax = new Ajax('[[AJAX name=make_404]]');
+				ajax.query({id:that.node.id});
+			}
+		}, true);
+		this.workspace.buttons.appendChild(make_404.dom);
 	};
 
 	window.AdminxNodePage = AdminxNodePage;

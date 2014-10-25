@@ -67,6 +67,10 @@
   bottom: 0;
 }
 
+[component="AdminxWorkspace"] .buttons button {
+  margin-right: 4px;
+}
+
 [component="AdminxWorkspace"][status="hidden"] {
   display: none;
 }
