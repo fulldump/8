@@ -32,7 +32,7 @@
 
 			ob_start();
 			
-			eval('?>'.$this->html.'<?');
+			eval('?>'.$this->html);
 
 
 			if (Config::get('CACHE_ENABLED')) {
