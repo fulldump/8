@@ -98,11 +98,8 @@
 	};
 	
 	AdminxNodePhp.prototype.buildProperties = function() {
-		var that = this;
-
-		this.properties = document.createElement('div');
-		this.properties.innerHTML = 'TODO THIS :) i am the properties UI';
-		this.workspace_properties = this.workspace.add('Properties', this.properties);
+		this.properties = new AdminxNodeProperties(this.node);
+		this.workspace_properties = this.workspace.add('Properties', this.properties.dom);
 
 		this.workspace_properties.tab.dom.style.float = 'right';
 	};

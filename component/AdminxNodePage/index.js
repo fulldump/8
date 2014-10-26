@@ -3,6 +3,7 @@
 [[INCLUDE component=Ajax]]
 [[INCLUDE component=AdminxWorkspace]]
 [[INCLUDE component=AdminxPreview]]
+[[INCLUDE component=AdminxNodeProperties]]
 [[INCLUDE component=TrunkButton]]
 [[INCLUDE component=CodeMirror]]
 [[INCLUDE component=CodeMirrorMatchbrackets]]
@@ -157,7 +158,7 @@
 		// Php editor
 		this.javascript = document.createElement('div');
 		this.javascript.classList.add('editor-container');
-		this.workspace_php = this.workspace.add('JavaScript', this.javascript);
+		this.workspace_php = this.workspace.add('Js', this.javascript);
 		var editor_loaded = false;
 		var editor = CodeMirror(
 			function(elt) {
@@ -200,11 +201,8 @@
 	};
 	
 	AdminxNodePage.prototype.buildProperties = function() {
-		var that = this;
-
-		this.properties = document.createElement('div');
-		this.properties.innerHTML = 'TODO THIS :) i am the properties UI';
-		this.workspace_properties = this.workspace.add('Properties', this.properties);
+		this.properties = new AdminxNodeProperties(this.node);
+		this.workspace_properties = this.workspace.add('Properties', this.properties.dom);
 
 		this.workspace_properties.tab.dom.style.float = 'right';
 	};

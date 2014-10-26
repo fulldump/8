@@ -1,1 +1,34 @@
-/* Your CSS here */
+[component="AdminxNodeProperties"] {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  overflow-y: scroll;
+}
+
+[component="AdminxNodeProperties"] table {
+  margin: auto;
+  max-width: 50%;
+  min-width: 400px;
+  border-collapse: collapse;
+}
+
+[component="AdminxNodeProperties"] tr:hover {
+  background-color: #F8F8F8;
+}
+
+[component="AdminxNodeProperties"] tr td:first-child {
+  width: 100px;
+  text-align: right;
+  color: gray;
+  padding-right: 4px;
+}
+
+[component="AdminxNodeProperties"] tr td:last-child {
+  width: 1px;
+}
+
+[component="AdminxNodeProperties"] tr td:last-child [component="TrunkButton"] {
+  width: 100%;
+}
