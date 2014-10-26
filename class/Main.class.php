@@ -20,7 +20,7 @@
 		}
 
 		private static function sessionStart() {
-			Session::getSessionId();
+			Session::start();
 		}
 
 		private static function magicQuotes() {
