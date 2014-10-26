@@ -95,17 +95,17 @@
 		 * Documentar esto
 		*/
 		public static function configure($HOST, $DATABASE, $USER, $PASSWORD) {
-			$link = new mysqli($HOST, $DATABASE, $USER, $PASSWORD);
+			$link = new mysqli($HOST, $USER, $PASSWORD, $DATABASE);
 
 			if ($link->connect_errno) {
 				return;
 			}
 
+			self::load_config();
 			self::$config['HOST'] = $HOST;
 			self::$config['DATABASE'] = $DATABASE;
 			self::$config['USER'] = $USER;
 			self::$config['PASSWORD'] = $PASSWORD;
-
 			self::store_config();
 		}
 		
