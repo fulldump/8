@@ -1,5 +1,6 @@
 CHANGELOG
 =========
 
+8.3.4	Store pages in disk instead of database
 8.3.3	Update database client to mysqli
 8.3.2	AdminxPages has been rewritten
