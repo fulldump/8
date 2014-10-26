@@ -2,6 +2,6 @@
 
 $reference = Router::$root->getById($_POST['id'])->getProperty('reference');
 
-echo SystemPage::ROW($reference)->setJS($_POST['value']);
+echo SystemPage::get($reference)->setJS($_POST['value']);
 
 ?>

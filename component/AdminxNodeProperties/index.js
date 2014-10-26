@@ -66,8 +66,26 @@
 		this.table = document.createElement('table');
 		this.dom.appendChild(this.table);
 
-		var properties = this.getAll();
+		var tr = document.createElement('tr');
+			var td_key = document.createElement('td');
+			var td_value = document.createElement('td')
+			var td_button = document.createElement('td');
 
+			td_key.textContent = 'id';
+			td_value.textContent = this.node.id;
+
+			var button = trunk.create('Button');
+			button.dom.setAttribute('disabled', true);
+			button.dom.textContent = 'Core';
+			td_button.appendChild(button.dom);
+
+			tr.appendChild(td_key);
+			tr.appendChild(td_value);
+			tr.appendChild(td_button);
+		this.table.appendChild(tr);
+
+
+		var properties = this.getAll();
 		for (var k in properties) {
 			var tr = document.createElement('tr');
 				var td_key = document.createElement('td');

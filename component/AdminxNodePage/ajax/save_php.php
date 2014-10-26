@@ -2,6 +2,6 @@
 
 $reference = Router::$root->getById($_POST['id'])->getProperty('reference');
 
-echo SystemPage::ROW($reference)->setHTML($_POST['value']);
+echo SystemPage::get($reference)->setPHP($_POST['value']);
 
 ?>

@@ -17,7 +17,8 @@ if (null !== $parent_node) {
 			$php = SystemPhp::INSERT($reference);
 			$new_node->properties['reference'] = $reference;
 		} else if ('page' == $type) {
-			$reference = SystemPage::INSERT()->ID();
+			$reference = md5(microtime());
+			$page = SystemPage::INSERT($reference);
 			$new_node->properties['reference'] = $reference;
 		}
 

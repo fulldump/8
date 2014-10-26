@@ -15,7 +15,7 @@
 		private $components_loaded = array();
 		
 		private function __construct() {
-			$this->page = SystemPage::ROW(Router::$node->getProperty('reference'));
+			$this->page = SystemPage::get(Router::$node->getProperty('reference'));
 
 			if (null === $this->page) {
 				// ERROR: Reference to a invalid page
@@ -107,7 +107,7 @@
 		}
 
 		private function render_page() {
-			$html = $this->page->getHTML();
+			$html = $this->page->getPHP();
 
 			$tokens = TreeScript::getParse($html);
 

@@ -2,6 +2,6 @@
 
 $reference = Router::$root->getById($_POST['id'])->getProperty('reference');
 
-echo SystemPage::ROW($reference)->getCSS();
+echo SystemPage::get($reference)->getCSS();
 
 ?>

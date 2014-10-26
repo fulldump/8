@@ -1,8 +1,0 @@
-{
-    "name": "CCP_INITIAL_FLOW",
-    "type": "NUMBER",
-    "description": "Flow inicial de un usuario cuando se crea por primera vez",
-    "default": 10,
-    "callback_before": null,
-    "callback_after": null
-}

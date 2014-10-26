@@ -2,6 +2,6 @@
 
 $reference = Router::$root->getById($_POST['id'])->getProperty('reference');
 
-echo SystemPage::ROW($reference)->getJS();
+echo SystemPage::get($reference)->getJS();
 
 ?>
