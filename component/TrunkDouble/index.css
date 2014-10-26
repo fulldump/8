@@ -36,11 +36,12 @@ $splitter_panel_width = 8;
   width: 50px;
   border-top-right-radius: 0;
   border-bottom-right-radius: 0;
+  border-color: transparent;
   background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA8AAAAWCAYAAAAfD8YZAAAAAXNSR0IArs4c6QAAAI9JREFUOMu1lMENg0AMBMehgXSSFiiFl990kv++oJOUQDpJCXwAgcRJd7ayT0uzvrNXhkpJekoaz7VHLQh8gLekaa9bA/g6lWd3HywAHgZdEAQwC4JfoLco6O4/i4KXabeCBxwBASwKViespNyz0wNLryodknQ8WwyKq9r+1W9d7rT87xgUDGZ3H5rSdHcAV2fiaIZsvF6tAAAAAElFTkSuQmCC');
 }
 
 [component="TrunkDouble"] .current-panel .current-info {
-  border: solid silver 1px;
+  border: solid transparent 1px;
   margin-left: 50px;
   height: 35px;
   border-left: none;
