@@ -58,7 +58,6 @@ class SystemPage {
 			file_put_contents($path.'index.php', '<?php /* Your PHP here */?>'); chmod($path.'index.php', 0777);
 			file_put_contents($path.'index.css', '/* Your CSS here */'); chmod($path.'index.css', 0777);
 			file_put_contents($path.'index.js', '/* Your JS here */'); chmod($path.'index.js', 0777);
-			file_put_contents($path.'validation.php', '/* Your validation PHP code here */'); chmod($path.'validation.php', 0777);
 
 			return self::get($name);
 		}
