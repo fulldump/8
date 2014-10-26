@@ -23,7 +23,7 @@
 		}
 		
 		public function getPosts($all=false) {
-			$where = "Blog ='".mysql_real_escape_string($this->getId())."' ORDER BY TimeCreation DESC";
+			$where = "Blog ='".Database::escape($this->getId())."' ORDER BY TimeCreation DESC";
 			if (!$all)
 				$where = "TimePublished < '".time()."' AND ".$where;
 			return BlogPost::SELECT($where);
@@ -40,7 +40,7 @@
 		}
 		
 		public function getPostByUrl($url) {
-			$where = "Blog ='".mysql_real_escape_string($this->getId())."' AND Url = '".mysql_real_escape_string($url)."'";
+			$where = "Blog ='".Database::escape($this->getId())."' AND Url = '".Database::escape($url)."'";
 			$lista = BlogPost::SELECT($where);
 			if (count($lista))
 				return $lista[0];

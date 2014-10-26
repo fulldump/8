@@ -78,15 +78,13 @@
 		}
 
 		public static function SELECT($where=null) {
-			$db = Database::getInstance();
-
 			$sql = "SELECT * FROM `Image`";
 			if ($where !== null)
 				$sql .= " WHERE ".$where;
 
 			$select = array();
-			$result = $db->sql($sql);
-			while ($result && $row=mysql_fetch_assoc($result)) {
+			$result = Database::sql($sql);
+			while ($result && $row=$result->fetch_assoc()) {
 				$id = $row['id'];
 				if (!array_key_exists($id, self::$data))
 					self::$data[$id] = new Image($row);
@@ -96,10 +94,9 @@
 		}
 		
 		public static function INSERT() {
-			$db = Database::getInstance();
 			$sql = "INSERT INTO `Image` (`id`, `__timestamp__`, `__operation__`) VALUES (NULL, ".time().", 'INSERT')";
-			$result = $db->sql($sql);
-			$id = mysql_insert_id();
+			$result = Database::sql($sql);
+			$id = Database::getInsertId();
 			return self::ROW($id);
 		}
 
@@ -108,8 +105,7 @@
 			if (array_key_exists($id, self::$data)) {
 				return self::$data[$id];
 			} else {
-				$db = Database::getInstance();
-				$rows = self::SELECT("id='".mysql_real_escape_string($id)."'");
+				$rows = self::SELECT("id='".Database::escape($id)."'");
 				if (count($rows)) {
 					return $rows[0];
 				} else {
@@ -119,14 +115,13 @@
 		}
 
 		public function DELETE($physical=true) {
-			$db = Database::getInstance();
 			if ($physical) {
 				$sql = "DELETE FROM `Image` WHERE id='".$this->id."'";
 				unset(self::$data[$this->id]);
 			} else {
 				$sql = "UPDATE `Image` SET `__timestamp__` = ".time().", `__operation__` = 'DELETE' WHERE `id`='".$this->id."'";
 			}
-			$db->sql($sql);
+			Database::sql($sql);
 		}
 
 		/* Deprecated */
@@ -155,17 +150,17 @@
 		}
 
 		// Setters and Getters
-public function setHash($value) { $this->row['Hash'] = $value; $value = mysql_real_escape_string($value); $timestamp = time(); $sql = "UPDATE `Image` SET `Hash`='$value',`__timestamp__` = $timestamp, `__operation__` = 'UPDATE' WHERE `id`='{$this->id}'"; Database::getInstance()->sql($sql);} public function getHash() { return $this->row['Hash']; }
+public function setHash($value) { $this->row['Hash'] = $value; $value = Database::escape($value); $timestamp = time(); $sql = "UPDATE `Image` SET `Hash`='$value',`__timestamp__` = $timestamp, `__operation__` = 'UPDATE' WHERE `id`='{$this->id}'"; Database::sql($sql);} public function getHash() { return $this->row['Hash']; }
 
-public function setWidth($value) { $value = str_replace(',', '.', $value); $this->row['Width'] = $value; $value = mysql_real_escape_string($value); $timestamp = time(); $sql = "UPDATE `Image` SET `Width`='$value', `__timestamp__` = $timestamp, `__operation__` = 'UPDATE'  WHERE `id`='{$this->id}'"; Database::getInstance()->sql($sql); } public function getWidth() { $value = $this->row['Width']; settype($value, 'float'); return $value; }
+public function setWidth($value) { $value = str_replace(',', '.', $value); $this->row['Width'] = $value; $value = Database::escape($value); $timestamp = time(); $sql = "UPDATE `Image` SET `Width`='$value', `__timestamp__` = $timestamp, `__operation__` = 'UPDATE'  WHERE `id`='{$this->id}'"; Database::sql($sql); } public function getWidth() { $value = $this->row['Width']; settype($value, 'float'); return $value; }
 
-public function setHeight($value) { $value = str_replace(',', '.', $value); $this->row['Height'] = $value; $value = mysql_real_escape_string($value); $timestamp = time(); $sql = "UPDATE `Image` SET `Height`='$value', `__timestamp__` = $timestamp, `__operation__` = 'UPDATE'  WHERE `id`='{$this->id}'"; Database::getInstance()->sql($sql); } public function getHeight() { $value = $this->row['Height']; settype($value, 'float'); return $value; }
+public function setHeight($value) { $value = str_replace(',', '.', $value); $this->row['Height'] = $value; $value = Database::escape($value); $timestamp = time(); $sql = "UPDATE `Image` SET `Height`='$value', `__timestamp__` = $timestamp, `__operation__` = 'UPDATE'  WHERE `id`='{$this->id}'"; Database::sql($sql); } public function getHeight() { $value = $this->row['Height']; settype($value, 'float'); return $value; }
 
-public function setSize($value) { $value = str_replace(',', '.', $value); $this->row['Size'] = $value; $value = mysql_real_escape_string($value); $timestamp = time(); $sql = "UPDATE `Image` SET `Size`='$value', `__timestamp__` = $timestamp, `__operation__` = 'UPDATE'  WHERE `id`='{$this->id}'"; Database::getInstance()->sql($sql); } public function getSize() { $value = $this->row['Size']; settype($value, 'float'); return $value; }
+public function setSize($value) { $value = str_replace(',', '.', $value); $this->row['Size'] = $value; $value = Database::escape($value); $timestamp = time(); $sql = "UPDATE `Image` SET `Size`='$value', `__timestamp__` = $timestamp, `__operation__` = 'UPDATE'  WHERE `id`='{$this->id}'"; Database::sql($sql); } public function getSize() { $value = $this->row['Size']; settype($value, 'float'); return $value; }
 
-public function setMime($value) { $this->row['Mime'] = $value; $value = mysql_real_escape_string($value); $timestamp = time(); $sql = "UPDATE `Image` SET `Mime`='$value',`__timestamp__` = $timestamp, `__operation__` = 'UPDATE' WHERE `id`='{$this->id}'"; Database::getInstance()->sql($sql);} public function getMime() { return $this->row['Mime']; }
+public function setMime($value) { $this->row['Mime'] = $value; $value = Database::escape($value); $timestamp = time(); $sql = "UPDATE `Image` SET `Mime`='$value',`__timestamp__` = $timestamp, `__operation__` = 'UPDATE' WHERE `id`='{$this->id}'"; Database::sql($sql);} public function getMime() { return $this->row['Mime']; }
 
-public function setCounter($value) { $value = str_replace(',', '.', $value); $this->row['Counter'] = $value; $value = mysql_real_escape_string($value); $timestamp = time(); $sql = "UPDATE `Image` SET `Counter`='$value', `__timestamp__` = $timestamp, `__operation__` = 'UPDATE'  WHERE `id`='{$this->id}'"; Database::getInstance()->sql($sql); } public function getCounter() { $value = $this->row['Counter']; settype($value, 'float'); return $value; }
+public function setCounter($value) { $value = str_replace(',', '.', $value); $this->row['Counter'] = $value; $value = Database::escape($value); $timestamp = time(); $sql = "UPDATE `Image` SET `Counter`='$value', `__timestamp__` = $timestamp, `__operation__` = 'UPDATE'  WHERE `id`='{$this->id}'"; Database::sql($sql); } public function getCounter() { $value = $this->row['Counter']; settype($value, 'float'); return $value; }
 
 
 	}

@@ -78,15 +78,13 @@
 		}
 
 		public static function SELECT($where=null) {
-			$db = Database::getInstance();
-
 			$sql = "SELECT * FROM `GraphicSlideshowItem`";
 			if ($where !== null)
 				$sql .= " WHERE ".$where;
 
 			$select = array();
-			$result = $db->sql($sql);
-			while ($result && $row=mysql_fetch_assoc($result)) {
+			$result = Database::sql($sql);
+			while ($result && $row=$result->fetch_assoc()) {
 				$id = $row['id'];
 				if (!array_key_exists($id, self::$data))
 					self::$data[$id] = new GraphicSlideshowItem($row);
@@ -96,10 +94,9 @@
 		}
 		
 		public static function INSERT() {
-			$db = Database::getInstance();
 			$sql = "INSERT INTO `GraphicSlideshowItem` (`id`, `__timestamp__`, `__operation__`) VALUES (NULL, ".time().", 'INSERT')";
-			$result = $db->sql($sql);
-			$id = mysql_insert_id();
+			$result = Database::sql($sql);
+			$id = Database::getInsertId();
 			return self::ROW($id);
 		}
 
@@ -108,8 +105,7 @@
 			if (array_key_exists($id, self::$data)) {
 				return self::$data[$id];
 			} else {
-				$db = Database::getInstance();
-				$rows = self::SELECT("id='".mysql_real_escape_string($id)."'");
+				$rows = self::SELECT("id='".Database::escape($id)."'");
 				if (count($rows)) {
 					return $rows[0];
 				} else {
@@ -119,14 +115,13 @@
 		}
 
 		public function DELETE($physical=true) {
-			$db = Database::getInstance();
 			if ($physical) {
 				$sql = "DELETE FROM `GraphicSlideshowItem` WHERE id='".$this->id."'";
 				unset(self::$data[$this->id]);
 			} else {
 				$sql = "UPDATE `GraphicSlideshowItem` SET `__timestamp__` = ".time().", `__operation__` = 'DELETE' WHERE `id`='".$this->id."'";
 			}
-			$db->sql($sql);
+			Database::sql($sql);
 		}
 
 		/* Deprecated */
@@ -159,14 +154,12 @@
 		public function setSlideshow($value) {
 			if (is_object($value) && $value->getClassName() == 'GraphicSlideshow') {
 				$id = $value->getId();
-				$db = Database::getInstance();
 				$sql = "UPDATE `GraphicSlideshowItem` SET `Slideshow`='".$id."',	`__timestamp__` = ".time()." WHERE `id`='".$this->id."'";
-				$db->sql($sql);
+				Database::sql($sql);
 				$this->row['Slideshow'] = $id;
 			} else if ($value === null) {
-				$db = Database::getInstance();
 				$sql = "UPDATE `GraphicSlideshowItem` SET `Slideshow`='0', `__timestamp__` = ".time()." WHERE `id`='".$this->id."'";
-				$db->sql($sql);
+				Database::sql($sql);
 				$this->row['Slideshow'] = 0;
 			}
 		}
@@ -178,20 +171,18 @@
 				return GraphicSlideshow::ROW($this->row['Slideshow']);
 			}
 		}
-public function setOrder($value) { $value = str_replace(',', '.', $value); $this->row['Order'] = $value; $value = mysql_real_escape_string($value); $timestamp = time(); $sql = "UPDATE `GraphicSlideshowItem` SET `Order`='$value', `__timestamp__` = $timestamp, `__operation__` = 'UPDATE'  WHERE `id`='{$this->id}'"; Database::getInstance()->sql($sql); } public function getOrder() { $value = $this->row['Order']; settype($value, 'float'); return $value; }
+public function setOrder($value) { $value = str_replace(',', '.', $value); $this->row['Order'] = $value; $value = Database::escape($value); $timestamp = time(); $sql = "UPDATE `GraphicSlideshowItem` SET `Order`='$value', `__timestamp__` = $timestamp, `__operation__` = 'UPDATE'  WHERE `id`='{$this->id}'"; Database::sql($sql); } public function getOrder() { $value = $this->row['Order']; settype($value, 'float'); return $value; }
 
 
 		public function setBackground($value) {
 			if (is_object($value) && $value->getClassName() == 'Image') {
 				$id = $value->getId();
-				$db = Database::getInstance();
 				$sql = "UPDATE `GraphicSlideshowItem` SET `Background`='".$id."',	`__timestamp__` = ".time()." WHERE `id`='".$this->id."'";
-				$db->sql($sql);
+				Database::sql($sql);
 				$this->row['Background'] = $id;
 			} else if ($value === null) {
-				$db = Database::getInstance();
 				$sql = "UPDATE `GraphicSlideshowItem` SET `Background`='0', `__timestamp__` = ".time()." WHERE `id`='".$this->id."'";
-				$db->sql($sql);
+				Database::sql($sql);
 				$this->row['Background'] = 0;
 			}
 		}
@@ -207,14 +198,12 @@ public function setOrder($value) { $value = str_replace(',', '.', $value); $this
 		public function setTitle($value) {
 			if (is_object($value) && $value->getClassName() == 'Label') {
 				$id = $value->getId();
-				$db = Database::getInstance();
 				$sql = "UPDATE `GraphicSlideshowItem` SET `Title`='".$id."',	`__timestamp__` = ".time()." WHERE `id`='".$this->id."'";
-				$db->sql($sql);
+				Database::sql($sql);
 				$this->row['Title'] = $id;
 			} else if ($value === null) {
-				$db = Database::getInstance();
 				$sql = "UPDATE `GraphicSlideshowItem` SET `Title`='0', `__timestamp__` = ".time()." WHERE `id`='".$this->id."'";
-				$db->sql($sql);
+				Database::sql($sql);
 				$this->row['Title'] = 0;
 			}
 		}
@@ -230,14 +219,12 @@ public function setOrder($value) { $value = str_replace(',', '.', $value); $this
 		public function setText($value) {
 			if (is_object($value) && $value->getClassName() == 'SimpleText') {
 				$id = $value->getId();
-				$db = Database::getInstance();
 				$sql = "UPDATE `GraphicSlideshowItem` SET `Text`='".$id."',	`__timestamp__` = ".time()." WHERE `id`='".$this->id."'";
-				$db->sql($sql);
+				Database::sql($sql);
 				$this->row['Text'] = $id;
 			} else if ($value === null) {
-				$db = Database::getInstance();
 				$sql = "UPDATE `GraphicSlideshowItem` SET `Text`='0', `__timestamp__` = ".time()." WHERE `id`='".$this->id."'";
-				$db->sql($sql);
+				Database::sql($sql);
 				$this->row['Text'] = 0;
 			}
 		}
@@ -249,7 +236,7 @@ public function setOrder($value) { $value = str_replace(',', '.', $value); $this
 				return SimpleText::ROW($this->row['Text']);
 			}
 		}
-public function setEnabled($value) { $value = str_replace(',', '.', $value); $this->row['Enabled'] = $value; $value = mysql_real_escape_string($value); $timestamp = time(); $sql = "UPDATE `GraphicSlideshowItem` SET `Enabled`='$value', `__timestamp__` = $timestamp, `__operation__` = 'UPDATE'  WHERE `id`='{$this->id}'"; Database::getInstance()->sql($sql); } public function getEnabled() { $value = $this->row['Enabled']; settype($value, 'float'); return $value; }
+public function setEnabled($value) { $value = str_replace(',', '.', $value); $this->row['Enabled'] = $value; $value = Database::escape($value); $timestamp = time(); $sql = "UPDATE `GraphicSlideshowItem` SET `Enabled`='$value', `__timestamp__` = $timestamp, `__operation__` = 'UPDATE'  WHERE `id`='{$this->id}'"; Database::sql($sql); } public function getEnabled() { $value = $this->row['Enabled']; settype($value, 'float'); return $value; }
 
 
 	}

@@ -3,7 +3,7 @@
 $q = $_POST['q'];
 
 
-$files = File::SELECT("SearchIndex LIKE '%".mysql_real_escape_string($q)."%'");
+$files = File::SELECT("SearchIndex LIKE '%".Database::escape($q)."%'");
 
 $result = array();
 

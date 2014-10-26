@@ -101,14 +101,14 @@
 						$fields = array();
 						$values = array();
 						foreach($data as $f=>$v) {
-							$fields[] = '`'.mysql_real_escape_string($f).'`';
-							$values[] = "'".mysql_real_escape_string($v)."'";
+							$fields[] = '`'.Database::escape($f).'`';
+							$values[] = "'".Database::escape($v)."'";
 						}
 						$fields = implode(',', $fields);
 						$values = implode(',', $values);
 
 						$sql = "INSERT INTO `{$this->name}` ($fields) VALUES ($values)";
-						Database::getInstance()->sql($sql);
+						Database::sql($sql);
 					}
 				}
 			}
@@ -436,15 +436,13 @@
 		}
 
 		public static function SELECT($where=null) {
-			$db = Database::getInstance();
-
-			$sql = "SELECT * FROM `'.mysql_real_escape_string($this->name).'`";
+			$sql = "SELECT * FROM `'.Database::escape($this->name).'`";
 			if ($where !== null)
 				$sql .= " WHERE ".$where;
 
 			$select = array();
-			$result = $db->sql($sql);
-			while ($result && $row=mysql_fetch_assoc($result)) {
+			$result = Database::sql($sql);
+			while ($result && $row=$result->fetch_assoc()) {
 				$id = $row[\'id\'];
 				if (!array_key_exists($id, self::$data))
 					self::$data[$id] = new '.$this->name.'($row);
@@ -454,10 +452,9 @@
 		}
 		
 		public static function INSERT() {
-			$db = Database::getInstance();
 			$sql = "INSERT INTO `'.$this->name.'` (`id`, `__timestamp__`, `__operation__`) VALUES (NULL, ".time().", \'INSERT\')";
-			$result = $db->sql($sql);
-			$id = mysql_insert_id();
+			$result = Database::sql($sql);
+			$id = Database::getInsertId();
 			return self::ROW($id);
 		}
 
@@ -466,8 +463,7 @@
 			if (array_key_exists($id, self::$data)) {
 				return self::$data[$id];
 			} else {
-				$db = Database::getInstance();
-				$rows = self::SELECT("id=\'".mysql_real_escape_string($id)."\'");
+				$rows = self::SELECT("id=\'".Database::escape($id)."\'");
 				if (count($rows)) {
 					return $rows[0];
 				} else {
@@ -477,14 +473,13 @@
 		}
 
 		public function DELETE($physical=true) {
-			$db = Database::getInstance();
 			if ($physical) {
 				$sql = "DELETE FROM `'.$this->name.'` WHERE id=\'".$this->id."\'";
 				unset(self::$data[$this->id]);
 			} else {
 				$sql = "UPDATE `'.$this->name.'` SET `__timestamp__` = ".time().", `__operation__` = \'DELETE\' WHERE `id`=\'".$this->id."\'";
 			}
-			$db->sql($sql);
+			Database::sql($sql);
 		}
 
 		/* Deprecated */
@@ -529,14 +524,12 @@
 		public function set'.$field_name.'($value) {
 			if (is_object($value) && $value->getClassName() == \''.$field_type.'\') {
 				$id = $value->getId();
-				$db = Database::getInstance();
 				$sql = "UPDATE `'.$this->name.'` SET `'.$field_name.'`=\'".$id."\',	`__timestamp__` = ".time()." WHERE `id`=\'".$this->id."\'";
-				$db->sql($sql);
+				Database::sql($sql);
 				$this->row[\''.$field_name.'\'] = $id;
 			} else if ($value === null) {
-				$db = Database::getInstance();
 				$sql = "UPDATE `'.$this->name.'` SET `'.$field_name.'`=\'0\', `__timestamp__` = ".time()." WHERE `id`=\'".$this->id."\'";
-				$db->sql($sql);
+				Database::sql($sql);
 				$this->row[\''.$field_name.'\'] = 0;
 			}
 		}
@@ -563,7 +556,7 @@
 		}
 
 		private static function dbCreateTable($name) {
-			$name = mysql_real_escape_string($name);
+			$name = Database::escape($name);
 			$collate = self::$collate;
 			$sql = "
 				CREATE TABLE `$name` (
@@ -571,27 +564,27 @@
 				`__timestamp__` INT UNSIGNED NOT NULL,
 				`__operation__` enum('INSERT','UPDATE','DELETE') default 'INSERT'
 				) ENGINE = MYISAM CHARACTER SET utf8 COLLATE {$collate}";
-			Database::getInstance()->sql($sql);
+			Database::sql($sql);
 		}
 
 		private static function dbDropTable($name) {
-			$name = mysql_real_escape_string($name);
+			$name = Database::escape($name);
 			$sql = "DROP TABLE IF EXISTS `$name`";
-			Database::getInstance()->sql($sql);
+			Database::sql($sql);
 		}
 
 		private static function dbAddField($name, $field, $type) {
-			$name = mysql_real_escape_string($name);
-			$field = mysql_real_escape_string($field);
+			$name = Database::escape($name);
+			$field = Database::escape($field);
 			$sql = "ALTER TABLE `$name` ADD `$field` $type";
-			Database::getInstance()->sql($sql);
+			Database::sql($sql);
 		}
 
 		private static function dbRemoveField($name, $field) {
-			$name = mysql_real_escape_string($name);
-			$field = mysql_real_escape_string($field);
+			$name = Database::escape($name);
+			$field = Database::escape($field);
 			$sql = "ALTER TABLE `$name` DROP `$field`";
-			Database::getInstance()->sql($sql);
+			Database::sql($sql);
 		}
 
 

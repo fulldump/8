@@ -1,6 +1,6 @@
 <?php
 
-$search = mysql_real_escape_string($_POST['search']);
+$search = Database::escape($_POST['search']);
 
 $where = "Name LIKE '%$search%' AND NOT Name = '' ORDER BY Name";
 

@@ -13,8 +13,7 @@
 		
 		public static function validate($login, $password) {
 			sleep(Config::get('LOGIN_DELAY'));
-			Database::getInstance();
-			$list = self::SELECT("`Login`='".mysql_real_escape_string($login)."' AND `Password`='".mysql_real_escape_string(md5($password))."'");
+			$list = self::SELECT("`Login`='".Database::escape($login)."' AND `Password`='".Database::escape(md5($password))."'");
 			if (count($list)>0) {
 				return $list[0];
 			} else {
@@ -25,8 +24,7 @@
 		public static function recoverPassword($login) {
 			$login = trim($login);
 			if (filter_var($login, FILTER_VALIDATE_EMAIL)) {
-				Database::getInstance();
-				$list = self::SELECT("`Login`='".mysql_real_escape_string($login)."'");
+				$list = self::SELECT("`Login`='".Database::escape($login)."'");
 				if (count($list)==0) {
 					return 'El email no está registrado';
 				} else {
@@ -71,8 +69,7 @@
 			// Compruebo si el login es un email válido
 			if (filter_var($login, FILTER_VALIDATE_EMAIL)) {
 				// Compruebo si el email ya estaba
-				Database::getInstance();
-				$list = self::SELECT("`Login`='".mysql_real_escape_string($login)."'");
+				$list = self::SELECT("`Login`='".Database::escape($login)."'");
 				if (count($list)==0) {
 					$password = base_convert(rand(10e16, 10e20), 10, 36);
 					$new_user = self::INSERT();

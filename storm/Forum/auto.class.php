@@ -73,15 +73,13 @@
 		}
 
 		public static function SELECT($where=null) {
-			$db = Database::getInstance();
-
 			$sql = "SELECT * FROM `Forum`";
 			if ($where !== null)
 				$sql .= " WHERE ".$where;
 
 			$select = array();
-			$result = $db->sql($sql);
-			while ($result && $row=mysql_fetch_assoc($result)) {
+			$result = Database::sql($sql);
+			while ($result && $row=$result->fetch_assoc()) {
 				$id = $row['id'];
 				if (!array_key_exists($id, self::$data))
 					self::$data[$id] = new Forum($row);
@@ -91,10 +89,9 @@
 		}
 		
 		public static function INSERT() {
-			$db = Database::getInstance();
 			$sql = "INSERT INTO `Forum` (`id`, `__timestamp__`, `__operation__`) VALUES (NULL, ".time().", 'INSERT')";
-			$result = $db->sql($sql);
-			$id = mysql_insert_id();
+			$result = Database::sql($sql);
+			$id = Database::getInsertId();
 			return self::ROW($id);
 		}
 
@@ -103,8 +100,7 @@
 			if (array_key_exists($id, self::$data)) {
 				return self::$data[$id];
 			} else {
-				$db = Database::getInstance();
-				$rows = self::SELECT("id='".mysql_real_escape_string($id)."'");
+				$rows = self::SELECT("id='".Database::escape($id)."'");
 				if (count($rows)) {
 					return $rows[0];
 				} else {
@@ -114,14 +110,13 @@
 		}
 
 		public function DELETE($physical=true) {
-			$db = Database::getInstance();
 			if ($physical) {
 				$sql = "DELETE FROM `Forum` WHERE id='".$this->id."'";
 				unset(self::$data[$this->id]);
 			} else {
 				$sql = "UPDATE `Forum` SET `__timestamp__` = ".time().", `__operation__` = 'DELETE' WHERE `id`='".$this->id."'";
 			}
-			$db->sql($sql);
+			Database::sql($sql);
 		}
 
 		/* Deprecated */
@@ -150,20 +145,18 @@
 		}
 
 		// Setters and Getters
-public function setText($value) { $this->row['Text'] = $value; $value = mysql_real_escape_string($value); $timestamp = time(); $sql = "UPDATE `Forum` SET `Text`='$value',`__timestamp__` = $timestamp, `__operation__` = 'UPDATE' WHERE `id`='{$this->id}'"; Database::getInstance()->sql($sql);} public function getText() { return $this->row['Text']; }
+public function setText($value) { $this->row['Text'] = $value; $value = Database::escape($value); $timestamp = time(); $sql = "UPDATE `Forum` SET `Text`='$value',`__timestamp__` = $timestamp, `__operation__` = 'UPDATE' WHERE `id`='{$this->id}'"; Database::sql($sql);} public function getText() { return $this->row['Text']; }
 
 
 		public function setUser($value) {
 			if (is_object($value) && $value->getClassName() == 'SystemUser') {
 				$id = $value->getId();
-				$db = Database::getInstance();
 				$sql = "UPDATE `Forum` SET `User`='".$id."',	`__timestamp__` = ".time()." WHERE `id`='".$this->id."'";
-				$db->sql($sql);
+				Database::sql($sql);
 				$this->row['User'] = $id;
 			} else if ($value === null) {
-				$db = Database::getInstance();
 				$sql = "UPDATE `Forum` SET `User`='0', `__timestamp__` = ".time()." WHERE `id`='".$this->id."'";
-				$db->sql($sql);
+				Database::sql($sql);
 				$this->row['User'] = 0;
 			}
 		}
@@ -175,20 +168,18 @@ public function setText($value) { $this->row['Text'] = $value; $value = mysql_re
 				return SystemUser::ROW($this->row['User']);
 			}
 		}
-public function setTimestamp($value) { $value = str_replace(',', '.', $value); $this->row['Timestamp'] = $value; $value = mysql_real_escape_string($value); $timestamp = time(); $sql = "UPDATE `Forum` SET `Timestamp`='$value', `__timestamp__` = $timestamp, `__operation__` = 'UPDATE'  WHERE `id`='{$this->id}'"; Database::getInstance()->sql($sql); } public function getTimestamp() { $value = $this->row['Timestamp']; settype($value, 'float'); return $value; }
+public function setTimestamp($value) { $value = str_replace(',', '.', $value); $this->row['Timestamp'] = $value; $value = Database::escape($value); $timestamp = time(); $sql = "UPDATE `Forum` SET `Timestamp`='$value', `__timestamp__` = $timestamp, `__operation__` = 'UPDATE'  WHERE `id`='{$this->id}'"; Database::sql($sql); } public function getTimestamp() { $value = $this->row['Timestamp']; settype($value, 'float'); return $value; }
 
 
 		public function setResponseTo($value) {
 			if (is_object($value) && $value->getClassName() == 'Forum') {
 				$id = $value->getId();
-				$db = Database::getInstance();
 				$sql = "UPDATE `Forum` SET `ResponseTo`='".$id."',	`__timestamp__` = ".time()." WHERE `id`='".$this->id."'";
-				$db->sql($sql);
+				Database::sql($sql);
 				$this->row['ResponseTo'] = $id;
 			} else if ($value === null) {
-				$db = Database::getInstance();
 				$sql = "UPDATE `Forum` SET `ResponseTo`='0', `__timestamp__` = ".time()." WHERE `id`='".$this->id."'";
-				$db->sql($sql);
+				Database::sql($sql);
 				$this->row['ResponseTo'] = 0;
 			}
 		}
@@ -200,7 +191,7 @@ public function setTimestamp($value) { $value = str_replace(',', '.', $value); $
 				return Forum::ROW($this->row['ResponseTo']);
 			}
 		}
-public function setNumResponses($value) { $value = str_replace(',', '.', $value); $this->row['NumResponses'] = $value; $value = mysql_real_escape_string($value); $timestamp = time(); $sql = "UPDATE `Forum` SET `NumResponses`='$value', `__timestamp__` = $timestamp, `__operation__` = 'UPDATE'  WHERE `id`='{$this->id}'"; Database::getInstance()->sql($sql); } public function getNumResponses() { $value = $this->row['NumResponses']; settype($value, 'float'); return $value; }
+public function setNumResponses($value) { $value = str_replace(',', '.', $value); $this->row['NumResponses'] = $value; $value = Database::escape($value); $timestamp = time(); $sql = "UPDATE `Forum` SET `NumResponses`='$value', `__timestamp__` = $timestamp, `__operation__` = 'UPDATE'  WHERE `id`='{$this->id}'"; Database::sql($sql); } public function getNumResponses() { $value = $this->row['NumResponses']; settype($value, 'float'); return $value; }
 
 
 	}

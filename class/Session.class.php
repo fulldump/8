@@ -53,7 +53,6 @@
 		private static function openSession() {
 			$session_id = $_COOKIE[Config::get('COOKIE_NAME')];
 			if (self::is_md5($session_id)) {
-				Database::getInstance();
 				$sessions = SystemSession::SELECT("SessionId = '".$session_id."'");
 				if (count($sessions)==1) {
 					// Abro la sesión

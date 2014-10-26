@@ -1,9 +1,7 @@
 <?php
 
-$name = mysql_real_escape_string($_POST['name']);
-
 $new_email = EmailerCurrent::INSERT();
-$new_email->setName($name);
+$new_email->setName($_POST['name']);
 
 $result = array(
 	'id'=>$new_email->getId(),

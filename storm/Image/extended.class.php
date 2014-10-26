@@ -48,7 +48,7 @@
 				$width = imagesx($gd);
 				$height = imagesy($gd);
 				$hash = md5_file($temp_path);
-				$list = Image::SELECT("Hash='".mysql_real_escape_string($hash)."'");
+				$list = Image::SELECT("Hash='".Database::escape($hash)."'");
 				if (count($list)) {
 					// La imagen ya existe :S
 					$image = $list[0];

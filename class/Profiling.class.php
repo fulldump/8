@@ -29,7 +29,7 @@
 			return array(
 				'name'=>$name,
 				'microtime_start'=>microtime(),
-				'queries_start'=>Database::getInstance()->getN(),
+				'queries_start'=>Database::getN(),
 				'children'=>array()
 			);
 		}
@@ -58,7 +58,7 @@
 				'time'=>self::_microtime_diff($item['microtime_start'], $microtime_end),
 				'microtime_start'=>$item['microtime_start'],
 				'microtime_end'=>$microtime_end,
-				'queries'=>Database::getInstance()->getN() - $item['queries_start'],
+				'queries'=>Database::getN() - $item['queries_start'],
 				'children'=>$item['children'],
 			);
 		}

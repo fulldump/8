@@ -68,15 +68,13 @@
 		}
 
 		public static function SELECT($where=null) {
-			$db = Database::getInstance();
-
 			$sql = "SELECT * FROM `Blog`";
 			if ($where !== null)
 				$sql .= " WHERE ".$where;
 
 			$select = array();
-			$result = $db->sql($sql);
-			while ($result && $row=mysql_fetch_assoc($result)) {
+			$result = Database::sql($sql);
+			while ($result && $row=$result->fetch_assoc()) {
 				$id = $row['id'];
 				if (!array_key_exists($id, self::$data))
 					self::$data[$id] = new Blog($row);
@@ -86,10 +84,9 @@
 		}
 		
 		public static function INSERT() {
-			$db = Database::getInstance();
 			$sql = "INSERT INTO `Blog` (`id`, `__timestamp__`, `__operation__`) VALUES (NULL, ".time().", 'INSERT')";
-			$result = $db->sql($sql);
-			$id = mysql_insert_id();
+			$result = Database::sql($sql);
+			$id = Database::getInsertId();
 			return self::ROW($id);
 		}
 
@@ -98,8 +95,7 @@
 			if (array_key_exists($id, self::$data)) {
 				return self::$data[$id];
 			} else {
-				$db = Database::getInstance();
-				$rows = self::SELECT("id='".mysql_real_escape_string($id)."'");
+				$rows = self::SELECT("id='".Database::escape($id)."'");
 				if (count($rows)) {
 					return $rows[0];
 				} else {
@@ -109,14 +105,13 @@
 		}
 
 		public function DELETE($physical=true) {
-			$db = Database::getInstance();
 			if ($physical) {
 				$sql = "DELETE FROM `Blog` WHERE id='".$this->id."'";
 				unset(self::$data[$this->id]);
 			} else {
 				$sql = "UPDATE `Blog` SET `__timestamp__` = ".time().", `__operation__` = 'DELETE' WHERE `id`='".$this->id."'";
 			}
-			$db->sql($sql);
+			Database::sql($sql);
 		}
 
 		/* Deprecated */
@@ -145,20 +140,18 @@
 		}
 
 		// Setters and Getters
-public function setTimeCreation($value) { $value = str_replace(',', '.', $value); $this->row['TimeCreation'] = $value; $value = mysql_real_escape_string($value); $timestamp = time(); $sql = "UPDATE `Blog` SET `TimeCreation`='$value', `__timestamp__` = $timestamp, `__operation__` = 'UPDATE'  WHERE `id`='{$this->id}'"; Database::getInstance()->sql($sql); } public function getTimeCreation() { $value = $this->row['TimeCreation']; settype($value, 'float'); return $value; }
+public function setTimeCreation($value) { $value = str_replace(',', '.', $value); $this->row['TimeCreation'] = $value; $value = Database::escape($value); $timestamp = time(); $sql = "UPDATE `Blog` SET `TimeCreation`='$value', `__timestamp__` = $timestamp, `__operation__` = 'UPDATE'  WHERE `id`='{$this->id}'"; Database::sql($sql); } public function getTimeCreation() { $value = $this->row['TimeCreation']; settype($value, 'float'); return $value; }
 
 
 		public function setAuthor($value) {
 			if (is_object($value) && $value->getClassName() == 'SystemUser') {
 				$id = $value->getId();
-				$db = Database::getInstance();
 				$sql = "UPDATE `Blog` SET `Author`='".$id."',	`__timestamp__` = ".time()." WHERE `id`='".$this->id."'";
-				$db->sql($sql);
+				Database::sql($sql);
 				$this->row['Author'] = $id;
 			} else if ($value === null) {
-				$db = Database::getInstance();
 				$sql = "UPDATE `Blog` SET `Author`='0', `__timestamp__` = ".time()." WHERE `id`='".$this->id."'";
-				$db->sql($sql);
+				Database::sql($sql);
 				$this->row['Author'] = 0;
 			}
 		}
@@ -170,9 +163,9 @@ public function setTimeCreation($value) { $value = str_replace(',', '.', $value)
 				return SystemUser::ROW($this->row['Author']);
 			}
 		}
-public function setOptions($value) { $this->row['Options'] = $value; $value = mysql_real_escape_string($value); $timestamp = time(); $sql = "UPDATE `Blog` SET `Options`='$value',`__timestamp__` = $timestamp, `__operation__` = 'UPDATE' WHERE `id`='{$this->id}'"; Database::getInstance()->sql($sql);} public function getOptions() { return $this->row['Options']; }
+public function setOptions($value) { $this->row['Options'] = $value; $value = Database::escape($value); $timestamp = time(); $sql = "UPDATE `Blog` SET `Options`='$value',`__timestamp__` = $timestamp, `__operation__` = 'UPDATE' WHERE `id`='{$this->id}'"; Database::sql($sql);} public function getOptions() { return $this->row['Options']; }
 
-public function setTitle($value) { $this->row['Title'] = $value; $value = mysql_real_escape_string($value); $timestamp = time(); $sql = "UPDATE `Blog` SET `Title`='$value',`__timestamp__` = $timestamp, `__operation__` = 'UPDATE' WHERE `id`='{$this->id}'"; Database::getInstance()->sql($sql);} public function getTitle() { return $this->row['Title']; }
+public function setTitle($value) { $this->row['Title'] = $value; $value = Database::escape($value); $timestamp = time(); $sql = "UPDATE `Blog` SET `Title`='$value',`__timestamp__` = $timestamp, `__operation__` = 'UPDATE' WHERE `id`='{$this->id}'"; Database::sql($sql);} public function getTitle() { return $this->row['Title']; }
 
 
 	}

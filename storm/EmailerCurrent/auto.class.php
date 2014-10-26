@@ -78,15 +78,13 @@
 		}
 
 		public static function SELECT($where=null) {
-			$db = Database::getInstance();
-
 			$sql = "SELECT * FROM `EmailerCurrent`";
 			if ($where !== null)
 				$sql .= " WHERE ".$where;
 
 			$select = array();
-			$result = $db->sql($sql);
-			while ($result && $row=mysql_fetch_assoc($result)) {
+			$result = Database::sql($sql);
+			while ($result && $row=$result->fetch_assoc()) {
 				$id = $row['id'];
 				if (!array_key_exists($id, self::$data))
 					self::$data[$id] = new EmailerCurrent($row);
@@ -96,10 +94,9 @@
 		}
 		
 		public static function INSERT() {
-			$db = Database::getInstance();
 			$sql = "INSERT INTO `EmailerCurrent` (`id`, `__timestamp__`, `__operation__`) VALUES (NULL, ".time().", 'INSERT')";
-			$result = $db->sql($sql);
-			$id = mysql_insert_id();
+			$result = Database::sql($sql);
+			$id = Database::getInsertId();
 			return self::ROW($id);
 		}
 
@@ -108,8 +105,7 @@
 			if (array_key_exists($id, self::$data)) {
 				return self::$data[$id];
 			} else {
-				$db = Database::getInstance();
-				$rows = self::SELECT("id='".mysql_real_escape_string($id)."'");
+				$rows = self::SELECT("id='".Database::escape($id)."'");
 				if (count($rows)) {
 					return $rows[0];
 				} else {
@@ -119,14 +115,13 @@
 		}
 
 		public function DELETE($physical=true) {
-			$db = Database::getInstance();
 			if ($physical) {
 				$sql = "DELETE FROM `EmailerCurrent` WHERE id='".$this->id."'";
 				unset(self::$data[$this->id]);
 			} else {
 				$sql = "UPDATE `EmailerCurrent` SET `__timestamp__` = ".time().", `__operation__` = 'DELETE' WHERE `id`='".$this->id."'";
 			}
-			$db->sql($sql);
+			Database::sql($sql);
 		}
 
 		/* Deprecated */
@@ -155,28 +150,26 @@
 		}
 
 		// Setters and Getters
-public function setHTML($value) { $this->row['HTML'] = $value; $value = mysql_real_escape_string($value); $timestamp = time(); $sql = "UPDATE `EmailerCurrent` SET `HTML`='$value',`__timestamp__` = $timestamp, `__operation__` = 'UPDATE' WHERE `id`='{$this->id}'"; Database::getInstance()->sql($sql);} public function getHTML() { return $this->row['HTML']; }
+public function setHTML($value) { $this->row['HTML'] = $value; $value = Database::escape($value); $timestamp = time(); $sql = "UPDATE `EmailerCurrent` SET `HTML`='$value',`__timestamp__` = $timestamp, `__operation__` = 'UPDATE' WHERE `id`='{$this->id}'"; Database::sql($sql);} public function getHTML() { return $this->row['HTML']; }
 
-public function setTimestamp($value) { $value = str_replace(',', '.', $value); $this->row['Timestamp'] = $value; $value = mysql_real_escape_string($value); $timestamp = time(); $sql = "UPDATE `EmailerCurrent` SET `Timestamp`='$value', `__timestamp__` = $timestamp, `__operation__` = 'UPDATE'  WHERE `id`='{$this->id}'"; Database::getInstance()->sql($sql); } public function getTimestamp() { $value = $this->row['Timestamp']; settype($value, 'float'); return $value; }
+public function setTimestamp($value) { $value = str_replace(',', '.', $value); $this->row['Timestamp'] = $value; $value = Database::escape($value); $timestamp = time(); $sql = "UPDATE `EmailerCurrent` SET `Timestamp`='$value', `__timestamp__` = $timestamp, `__operation__` = 'UPDATE'  WHERE `id`='{$this->id}'"; Database::sql($sql); } public function getTimestamp() { $value = $this->row['Timestamp']; settype($value, 'float'); return $value; }
 
-public function setParameters($value) { $this->row['Parameters'] = $value; $value = mysql_real_escape_string($value); $timestamp = time(); $sql = "UPDATE `EmailerCurrent` SET `Parameters`='$value',`__timestamp__` = $timestamp, `__operation__` = 'UPDATE' WHERE `id`='{$this->id}'"; Database::getInstance()->sql($sql);} public function getParameters() { return $this->row['Parameters']; }
+public function setParameters($value) { $this->row['Parameters'] = $value; $value = Database::escape($value); $timestamp = time(); $sql = "UPDATE `EmailerCurrent` SET `Parameters`='$value',`__timestamp__` = $timestamp, `__operation__` = 'UPDATE' WHERE `id`='{$this->id}'"; Database::sql($sql);} public function getParameters() { return $this->row['Parameters']; }
 
-public function setName($value) { $this->row['Name'] = $value; $value = mysql_real_escape_string($value); $timestamp = time(); $sql = "UPDATE `EmailerCurrent` SET `Name`='$value',`__timestamp__` = $timestamp, `__operation__` = 'UPDATE' WHERE `id`='{$this->id}'"; Database::getInstance()->sql($sql);} public function getName() { return $this->row['Name']; }
+public function setName($value) { $this->row['Name'] = $value; $value = Database::escape($value); $timestamp = time(); $sql = "UPDATE `EmailerCurrent` SET `Name`='$value',`__timestamp__` = $timestamp, `__operation__` = 'UPDATE' WHERE `id`='{$this->id}'"; Database::sql($sql);} public function getName() { return $this->row['Name']; }
 
-public function setFrom($value) { $this->row['From'] = $value; $value = mysql_real_escape_string($value); $timestamp = time(); $sql = "UPDATE `EmailerCurrent` SET `From`='$value',`__timestamp__` = $timestamp, `__operation__` = 'UPDATE' WHERE `id`='{$this->id}'"; Database::getInstance()->sql($sql);} public function getFrom() { return $this->row['From']; }
+public function setFrom($value) { $this->row['From'] = $value; $value = Database::escape($value); $timestamp = time(); $sql = "UPDATE `EmailerCurrent` SET `From`='$value',`__timestamp__` = $timestamp, `__operation__` = 'UPDATE' WHERE `id`='{$this->id}'"; Database::sql($sql);} public function getFrom() { return $this->row['From']; }
 
 
 		public function setUser($value) {
 			if (is_object($value) && $value->getClassName() == 'SystemUser') {
 				$id = $value->getId();
-				$db = Database::getInstance();
 				$sql = "UPDATE `EmailerCurrent` SET `User`='".$id."',	`__timestamp__` = ".time()." WHERE `id`='".$this->id."'";
-				$db->sql($sql);
+				Database::sql($sql);
 				$this->row['User'] = $id;
 			} else if ($value === null) {
-				$db = Database::getInstance();
 				$sql = "UPDATE `EmailerCurrent` SET `User`='0', `__timestamp__` = ".time()." WHERE `id`='".$this->id."'";
-				$db->sql($sql);
+				Database::sql($sql);
 				$this->row['User'] = 0;
 			}
 		}

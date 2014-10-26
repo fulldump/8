@@ -78,15 +78,13 @@
 		}
 
 		public static function SELECT($where=null) {
-			$db = Database::getInstance();
-
 			$sql = "SELECT * FROM `SystemSession`";
 			if ($where !== null)
 				$sql .= " WHERE ".$where;
 
 			$select = array();
-			$result = $db->sql($sql);
-			while ($result && $row=mysql_fetch_assoc($result)) {
+			$result = Database::sql($sql);
+			while ($result && $row=$result->fetch_assoc()) {
 				$id = $row['id'];
 				if (!array_key_exists($id, self::$data))
 					self::$data[$id] = new SystemSession($row);
@@ -96,10 +94,9 @@
 		}
 		
 		public static function INSERT() {
-			$db = Database::getInstance();
 			$sql = "INSERT INTO `SystemSession` (`id`, `__timestamp__`, `__operation__`) VALUES (NULL, ".time().", 'INSERT')";
-			$result = $db->sql($sql);
-			$id = mysql_insert_id();
+			$result = Database::sql($sql);
+			$id = Database::getInsertId();
 			return self::ROW($id);
 		}
 
@@ -108,8 +105,7 @@
 			if (array_key_exists($id, self::$data)) {
 				return self::$data[$id];
 			} else {
-				$db = Database::getInstance();
-				$rows = self::SELECT("id='".mysql_real_escape_string($id)."'");
+				$rows = self::SELECT("id='".Database::escape($id)."'");
 				if (count($rows)) {
 					return $rows[0];
 				} else {
@@ -119,14 +115,13 @@
 		}
 
 		public function DELETE($physical=true) {
-			$db = Database::getInstance();
 			if ($physical) {
 				$sql = "DELETE FROM `SystemSession` WHERE id='".$this->id."'";
 				unset(self::$data[$this->id]);
 			} else {
 				$sql = "UPDATE `SystemSession` SET `__timestamp__` = ".time().", `__operation__` = 'DELETE' WHERE `id`='".$this->id."'";
 			}
-			$db->sql($sql);
+			Database::sql($sql);
 		}
 
 		/* Deprecated */
@@ -155,20 +150,18 @@
 		}
 
 		// Setters and Getters
-public function setSessionId($value) { $this->row['SessionId'] = $value; $value = mysql_real_escape_string($value); $timestamp = time(); $sql = "UPDATE `SystemSession` SET `SessionId`='$value',`__timestamp__` = $timestamp, `__operation__` = 'UPDATE' WHERE `id`='{$this->id}'"; Database::getInstance()->sql($sql);} public function getSessionId() { return $this->row['SessionId']; }
+public function setSessionId($value) { $this->row['SessionId'] = $value; $value = Database::escape($value); $timestamp = time(); $sql = "UPDATE `SystemSession` SET `SessionId`='$value',`__timestamp__` = $timestamp, `__operation__` = 'UPDATE' WHERE `id`='{$this->id}'"; Database::sql($sql);} public function getSessionId() { return $this->row['SessionId']; }
 
 
 		public function setUser($value) {
 			if (is_object($value) && $value->getClassName() == 'SystemUser') {
 				$id = $value->getId();
-				$db = Database::getInstance();
 				$sql = "UPDATE `SystemSession` SET `User`='".$id."',	`__timestamp__` = ".time()." WHERE `id`='".$this->id."'";
-				$db->sql($sql);
+				Database::sql($sql);
 				$this->row['User'] = $id;
 			} else if ($value === null) {
-				$db = Database::getInstance();
 				$sql = "UPDATE `SystemSession` SET `User`='0', `__timestamp__` = ".time()." WHERE `id`='".$this->id."'";
-				$db->sql($sql);
+				Database::sql($sql);
 				$this->row['User'] = 0;
 			}
 		}
@@ -180,13 +173,13 @@ public function setSessionId($value) { $this->row['SessionId'] = $value; $value 
 				return SystemUser::ROW($this->row['User']);
 			}
 		}
-public function setCreated($value) { $value = str_replace(',', '.', $value); $this->row['Created'] = $value; $value = mysql_real_escape_string($value); $timestamp = time(); $sql = "UPDATE `SystemSession` SET `Created`='$value', `__timestamp__` = $timestamp, `__operation__` = 'UPDATE'  WHERE `id`='{$this->id}'"; Database::getInstance()->sql($sql); } public function getCreated() { $value = $this->row['Created']; settype($value, 'float'); return $value; }
+public function setCreated($value) { $value = str_replace(',', '.', $value); $this->row['Created'] = $value; $value = Database::escape($value); $timestamp = time(); $sql = "UPDATE `SystemSession` SET `Created`='$value', `__timestamp__` = $timestamp, `__operation__` = 'UPDATE'  WHERE `id`='{$this->id}'"; Database::sql($sql); } public function getCreated() { $value = $this->row['Created']; settype($value, 'float'); return $value; }
 
-public function setUserAgent($value) { $this->row['UserAgent'] = $value; $value = mysql_real_escape_string($value); $timestamp = time(); $sql = "UPDATE `SystemSession` SET `UserAgent`='$value',`__timestamp__` = $timestamp, `__operation__` = 'UPDATE' WHERE `id`='{$this->id}'"; Database::getInstance()->sql($sql);} public function getUserAgent() { return $this->row['UserAgent']; }
+public function setUserAgent($value) { $this->row['UserAgent'] = $value; $value = Database::escape($value); $timestamp = time(); $sql = "UPDATE `SystemSession` SET `UserAgent`='$value',`__timestamp__` = $timestamp, `__operation__` = 'UPDATE' WHERE `id`='{$this->id}'"; Database::sql($sql);} public function getUserAgent() { return $this->row['UserAgent']; }
 
-public function setData($value) { $this->row['Data'] = $value; $value = mysql_real_escape_string($value); $timestamp = time(); $sql = "UPDATE `SystemSession` SET `Data`='$value',`__timestamp__` = $timestamp, `__operation__` = 'UPDATE' WHERE `id`='{$this->id}'"; Database::getInstance()->sql($sql);} public function getData() { return $this->row['Data']; }
+public function setData($value) { $this->row['Data'] = $value; $value = Database::escape($value); $timestamp = time(); $sql = "UPDATE `SystemSession` SET `Data`='$value',`__timestamp__` = $timestamp, `__operation__` = 'UPDATE' WHERE `id`='{$this->id}'"; Database::sql($sql);} public function getData() { return $this->row['Data']; }
 
-public function setIp($value) { $this->row['Ip'] = $value; $value = mysql_real_escape_string($value); $timestamp = time(); $sql = "UPDATE `SystemSession` SET `Ip`='$value',`__timestamp__` = $timestamp, `__operation__` = 'UPDATE' WHERE `id`='{$this->id}'"; Database::getInstance()->sql($sql);} public function getIp() { return $this->row['Ip']; }
+public function setIp($value) { $this->row['Ip'] = $value; $value = Database::escape($value); $timestamp = time(); $sql = "UPDATE `SystemSession` SET `Ip`='$value',`__timestamp__` = $timestamp, `__operation__` = 'UPDATE' WHERE `id`='{$this->id}'"; Database::sql($sql);} public function getIp() { return $this->row['Ip']; }
 
 
 	}

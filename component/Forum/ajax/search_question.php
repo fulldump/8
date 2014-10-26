@@ -8,7 +8,7 @@
 	
 	foreach ($words as $w)
 		if (trim($w) != '')
-			$where .= " AND Text LIKE '%".mysql_real_escape_string($w)."%'";
+			$where .= " AND Text LIKE '%".Database::escape($w)."%'";
 	
 	
 	$where .= ' ORDER BY Timestamp DESC ';

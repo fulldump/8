@@ -18,7 +18,7 @@
 		
 
 			$hash = md5_file($file_path);
-			$list = File::SELECT("Hash='".mysql_real_escape_string($hash)."'");
+			$list = File::SELECT("Hash='".Database::escape($hash)."'");
 			if (count($list)) {
 				$file = $list[0];
 				$file->_setCounter($file->getCounter()+1);

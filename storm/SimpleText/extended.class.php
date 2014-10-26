@@ -13,7 +13,7 @@
 		}
 		
 		public static function getByName($name) {
-			$name = mysql_real_escape_string($name);
+			$name = Database::escape($name);
 			$items = self::SELECT("`Name` = '$name'");
 			if (1 != count($items)) {
 				return null;

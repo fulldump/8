@@ -24,7 +24,7 @@
 		}
 
 		public function getAll() {
-			$where = "`Slideshow` = '".mysql_real_escape_string($this->getId())."' ORDER BY `Order`";
+			$where = "`Slideshow` = '".Database::escape($this->getId())."' ORDER BY `Order`";
 			return GraphicSlideshowItem::SELECT($where);
 		}
 

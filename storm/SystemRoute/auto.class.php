@@ -108,15 +108,13 @@
 		}
 
 		public static function SELECT($where=null) {
-			$db = Database::getInstance();
-
 			$sql = "SELECT * FROM `SystemRoute`";
 			if ($where !== null)
 				$sql .= " WHERE ".$where;
 
 			$select = array();
-			$result = $db->sql($sql);
-			while ($result && $row=mysql_fetch_assoc($result)) {
+			$result = Database::sql($sql);
+			while ($result && $row=$result->fetch_assoc()) {
 				$id = $row['id'];
 				if (!array_key_exists($id, self::$data))
 					self::$data[$id] = new SystemRoute($row);
@@ -126,10 +124,9 @@
 		}
 		
 		public static function INSERT() {
-			$db = Database::getInstance();
 			$sql = "INSERT INTO `SystemRoute` (`id`, `__timestamp__`, `__operation__`) VALUES (NULL, ".time().", 'INSERT')";
-			$result = $db->sql($sql);
-			$id = mysql_insert_id();
+			$result = Database::sql($sql);
+			$id = Database::getInsertId();
 			return self::ROW($id);
 		}
 
@@ -138,8 +135,7 @@
 			if (array_key_exists($id, self::$data)) {
 				return self::$data[$id];
 			} else {
-				$db = Database::getInstance();
-				$rows = self::SELECT("id='".mysql_real_escape_string($id)."'");
+				$rows = self::SELECT("id='".Database::escape($id)."'");
 				if (count($rows)) {
 					return $rows[0];
 				} else {
@@ -149,14 +145,13 @@
 		}
 
 		public function DELETE($physical=true) {
-			$db = Database::getInstance();
 			if ($physical) {
 				$sql = "DELETE FROM `SystemRoute` WHERE id='".$this->id."'";
 				unset(self::$data[$this->id]);
 			} else {
 				$sql = "UPDATE `SystemRoute` SET `__timestamp__` = ".time().", `__operation__` = 'DELETE' WHERE `id`='".$this->id."'";
 			}
-			$db->sql($sql);
+			Database::sql($sql);
 		}
 
 		/* Deprecated */
@@ -185,26 +180,24 @@
 		}
 
 		// Setters and Getters
-public function setTitle($value) { $this->row['Title'] = $value; $value = mysql_real_escape_string($value); $timestamp = time(); $sql = "UPDATE `SystemRoute` SET `Title`='$value',`__timestamp__` = $timestamp, `__operation__` = 'UPDATE' WHERE `id`='{$this->id}'"; Database::getInstance()->sql($sql);} public function getTitle() { return $this->row['Title']; }
+public function setTitle($value) { $this->row['Title'] = $value; $value = Database::escape($value); $timestamp = time(); $sql = "UPDATE `SystemRoute` SET `Title`='$value',`__timestamp__` = $timestamp, `__operation__` = 'UPDATE' WHERE `id`='{$this->id}'"; Database::sql($sql);} public function getTitle() { return $this->row['Title']; }
 
-public function setKeywords($value) { $this->row['Keywords'] = $value; $value = mysql_real_escape_string($value); $timestamp = time(); $sql = "UPDATE `SystemRoute` SET `Keywords`='$value',`__timestamp__` = $timestamp, `__operation__` = 'UPDATE' WHERE `id`='{$this->id}'"; Database::getInstance()->sql($sql);} public function getKeywords() { return $this->row['Keywords']; }
+public function setKeywords($value) { $this->row['Keywords'] = $value; $value = Database::escape($value); $timestamp = time(); $sql = "UPDATE `SystemRoute` SET `Keywords`='$value',`__timestamp__` = $timestamp, `__operation__` = 'UPDATE' WHERE `id`='{$this->id}'"; Database::sql($sql);} public function getKeywords() { return $this->row['Keywords']; }
 
-public function setDescription($value) { $this->row['Description'] = $value; $value = mysql_real_escape_string($value); $timestamp = time(); $sql = "UPDATE `SystemRoute` SET `Description`='$value',`__timestamp__` = $timestamp, `__operation__` = 'UPDATE' WHERE `id`='{$this->id}'"; Database::getInstance()->sql($sql);} public function getDescription() { return $this->row['Description']; }
+public function setDescription($value) { $this->row['Description'] = $value; $value = Database::escape($value); $timestamp = time(); $sql = "UPDATE `SystemRoute` SET `Description`='$value',`__timestamp__` = $timestamp, `__operation__` = 'UPDATE' WHERE `id`='{$this->id}'"; Database::sql($sql);} public function getDescription() { return $this->row['Description']; }
 
-public function setUrl($value) { $this->row['Url'] = $value; $value = mysql_real_escape_string($value); $timestamp = time(); $sql = "UPDATE `SystemRoute` SET `Url`='$value',`__timestamp__` = $timestamp, `__operation__` = 'UPDATE' WHERE `id`='{$this->id}'"; Database::getInstance()->sql($sql);} public function getUrl() { return $this->row['Url']; }
+public function setUrl($value) { $this->row['Url'] = $value; $value = Database::escape($value); $timestamp = time(); $sql = "UPDATE `SystemRoute` SET `Url`='$value',`__timestamp__` = $timestamp, `__operation__` = 'UPDATE' WHERE `id`='{$this->id}'"; Database::sql($sql);} public function getUrl() { return $this->row['Url']; }
 
 
 		public function setParent($value) {
 			if (is_object($value) && $value->getClassName() == 'SystemRoute') {
 				$id = $value->getId();
-				$db = Database::getInstance();
 				$sql = "UPDATE `SystemRoute` SET `Parent`='".$id."',	`__timestamp__` = ".time()." WHERE `id`='".$this->id."'";
-				$db->sql($sql);
+				Database::sql($sql);
 				$this->row['Parent'] = $id;
 			} else if ($value === null) {
-				$db = Database::getInstance();
 				$sql = "UPDATE `SystemRoute` SET `Parent`='0', `__timestamp__` = ".time()." WHERE `id`='".$this->id."'";
-				$db->sql($sql);
+				Database::sql($sql);
 				$this->row['Parent'] = 0;
 			}
 		}
@@ -220,14 +213,12 @@ public function setUrl($value) { $this->row['Url'] = $value; $value = mysql_real
 		public function setPrevious($value) {
 			if (is_object($value) && $value->getClassName() == 'SystemRoute') {
 				$id = $value->getId();
-				$db = Database::getInstance();
 				$sql = "UPDATE `SystemRoute` SET `Previous`='".$id."',	`__timestamp__` = ".time()." WHERE `id`='".$this->id."'";
-				$db->sql($sql);
+				Database::sql($sql);
 				$this->row['Previous'] = $id;
 			} else if ($value === null) {
-				$db = Database::getInstance();
 				$sql = "UPDATE `SystemRoute` SET `Previous`='0', `__timestamp__` = ".time()." WHERE `id`='".$this->id."'";
-				$db->sql($sql);
+				Database::sql($sql);
 				$this->row['Previous'] = 0;
 			}
 		}
@@ -243,14 +234,12 @@ public function setUrl($value) { $this->row['Url'] = $value; $value = mysql_real
 		public function setNext($value) {
 			if (is_object($value) && $value->getClassName() == 'SystemRoute') {
 				$id = $value->getId();
-				$db = Database::getInstance();
 				$sql = "UPDATE `SystemRoute` SET `Next`='".$id."',	`__timestamp__` = ".time()." WHERE `id`='".$this->id."'";
-				$db->sql($sql);
+				Database::sql($sql);
 				$this->row['Next'] = $id;
 			} else if ($value === null) {
-				$db = Database::getInstance();
 				$sql = "UPDATE `SystemRoute` SET `Next`='0', `__timestamp__` = ".time()." WHERE `id`='".$this->id."'";
-				$db->sql($sql);
+				Database::sql($sql);
 				$this->row['Next'] = 0;
 			}
 		}
@@ -262,15 +251,15 @@ public function setUrl($value) { $this->row['Url'] = $value; $value = mysql_real
 				return SystemRoute::ROW($this->row['Next']);
 			}
 		}
-public function setCustomUrl($value) { $this->row['CustomUrl'] = $value; $value = mysql_real_escape_string($value); $timestamp = time(); $sql = "UPDATE `SystemRoute` SET `CustomUrl`='$value',`__timestamp__` = $timestamp, `__operation__` = 'UPDATE' WHERE `id`='{$this->id}'"; Database::getInstance()->sql($sql);} public function getCustomUrl() { return $this->row['CustomUrl']; }
+public function setCustomUrl($value) { $this->row['CustomUrl'] = $value; $value = Database::escape($value); $timestamp = time(); $sql = "UPDATE `SystemRoute` SET `CustomUrl`='$value',`__timestamp__` = $timestamp, `__operation__` = 'UPDATE' WHERE `id`='{$this->id}'"; Database::sql($sql);} public function getCustomUrl() { return $this->row['CustomUrl']; }
 
-public function setLastModified($value) { $value = str_replace(',', '.', $value); $this->row['LastModified'] = $value; $value = mysql_real_escape_string($value); $timestamp = time(); $sql = "UPDATE `SystemRoute` SET `LastModified`='$value', `__timestamp__` = $timestamp, `__operation__` = 'UPDATE'  WHERE `id`='{$this->id}'"; Database::getInstance()->sql($sql); } public function getLastModified() { $value = $this->row['LastModified']; settype($value, 'float'); return $value; }
+public function setLastModified($value) { $value = str_replace(',', '.', $value); $this->row['LastModified'] = $value; $value = Database::escape($value); $timestamp = time(); $sql = "UPDATE `SystemRoute` SET `LastModified`='$value', `__timestamp__` = $timestamp, `__operation__` = 'UPDATE'  WHERE `id`='{$this->id}'"; Database::sql($sql); } public function getLastModified() { $value = $this->row['LastModified']; settype($value, 'float'); return $value; }
 
-public function setEtag($value) { $this->row['Etag'] = $value; $value = mysql_real_escape_string($value); $timestamp = time(); $sql = "UPDATE `SystemRoute` SET `Etag`='$value',`__timestamp__` = $timestamp, `__operation__` = 'UPDATE' WHERE `id`='{$this->id}'"; Database::getInstance()->sql($sql);} public function getEtag() { return $this->row['Etag']; }
+public function setEtag($value) { $this->row['Etag'] = $value; $value = Database::escape($value); $timestamp = time(); $sql = "UPDATE `SystemRoute` SET `Etag`='$value',`__timestamp__` = $timestamp, `__operation__` = 'UPDATE' WHERE `id`='{$this->id}'"; Database::sql($sql);} public function getEtag() { return $this->row['Etag']; }
 
-public function setReference($value) { $this->row['Reference'] = $value; $value = mysql_real_escape_string($value); $timestamp = time(); $sql = "UPDATE `SystemRoute` SET `Reference`='$value',`__timestamp__` = $timestamp, `__operation__` = 'UPDATE' WHERE `id`='{$this->id}'"; Database::getInstance()->sql($sql);} public function getReference() { return $this->row['Reference']; }
+public function setReference($value) { $this->row['Reference'] = $value; $value = Database::escape($value); $timestamp = time(); $sql = "UPDATE `SystemRoute` SET `Reference`='$value',`__timestamp__` = $timestamp, `__operation__` = 'UPDATE' WHERE `id`='{$this->id}'"; Database::sql($sql);} public function getReference() { return $this->row['Reference']; }
 
-public function setController($value) { $this->row['Controller'] = $value; $value = mysql_real_escape_string($value); $timestamp = time(); $sql = "UPDATE `SystemRoute` SET `Controller`='$value',`__timestamp__` = $timestamp, `__operation__` = 'UPDATE' WHERE `id`='{$this->id}'"; Database::getInstance()->sql($sql);} public function getController() { return $this->row['Controller']; }
+public function setController($value) { $this->row['Controller'] = $value; $value = Database::escape($value); $timestamp = time(); $sql = "UPDATE `SystemRoute` SET `Controller`='$value',`__timestamp__` = $timestamp, `__operation__` = 'UPDATE' WHERE `id`='{$this->id}'"; Database::sql($sql);} public function getController() { return $this->row['Controller']; }
 
 
 	}

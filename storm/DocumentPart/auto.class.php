@@ -78,15 +78,13 @@
 		}
 
 		public static function SELECT($where=null) {
-			$db = Database::getInstance();
-
 			$sql = "SELECT * FROM `DocumentPart`";
 			if ($where !== null)
 				$sql .= " WHERE ".$where;
 
 			$select = array();
-			$result = $db->sql($sql);
-			while ($result && $row=mysql_fetch_assoc($result)) {
+			$result = Database::sql($sql);
+			while ($result && $row=$result->fetch_assoc()) {
 				$id = $row['id'];
 				if (!array_key_exists($id, self::$data))
 					self::$data[$id] = new DocumentPart($row);
@@ -96,10 +94,9 @@
 		}
 		
 		public static function INSERT() {
-			$db = Database::getInstance();
 			$sql = "INSERT INTO `DocumentPart` (`id`, `__timestamp__`, `__operation__`) VALUES (NULL, ".time().", 'INSERT')";
-			$result = $db->sql($sql);
-			$id = mysql_insert_id();
+			$result = Database::sql($sql);
+			$id = Database::getInsertId();
 			return self::ROW($id);
 		}
 
@@ -108,8 +105,7 @@
 			if (array_key_exists($id, self::$data)) {
 				return self::$data[$id];
 			} else {
-				$db = Database::getInstance();
-				$rows = self::SELECT("id='".mysql_real_escape_string($id)."'");
+				$rows = self::SELECT("id='".Database::escape($id)."'");
 				if (count($rows)) {
 					return $rows[0];
 				} else {
@@ -119,14 +115,13 @@
 		}
 
 		public function DELETE($physical=true) {
-			$db = Database::getInstance();
 			if ($physical) {
 				$sql = "DELETE FROM `DocumentPart` WHERE id='".$this->id."'";
 				unset(self::$data[$this->id]);
 			} else {
 				$sql = "UPDATE `DocumentPart` SET `__timestamp__` = ".time().", `__operation__` = 'DELETE' WHERE `id`='".$this->id."'";
 			}
-			$db->sql($sql);
+			Database::sql($sql);
 		}
 
 		/* Deprecated */
@@ -159,14 +154,12 @@
 		public function setDocument($value) {
 			if (is_object($value) && $value->getClassName() == 'Document') {
 				$id = $value->getId();
-				$db = Database::getInstance();
 				$sql = "UPDATE `DocumentPart` SET `Document`='".$id."',	`__timestamp__` = ".time()." WHERE `id`='".$this->id."'";
-				$db->sql($sql);
+				Database::sql($sql);
 				$this->row['Document'] = $id;
 			} else if ($value === null) {
-				$db = Database::getInstance();
 				$sql = "UPDATE `DocumentPart` SET `Document`='0', `__timestamp__` = ".time()." WHERE `id`='".$this->id."'";
-				$db->sql($sql);
+				Database::sql($sql);
 				$this->row['Document'] = 0;
 			}
 		}
@@ -182,14 +175,12 @@
 		public function setPreviousPart($value) {
 			if (is_object($value) && $value->getClassName() == 'DocumentPart') {
 				$id = $value->getId();
-				$db = Database::getInstance();
 				$sql = "UPDATE `DocumentPart` SET `PreviousPart`='".$id."',	`__timestamp__` = ".time()." WHERE `id`='".$this->id."'";
-				$db->sql($sql);
+				Database::sql($sql);
 				$this->row['PreviousPart'] = $id;
 			} else if ($value === null) {
-				$db = Database::getInstance();
 				$sql = "UPDATE `DocumentPart` SET `PreviousPart`='0', `__timestamp__` = ".time()." WHERE `id`='".$this->id."'";
-				$db->sql($sql);
+				Database::sql($sql);
 				$this->row['PreviousPart'] = 0;
 			}
 		}
@@ -205,14 +196,12 @@
 		public function setNextPart($value) {
 			if (is_object($value) && $value->getClassName() == 'DocumentPart') {
 				$id = $value->getId();
-				$db = Database::getInstance();
 				$sql = "UPDATE `DocumentPart` SET `NextPart`='".$id."',	`__timestamp__` = ".time()." WHERE `id`='".$this->id."'";
-				$db->sql($sql);
+				Database::sql($sql);
 				$this->row['NextPart'] = $id;
 			} else if ($value === null) {
-				$db = Database::getInstance();
 				$sql = "UPDATE `DocumentPart` SET `NextPart`='0', `__timestamp__` = ".time()." WHERE `id`='".$this->id."'";
-				$db->sql($sql);
+				Database::sql($sql);
 				$this->row['NextPart'] = 0;
 			}
 		}
@@ -224,20 +213,18 @@
 				return DocumentPart::ROW($this->row['NextPart']);
 			}
 		}
-public function setData($value) { $this->row['Data'] = $value; $value = mysql_real_escape_string($value); $timestamp = time(); $sql = "UPDATE `DocumentPart` SET `Data`='$value',`__timestamp__` = $timestamp, `__operation__` = 'UPDATE' WHERE `id`='{$this->id}'"; Database::getInstance()->sql($sql);} public function getData() { return $this->row['Data']; }
+public function setData($value) { $this->row['Data'] = $value; $value = Database::escape($value); $timestamp = time(); $sql = "UPDATE `DocumentPart` SET `Data`='$value',`__timestamp__` = $timestamp, `__operation__` = 'UPDATE' WHERE `id`='{$this->id}'"; Database::sql($sql);} public function getData() { return $this->row['Data']; }
 
 
 		public function setType($value) {
 			if (is_object($value) && $value->getClassName() == 'DocumentPartType') {
 				$id = $value->getId();
-				$db = Database::getInstance();
 				$sql = "UPDATE `DocumentPart` SET `Type`='".$id."',	`__timestamp__` = ".time()." WHERE `id`='".$this->id."'";
-				$db->sql($sql);
+				Database::sql($sql);
 				$this->row['Type'] = $id;
 			} else if ($value === null) {
-				$db = Database::getInstance();
 				$sql = "UPDATE `DocumentPart` SET `Type`='0', `__timestamp__` = ".time()." WHERE `id`='".$this->id."'";
-				$db->sql($sql);
+				Database::sql($sql);
 				$this->row['Type'] = 0;
 			}
 		}
@@ -253,14 +240,12 @@ public function setData($value) { $this->row['Data'] = $value; $value = mysql_re
 		public function setImage($value) {
 			if (is_object($value) && $value->getClassName() == 'Image') {
 				$id = $value->getId();
-				$db = Database::getInstance();
 				$sql = "UPDATE `DocumentPart` SET `Image`='".$id."',	`__timestamp__` = ".time()." WHERE `id`='".$this->id."'";
-				$db->sql($sql);
+				Database::sql($sql);
 				$this->row['Image'] = $id;
 			} else if ($value === null) {
-				$db = Database::getInstance();
 				$sql = "UPDATE `DocumentPart` SET `Image`='0', `__timestamp__` = ".time()." WHERE `id`='".$this->id."'";
-				$db->sql($sql);
+				Database::sql($sql);
 				$this->row['Image'] = 0;
 			}
 		}

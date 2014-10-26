@@ -19,14 +19,6 @@
 			self::$cwd = getcwd().'/';
 		}
 
-		/**
-		 * Fuerza una conexión a base de datos. El motivo es tener disponible el
-		 * método mysql_real_escape_string
-		*/
-		private static function forceDatabaseConnection() {
-			Database::getInstance();
-		}
-
 		private static function sessionStart() {
 			Session::getSessionId();
 		}
@@ -118,7 +110,6 @@
 			error_reporting($error_level);
 			self::initializeCwd();
 			self::autoload();
-			self::forceDatabaseConnection();
 		}
 
 		public static function goDebug() {

@@ -78,15 +78,13 @@
 		}
 
 		public static function SELECT($where=null) {
-			$db = Database::getInstance();
-
 			$sql = "SELECT * FROM `NotesEntry`";
 			if ($where !== null)
 				$sql .= " WHERE ".$where;
 
 			$select = array();
-			$result = $db->sql($sql);
-			while ($result && $row=mysql_fetch_assoc($result)) {
+			$result = Database::sql($sql);
+			while ($result && $row=$result->fetch_assoc()) {
 				$id = $row['id'];
 				if (!array_key_exists($id, self::$data))
 					self::$data[$id] = new NotesEntry($row);
@@ -96,10 +94,9 @@
 		}
 		
 		public static function INSERT() {
-			$db = Database::getInstance();
 			$sql = "INSERT INTO `NotesEntry` (`id`, `__timestamp__`, `__operation__`) VALUES (NULL, ".time().", 'INSERT')";
-			$result = $db->sql($sql);
-			$id = mysql_insert_id();
+			$result = Database::sql($sql);
+			$id = Database::getInsertId();
 			return self::ROW($id);
 		}
 
@@ -108,8 +105,7 @@
 			if (array_key_exists($id, self::$data)) {
 				return self::$data[$id];
 			} else {
-				$db = Database::getInstance();
-				$rows = self::SELECT("id='".mysql_real_escape_string($id)."'");
+				$rows = self::SELECT("id='".Database::escape($id)."'");
 				if (count($rows)) {
 					return $rows[0];
 				} else {
@@ -119,14 +115,13 @@
 		}
 
 		public function DELETE($physical=true) {
-			$db = Database::getInstance();
 			if ($physical) {
 				$sql = "DELETE FROM `NotesEntry` WHERE id='".$this->id."'";
 				unset(self::$data[$this->id]);
 			} else {
 				$sql = "UPDATE `NotesEntry` SET `__timestamp__` = ".time().", `__operation__` = 'DELETE' WHERE `id`='".$this->id."'";
 			}
-			$db->sql($sql);
+			Database::sql($sql);
 		}
 
 		/* Deprecated */
@@ -159,14 +154,12 @@
 		public function setNotes($value) {
 			if (is_object($value) && $value->getClassName() == 'Notes') {
 				$id = $value->getId();
-				$db = Database::getInstance();
 				$sql = "UPDATE `NotesEntry` SET `Notes`='".$id."',	`__timestamp__` = ".time()." WHERE `id`='".$this->id."'";
-				$db->sql($sql);
+				Database::sql($sql);
 				$this->row['Notes'] = $id;
 			} else if ($value === null) {
-				$db = Database::getInstance();
 				$sql = "UPDATE `NotesEntry` SET `Notes`='0', `__timestamp__` = ".time()." WHERE `id`='".$this->id."'";
-				$db->sql($sql);
+				Database::sql($sql);
 				$this->row['Notes'] = 0;
 			}
 		}
@@ -182,14 +175,12 @@
 		public function setAuthor($value) {
 			if (is_object($value) && $value->getClassName() == 'SystemUser') {
 				$id = $value->getId();
-				$db = Database::getInstance();
 				$sql = "UPDATE `NotesEntry` SET `Author`='".$id."',	`__timestamp__` = ".time()." WHERE `id`='".$this->id."'";
-				$db->sql($sql);
+				Database::sql($sql);
 				$this->row['Author'] = $id;
 			} else if ($value === null) {
-				$db = Database::getInstance();
 				$sql = "UPDATE `NotesEntry` SET `Author`='0', `__timestamp__` = ".time()." WHERE `id`='".$this->id."'";
-				$db->sql($sql);
+				Database::sql($sql);
 				$this->row['Author'] = 0;
 			}
 		}
@@ -205,14 +196,12 @@
 		public function setTitle($value) {
 			if (is_object($value) && $value->getClassName() == 'Label') {
 				$id = $value->getId();
-				$db = Database::getInstance();
 				$sql = "UPDATE `NotesEntry` SET `Title`='".$id."',	`__timestamp__` = ".time()." WHERE `id`='".$this->id."'";
-				$db->sql($sql);
+				Database::sql($sql);
 				$this->row['Title'] = $id;
 			} else if ($value === null) {
-				$db = Database::getInstance();
 				$sql = "UPDATE `NotesEntry` SET `Title`='0', `__timestamp__` = ".time()." WHERE `id`='".$this->id."'";
-				$db->sql($sql);
+				Database::sql($sql);
 				$this->row['Title'] = 0;
 			}
 		}
@@ -228,14 +217,12 @@
 		public function setContent($value) {
 			if (is_object($value) && $value->getClassName() == 'SimpleText') {
 				$id = $value->getId();
-				$db = Database::getInstance();
 				$sql = "UPDATE `NotesEntry` SET `Content`='".$id."',	`__timestamp__` = ".time()." WHERE `id`='".$this->id."'";
-				$db->sql($sql);
+				Database::sql($sql);
 				$this->row['Content'] = $id;
 			} else if ($value === null) {
-				$db = Database::getInstance();
 				$sql = "UPDATE `NotesEntry` SET `Content`='0', `__timestamp__` = ".time()." WHERE `id`='".$this->id."'";
-				$db->sql($sql);
+				Database::sql($sql);
 				$this->row['Content'] = 0;
 			}
 		}
@@ -247,9 +234,9 @@
 				return SimpleText::ROW($this->row['Content']);
 			}
 		}
-public function setCreation($value) { $value = str_replace(',', '.', $value); $this->row['Creation'] = $value; $value = mysql_real_escape_string($value); $timestamp = time(); $sql = "UPDATE `NotesEntry` SET `Creation`='$value', `__timestamp__` = $timestamp, `__operation__` = 'UPDATE'  WHERE `id`='{$this->id}'"; Database::getInstance()->sql($sql); } public function getCreation() { $value = $this->row['Creation']; settype($value, 'float'); return $value; }
+public function setCreation($value) { $value = str_replace(',', '.', $value); $this->row['Creation'] = $value; $value = Database::escape($value); $timestamp = time(); $sql = "UPDATE `NotesEntry` SET `Creation`='$value', `__timestamp__` = $timestamp, `__operation__` = 'UPDATE'  WHERE `id`='{$this->id}'"; Database::sql($sql); } public function getCreation() { $value = $this->row['Creation']; settype($value, 'float'); return $value; }
 
-public function setPublication($value) { $value = str_replace(',', '.', $value); $this->row['Publication'] = $value; $value = mysql_real_escape_string($value); $timestamp = time(); $sql = "UPDATE `NotesEntry` SET `Publication`='$value', `__timestamp__` = $timestamp, `__operation__` = 'UPDATE'  WHERE `id`='{$this->id}'"; Database::getInstance()->sql($sql); } public function getPublication() { $value = $this->row['Publication']; settype($value, 'float'); return $value; }
+public function setPublication($value) { $value = str_replace(',', '.', $value); $this->row['Publication'] = $value; $value = Database::escape($value); $timestamp = time(); $sql = "UPDATE `NotesEntry` SET `Publication`='$value', `__timestamp__` = $timestamp, `__operation__` = 'UPDATE'  WHERE `id`='{$this->id}'"; Database::sql($sql); } public function getPublication() { $value = $this->row['Publication']; settype($value, 'float'); return $value; }
 
 
 	}
