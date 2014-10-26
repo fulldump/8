@@ -1,8 +1,5 @@
 <?php
 
-
-
-
 class PrimJpeg extends Prim {
 
 	protected function open() {

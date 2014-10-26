@@ -36,7 +36,6 @@
 		}
 
 		private static function autoload() {
-
 			function __autoload($class_name) {
 				$path = Main::$cwd.'class/'.$class_name.'.class.php';
 				if (file_exists($path)) {
@@ -46,7 +45,6 @@
 					include(Main::$cwd.'storm/'.$class_name.'/extended.class.php');
 				}
 			}
-
 		}
 
 		private static function httpHeadersSpoofing() {
@@ -54,7 +52,6 @@
 			header("X-Powered-By: ASP.NET");
 			header("X-AspNet-Version: 2.0.50727");
 		}
-
 
 		private static function processLogIn() {
 			if (isset($_POST['ACTION']) && $_POST['ACTION'] == 'LOGIN') {

@@ -1,7 +1,5 @@
 <?php
 
-
-
 	class Profiling {
 		
 		private static $_instance = null;
