@@ -13,6 +13,15 @@
 			return $row;
 		}
 
+		public static function getByName($name) {
+			$name = Database::escape($name);
+			$images = self::SELECT("`Name` = '$name'");
+			if (1 != count($images)) {
+				return null;
+			}
+			return $images[0];
+		}
+
 		public function getImage() {
 			return Image::ROW(Multilingual::get(parent::getImage()));
 		}

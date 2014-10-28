@@ -1,36 +1,29 @@
 [[INCLUDE component=Ajax]]
 [[INCLUDE component=GraphicPopupImage]]
 
-newImage = function (dom) {
+window.addEventListener('load', function(event) {
 
-	var edit_id = dom.getAttribute('edit_id');
-	if (edit_id != null) {
-		//dom.setAttribute('contentEditable', 'true');
-		dom.addEventListener('dblclick', function(event) {
+	var newImage = function (dom) {
+		var edit_id = dom.getAttribute('edit_id');
+		var edit_options = dom.getAttribute('edit_options');
+		dom.addEventListener('click', function(event) {
 			var gpi = newGraphicPopupImage();
 			gpi.setCallbackImage(function(image) {
-				dom.src='/img/'+image.id;
+				dom.src='/img/'+image.id+edit_options;
 				var ajax = new Ajax('[[AJAX name=set_image]]');
 				ajax.query({'id_image_instance':edit_id,'id_image':image.id});
 			});
 			gpi.show();
 		}, true);
+		dom.parentNode.setAttribute('href', '#');
 	}
 
-	dom.parentNode.setAttribute('href', '#');
-
-}
-
-window.addEventListener('load', function(event) {
-	var elements = document.getElementsByTagName('*');
-	var cadena;
-	for (key in elements) {
-		cadena = elements[key].id;
-		if (typeof(cadena)=='string') {
-			var id = parseInt(cadena.replace('Image', ''));
-			if (!isNaN(id)) {
-				newImage(elements[key]);
-			}
+	var elements = document.querySelectorAll('[component="Image"]')
+	for (var i=0; i<elements.length; i++) {
+		element = elements[i];
+		if ('Image' == element.getAttribute('component')) {
+			newImage(element);
 		}
 	}
+
 }, true);

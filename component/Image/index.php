@@ -1,17 +1,26 @@
 <?php
 
-$id=0;	
-eval ('$id='.$data['id'].';');
-$image = ImageInstance::ROW($id);
+$id='';	
+eval ('$id='.var_export($data['id'], true).';');
 
+$edit = !in_array('noedit', $flags);
+
+$image = ImageInstance::getByName($id);
+if (null === $image) {
+	$image = ImageInstance::INSERT();
+	$image->setName($id);
+}
+$options = '';
 if (array_key_exists('style', $data)) {
 	$options = "/{$data['style']}";
 }
 
-if (array_key_exists('edit', $_GET) && Session::isLoggedIn()) { 
-	echo '<img id="Image'.$id.'" edit_id="'.$id.'" src="/img/'.$image->getImage()->getId().$options.'" alt="'.$image->getDescription().'">';
+$url = "/img/{$image->getImage()->getId()}{$options}";
+
+if (array_key_exists('edit', $_GET) && Session::isLoggedIn() && $edit) { 
+	echo "<img src='$url' alt='{$image->getDescription()}' edit_id='$id' edit_options='$options' component='Image'>";
 } else {
-	echo '<img src="/img/'.$image->getImage()->getId().$options.'" alt="'.$image->getDescription().'">';
+	echo "<img src='$url' alt='{$image->getDescription()}'>";
 }
 
 ?>
