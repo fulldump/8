@@ -1,6 +1,8 @@
 CHANGELOG
 =========
 
+8.4.1	Component Imabe by name instead of id
+		Fix resizing image module
 8.4.0	Intelligent sessions
 8.3.4	Store pages in disk instead of database
 8.3.3	Update database client to mysqli
