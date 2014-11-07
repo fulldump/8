@@ -1,1 +1,1 @@
-[[INCLUDE component:Trunk]]
+[[INCLUDE component=Trunk]]

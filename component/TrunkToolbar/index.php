@@ -3,7 +3,7 @@
 		<div class="expand-button link icon" onclick="this.parentNode.parentNode.classList.toggle('expanded');"></div>
 		<a href="<?=Router::getNodeUrl(Router::$root->get('adminx'))?>" class="logo link icon">TreeWeb</a>
 		<div class="right">
-			<a href="/Profile" class="link icon user"><span class="user-name"><?php echo Session::getUser()->getName(); ?></span></a><a href="#" onclick="document.getElementById('form-logout').submit()" class="logout link icon"></a>
+			<a href="/profile" class="link icon user"><span class="user-name"><?php echo Session::getUser()->getName(); ?></span></a><a href="#" onclick="document.getElementById('form-logout').submit()" class="logout link icon"></a>
 		</div>
 		<div class="left">
 			<?php 

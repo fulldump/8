@@ -1,0 +1,40 @@
+.table {
+  width: 100%;
+}
+
+form {
+  display: block;
+  max-width: 400px;
+  margin: auto;
+  text-align: center;
+  padding: 16px;
+}
+
+form label {
+  display: block;
+  overflow: hidden;
+  text-align: left;
+}
+
+form label input {
+  float: right;
+}
+
+.msg {
+  border: solid silver 1px;
+  background-color: #F4F4F4;
+  padding: 12px;
+  border-radius: 4px;
+  margin: 16px 0;
+}
+
+.msg.msg-error {
+  border-color: red;
+  background-color: #FFF4F4;
+}
+
+.msg.msg-info {
+  border-color: blue;
+  background-color: #F4F4FF;
+}
+
