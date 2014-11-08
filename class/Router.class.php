@@ -53,12 +53,8 @@ class Router {
 		$current = $node;
 		while (null !== $current->parent && $default_page_id != $current->id) {
 			$parts[] = $current->key;
-
-
 			$current = $current->parent;
 		}
-
-
 
 		$url = '/'.implode('/', array_reverse($parts));
 

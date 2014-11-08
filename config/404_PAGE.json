@@ -1,8 +1,8 @@
 {
     "name": "404_PAGE",
-    "type": "NUMBER",
+    "type": "STRING",
     "description": "",
-    "default": 3,
+    "default": "404-page",
     "callback_before": null,
     "callback_after": null
 }

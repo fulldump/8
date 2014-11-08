@@ -2,7 +2,7 @@
 	
 	class ControllerPage {
 
-		private $php = null;
+		private $page = null;
 
 		private $title = '';
 		private $keywords = '';
@@ -15,31 +15,7 @@
 		private $components_loaded = array();
 		
 		private function __construct() {
-			$this->page = SystemPage::get(Router::$node->getProperty('reference'));
-
-			if (null === $this->page) {
-				// ERROR: Reference to a invalid page
-				return;
-			}
-			
-			$this->title = Router::$node->getProperty('title');
-			$this->keywords = Router::$node->getProperty('keywords');
-			$this->description = Router::$node->getProperty('description');
-
-			$this->render_page();
-
-			$this->render_view();
-
-			ob_start();
-			
-			eval('?>'.$this->html);
-
-
-			if (Config::get('CACHE_ENABLED')) {
-				Cache::add(Router::$url, Router::export().$this->html);
-				$filename = 'cache/'.md5(Router::$url);
-				file_put_contents($filename, php_strip_whitespace($filename));
-			}
+			$this->initialize(Router::$node);
 		}
 
 		public function render_view() {
@@ -106,6 +82,52 @@
 			$this->appendJS($template->getJS());
 		}
 
+		private function initialize($node) {
+
+			$this->title = '';
+			$this->keywords = '';
+			$this->description = '';
+			$this->html = '';
+			$this->css = '';
+			$this->js = '';
+
+			$is_404 = null === $this->page;
+
+			$this->page = SystemPage::get($node->getProperty('reference'));
+
+			if (null === $this->page) {
+				header("HTTP/1.0 404 Not Found");
+				$this->initialize(Router::$root->getById(Config::get('404_PAGE')));
+				return;
+			}
+
+			$this->title = $node->getProperty('title');
+			$this->keywords = $node->getProperty('keywords');
+			$this->description = $node->getProperty('description');
+
+			$this->render_page();
+
+			$this->render_view();
+
+			ob_start();
+
+			eval('?>'.$this->html);
+
+			if(count(Router::$parts)) {
+				ob_end_clean();
+				Router::$parts = array();
+				header("HTTP/1.0 404 Not Found");
+				$this->initialize(Router::$root->getById(Config::get('404_PAGE')));
+				return;
+			}
+
+			if (Config::get('CACHE_ENABLED')) {
+				Cache::add(Router::$url, Router::export().$this->html);
+				$filename = 'cache/'.md5(Router::$url);
+				file_put_contents($filename, php_strip_whitespace($filename));
+			}
+		}
+
 		private function render_page() {
 			$html = $this->page->getPHP();
 
@@ -114,7 +136,6 @@
 			$text = '';
 			foreach ($tokens as $token)
 				$this->tokenDefault($token, $text);
-
 			
 			$this->html .= $text;
 
@@ -150,31 +171,6 @@
 		public static function compile() {
 			return new ControllerPage();
 		}
-
-
-
-		// public static function compile_delete_this($router) {
-		
-		// 	ob_start();
-			
-		// 	eval('? >'.self::$html.'<?');
-			
-		// 	if (count(self::$url) || $error_invalid_page_reference) {
-		// 		// Todavía quedan parámetros sin procesar
-		// 		self::$error_404 = true;
-		// 		header("HTTP/1.0 404 Not Found");
-		// 		self::$url = array();
-		// 		ob_clean();
-		// 		self::$node = SystemRoute::ROW(Config::get('404_PAGE'));
-		// 		self::compile();
-		// 	} else {
-		// 		// CACHEO EL CONTENIDO:
-		// 		if (!self::$error_404 && Config::get('CACHE_ENABLED')) {
-		// 			Cache::add(self::$path, self::$html);
-		// 		}
-		// 	}
-		// }
-		
 		
 		private function appendJS($js, $component = null) {
 			$tokens = TreeScript::getParse($js);

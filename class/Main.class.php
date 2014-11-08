@@ -75,8 +75,10 @@
 
 			if (!(@include('cache/'.$hash))) {
 				Router::setUrl($url);
+
 				switch( Router::$node->getProperty('type')) {
 					case 'page':
+					case 'root':
 						ControllerPage::compile();
 						break;
 					case 'php':
