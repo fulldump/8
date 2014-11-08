@@ -1,8 +1,8 @@
 {
     "name": "DEFAULT_PAGE",
-    "type": "NUMBER",
-    "description": "",
-    "default": 58,
+    "type": "STRING",
+    "description": "Home page",
+    "default": "index-page",
     "callback_before": null,
     "callback_after": null
 }
