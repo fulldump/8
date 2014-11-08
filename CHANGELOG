@@ -1,6 +1,7 @@
 CHANGELOG
 =========
 
+8.4.3	Change configuration DEFAULT_PAGE to 'index-page' (type string)
 8.4.2	Add profile page to adminx
 8.4.1	Component Imabe by name instead of id
 		Fix resizing image module
