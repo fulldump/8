@@ -38,3 +38,7 @@ form label input {
   background-color: #F4F4FF;
 }
 
+.frame {
+  max-width: 800px;
+  margin: auto;
+}

@@ -1,8 +1,10 @@
-<h1>Change password</h1>
+<div class="frame">
 
-<form method="POST" action="">
-	
-	<?php
+	<h1>Change password</h1>
+
+	<form method="POST" action="">
+
+		<?php
 
 if (isset($_POST['action']) && 'change_password' === $_POST['action']) {
 
@@ -19,49 +21,49 @@ if (isset($_POST['action']) && 'change_password' === $_POST['action']) {
 		echo '<div class="msg msg-error">Wrong old password.</div>';
 	}
 }
-	
-	?>
-	
-	
-	
-	<label>Old password<input type="password" name="old_password"></label>
-	<label>New password<input type="password" name="new_password"></label>
-	<label>Repeat password<input type="password" name="repeat_password"></label>
-	
-	
-	<input type="hidden" name="action" value="change_password">
-	<br>
-	<button type="submit">Change my password</button>
-</form>
+
+		?>
 
 
-<h1>Sessions</h1>
 
-<form method="POST" action="">
-	
-	<?php
+		<label>Old password<input type="password" name="old_password"></label>
+		<label>New password<input type="password" name="new_password"></label>
+		<label>Repeat password<input type="password" name="repeat_password"></label>
+
+
+		<input type="hidden" name="action" value="change_password">
+		<br>
+		<button type="submit">Change my password</button>
+	</form>
+
+
+	<h1>Sessions</h1>
+
+	<form method="POST" action="">
+
+		<?php
 
 if (isset($_POST['action']) && 'close_all_sessions' === $_POST['action']) {
 	Session::closeAll();
 	echo '<div class="msg msg-info">Sesiones borradas</div>';
 } else {
-	
-	?>
-	<input type="hidden" name="action" value="close_all_sessions">
-	<br>
-	<button type="submit">Close other sessions</button>
-	
-<?php } ?>
-</form>
 
-<table class="table">
-	<tr>
-		<th>SessionID</th>
-		<th>UserName</th>
-		<th>Created</th>
-		<th>IP</th>
-	</tr>
-<?php
+		?>
+		<input type="hidden" name="action" value="close_all_sessions">
+		<br>
+		<button type="submit">Close other sessions</button>
+
+		<?php } ?>
+	</form>
+
+	<table class="table">
+		<tr>
+			<th>SessionID</th>
+			<th>UserName</th>
+			<th>Created</th>
+			<th>IP</th>
+		</tr>
+		<?php
 
 foreach(Session::getAll() as $session) {
 	echo "<tr>";
@@ -72,7 +74,7 @@ foreach(Session::getAll() as $session) {
 	echo "</tr>";
 }
 
-?>
-</table>
+		?>
+	</table>
 
-
+</div>
