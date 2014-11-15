@@ -21,3 +21,4 @@
 		<span>Powered By <a href="http://www.treeweb.es/">TreeWeb</a></span>
         </footer>
 </div>
+[[COMPONENT name=CookiesPolicy]]
