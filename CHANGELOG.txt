@@ -1,11 +1,13 @@
 CHANGELOG
 =========
 
+8.4.5	Add component CookiesPolicy
+	Improve /profile layout adding margins
 8.4.4	Handle 404 erros for Pages
 8.4.3	Change configuration DEFAULT_PAGE to 'index-page' (type string)
 8.4.2	Add profile page to adminx
 8.4.1	Component Imabe by name instead of id
-		Fix resizing image module
+	Fix resizing image module
 8.4.0	Intelligent sessions
 8.3.4	Store pages in disk instead of database
 8.3.3	Update database client to mysqli
