@@ -1,15 +1,41 @@
-CHANGELOG
-=========
+8.4.6 / 2014-11-26 Gerardo Jimenez <gerardooscarjt@gmail.com>
 
-8.4.6	Add internacionalization to node URL generation and fix menu and menu languages
-8.4.5	Add component CookiesPolicy
-	Improve /profile layout adding margins
-8.4.4	Handle 404 erros for Pages
-8.4.3	Change configuration DEFAULT_PAGE to 'index-page' (type string)
-8.4.2	Add profile page to adminx
-8.4.1	Component Imabe by name instead of id
-	Fix resizing image module
-8.4.0	Intelligent sessions
-8.3.4	Store pages in disk instead of database
-8.3.3	Update database client to mysqli
-8.3.2	AdminxPages has been rewritten
+	* Add internacionalization to node URL generation and fix menu and menu languages
+
+8.4.5 / 2014-11-15 Gerardo Jimenez <gerardooscarjt@gmail.com>
+
+	* Add component CookiesPolicy
+	* Improve /profile layout adding margins
+
+8.4.4 / 2014-11-08  Gerardo Jimenez <gerardooscarjt@gmail.com>
+
+	* Handle 404 erros for Pages
+
+8.4.3 /  Gerardo Jimenez <gerardooscarjt@gmail.com>
+
+	* Change configuration DEFAULT_PAGE to 'index-page' (type string)
+
+8.4.2 /  Gerardo Jimenez <gerardooscarjt@gmail.com>
+
+	* Add profile page to adminx
+
+8.4.1 /  Gerardo Jimenez <gerardooscarjt@gmail.com>
+
+	* Component Imabe by name instead of id
+	* Fix resizing image module
+
+8.4.0 /  Gerardo Jimenez <gerardooscarjt@gmail.com>
+
+	* Intelligent sessions
+
+8.3.4 /  Gerardo Jimenez <gerardooscarjt@gmail.com>
+
+	* Store pages in disk instead of database
+
+8.3.3 /  Gerardo Jimenez <gerardooscarjt@gmail.com>
+
+	* Update database client to mysqli
+
+8.3.2 /  Gerardo Jimenez <gerardooscarjt@gmail.com>
+
+	* AdminxPages has been rewritten
