@@ -16,6 +16,6 @@ if (null === $node) {
 	return;
 }
 
-header('Location: '.Router::getNodeUrl($node, true));
+header('Location: '.Router::getNodeUrl($node));
 
 ?>

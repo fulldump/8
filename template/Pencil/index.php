@@ -1,6 +1,6 @@
 <div id="frame">
 	<header class="main">
-		<!--<div id="menu-idiomas">[ [COMPONENT name=MenuLanguages]]</div>-->
+		<div id="menu-idiomas">[[COMPONENT name=MenuLanguages]]</div>
 		<div class="logo">[[COMPONENT name=Image id=logo style=height:60]]</div>
 		<h1><a href="/">[[COMPONENT name=Label text=Título id=title]]</a></h1>
 		<h2>[[COMPONENT name=Label text=Subtítulo id=subtitle]]</h2>

@@ -1,6 +1,7 @@
 CHANGELOG
 =========
 
+8.4.6	Add internacionalization to node URL generation and fix menu and menu languages
 8.4.5	Add component CookiesPolicy
 	Improve /profile layout adding margins
 8.4.4	Handle 404 erros for Pages

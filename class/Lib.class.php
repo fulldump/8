@@ -61,7 +61,7 @@ class Lib {
 					$selected = ' selected';
 				}
 				echo '<li class="'.$selected.'">';
-				echo '<a class="'.$selected.'" href="'.Router::getNodeUrl($node, true).'">'.$node->getProperty('title').'</a>';
+				echo '<a class="'.$selected.'" href="'.Router::getNodeUrl($node).'">'.$node->getProperty('title').'</a>';
 				echo '</li>';
 			}
 			foreach ($children as $n) {
@@ -71,7 +71,7 @@ class Lib {
 				}
 
 				echo '<li class="'.$selected.'">';
-				echo '<a class="'.$selected.'" href="'.Router::getNodeUrl($n, true).'">'.$n->getProperty('title').'</a>';
+				echo '<a class="'.$selected.'" href="'.Router::getNodeUrl($n).'">'.$n->getProperty('title').'</a>';
 				self::menu1($n, false, $l+1);
 				echo '</li>';
 			}
@@ -79,36 +79,43 @@ class Lib {
 		}
 	}
 	
+
+	private static function print_menu2_item($node) {
+		$selected = (Router::$node->id === $node->id) ? 'selected' : '';
+		$href = Router::getNodeUrl($node);
+		$title = $node->getProperty('title');
+		echo "<li class='$selected'><a class='$selected' href='$href'>$title</a></li>";
+	}
 	
 	/**
 	 * Documentar este tipo de menu
 	*/
-	public static function menu2($node, $max_id = 1,$show_parent=false, $sel_id=0) {
-		if ($node->getId() == $max_id) {
-			$array = array(
-				'level'=>1
-			);
+	public static function menu2($node, $show_parent=false) {
+
+		if ($node->id === Router::$root->id) {
+			$level = self::menu2(Router::$root->getById(Config::get('DEFAULT_PAGE')), $show_parent);
+			return -1;
+		} else if ($node->id === Config::get('DEFAULT_PAGE')) {
+			$level = 0;
 		} else {
-			$array = Lib::menu2($node->getParent(), $max_id, $show_parent, $node->getId());
-			$array['level']++;
+			$level = self::menu2($node->parent, $show_parent);
 		}
 
-		$children = $node->getChildren();
-		if (count($children)) {
-			echo '<ul class="menu menu-'.$array['level'].'">';
-			if ($node->getId() == $max_id && $show_parent)
-				echo '<li><a class="menu-e'.$node->getId().$selected.'" href="'.$node->getPath().'">'.$node->getTitle().'</a></li>';
+		if (-1 === $level) {
+			return -1;
+		}
 
-			foreach($children as $n) {
-				$n_url = $n->getUrl();
-				if ($n_url != 'adminx' && $n_url != 'admin' && $n_url != 'profile') {
-					$selected = $n->getReference() == $sel_id ? ' selected' : '';
-					echo '<li><a class="'.$selected.'" href="'.$n->getPath().'">'.$n->getTitle().'</a></li>';
-				}
+		if (count($node->children)) {
+			echo "<ul class='menu menu-$level'>";
+			if (0 === $level && $show_parent) {
+				self::print_menu2_item($node);
 			}
-			echo '</ul>';
+			foreach ($node->children as $child) {
+				self::print_menu2_item($child);
+			}
+			echo "</ul>";
 		}
 
-		return $array;
+		return $level + 1;
 	}		
 }

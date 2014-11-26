@@ -20,8 +20,9 @@ if ($data['root'] == 'default') {
 } else if ($data['root'] == 'page' ) {
 	$node = Router::$node;
 } else {
-	$node = Router::$root->getById($data['root']); 
+	$node = Router::$root->getById($data['root']);
 }
+
 ?>
 <nav class="<?=$class?>">
 <?php
@@ -30,7 +31,7 @@ if ($data['type']==1)
 	Lib::menu1($node, $showroot);
 
 if ($data['type']==2)
-	Lib::menu2(ControllerPage::$node, $node->getId(), $showroot);
+	Lib::menu2(Router::$node, $showroot);
 
 
 ?>

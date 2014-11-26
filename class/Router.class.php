@@ -45,7 +45,11 @@ class Router {
 		.'?>';
 	}
 
-	public static function getNodeUrl($node, $query=false) {
+	public static function getNodeUrl($node, $language=null) {
+		if (null === $language) {
+			$language = self::$language;
+		}
+
 		$parts = array();
 
 		$default_page_id = Config::get('DEFAULT_PAGE');
@@ -58,15 +62,13 @@ class Router {
 
 		$url = '/'.implode('/', array_reverse($parts));
 
-		if (self::$language != Config::get('DEFAULT_LANGUAGE')) {
-			$url = '/'.self::$language.$url;
+		if ($language != Config::get('DEFAULT_LANGUAGE')) {
+			$url = '/'.$language.$url;
 		}
 
-		if ($query) {
-			$query = http_build_query($_GET);
-			if ('' != $query) {
-				$url .= '?'.$query;
-			}
+		$query = http_build_query($_GET);
+		if ('' != $query) {
+			$url .= '?'.$query;
 		}
 
 		return $url;
