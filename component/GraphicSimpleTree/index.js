@@ -89,6 +89,7 @@ newGraphicSimpleTreeNode = function(tree) {
 
 	dom.setText = function(text) {
 		label.innerHTML = text;
+		label.setAttribute('title', text);
 	}
 
 	dom.getText = function() {
