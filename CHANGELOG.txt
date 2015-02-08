@@ -1,3 +1,17 @@
+8.4.7 / 2015-02-08 Gerardo Jimenez <gerardooscarjt@gmail.com>
+
+	* Add image 'unwho.png' to resources to initialize new users' picture.
+	* Router class improvements:
+		* Change first node priority: At select starting node time, root node has preference over default node.
+		* Fix bug in parameters: Now works when parameter value is the same as parameter name
+	* Extend Lib with current url functions and request functions:
+		* getCurrentUrlScheme
+		* getCurrentUrlHost
+		* getCurrentUrl
+		* doRequest
+		* doPostForm
+	* Class Database must not print anything (previously was printing errors)
+
 8.4.6 / 2014-11-26 Gerardo Jimenez <gerardooscarjt@gmail.com>
 
 	* Add internacionalization to node URL generation and fix menu and menu languages
