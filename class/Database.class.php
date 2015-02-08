@@ -76,7 +76,7 @@
 			$result = self::$link->query($sql);
 			
 			if (self::$link->errno) {
-				echo self::$link->error;
+				Profiling::log(self::$link->error);
 			}
 
 			self::$n++;
