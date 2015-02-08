@@ -48,6 +48,45 @@ class Lib {
 		return number_format($size, 2).' '.$prefix[$i];
 	}
 
+	public static function getCurrentUrlScheme() {
+		$server_protocol = explode('/', $_SERVER['SERVER_PROTOCOL']);
+		return strtolower($server_protocol[0]);
+	}
+
+	public static function getCurrentUrlHost() {
+		return $_SERVER['HTTP_HOST'];
+	}
+
+	public static function getCurrentUrl() {
+		$scheme = self::getCurrentUrlScheme();
+		$host = self::getCurrentUrlHost();
+		$request_uri = $_SERVER['REQUEST_URI'];
+		return "{$scheme}://{$host}{$request_uri}";
+	}
+
+	public static function doRequest($method, $url, $headers, $body) {
+
+		$opts = array('http' =>
+			array(
+			'method'  => $method,
+			'header'  => implode("\n", $headers),
+			'content' => $body,
+			)
+		);
+
+		$context  = stream_context_create($opts);
+
+		return file_get_contents($url, false, $context);
+	}
+
+	public static function doPostForm($url, $headers, $body) {
+
+		$headers[] = 'Content-type: application/x-www-form-urlencoded';
+		$headers = array_unique($headers);
+
+		return Lib::doRequest('POST', $url, $headers, http_build_query($body));
+	}
+
 	/**
 	 * Documentar este tipo de menu
 	*/
