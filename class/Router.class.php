@@ -28,7 +28,6 @@ class Router {
 		// Calculate vars
 		self::_preprocess_url();
 		self::_extract_language();
-		self::_select_starting_node();
 		self::_search_node();
 	}
 
@@ -113,40 +112,51 @@ class Router {
 	}
 
 	private static function _select_starting_node() {
-		$start = self::$root->getById(Config::get('DEFAULT_PAGE'));
+		$default_node = self::$root->getById(Config::get('DEFAULT_PAGE'));
 
-		// Only to fix the extreme case with corrupt configuration
-		if (null === $start) {
-			$start = self::$root;
+		// Only to fix the extreme case with corrupted configuration
+		if (null === $default_node) {
+			return self::$root;
 		}
 
-		// If home page does not match
-		if (count(self::$parts) && !self::_node_match($start, self::$parts[0])) {
-			$start = self::$root;
+		// If requested path is '/'
+		if (!count(self::$parts)) {
+			return $default_node;
 		}
 
-		self::$node = $start;
+		// Match root level first
+		$part_0 = self::$parts[0];
+		$default_node_id = $default_node->id;
+		foreach (self::$root->children as $k=>$child) {
+			if ($k == $part_0 && $child->id != $default_node_id) {
+				return self::$root;
+			}
+		}
+
+		return $default_node;
 	}
 
 	private static function _search_node() {
+		self::$node = self::_select_starting_node();
+
 		foreach (self::$parts as $part) {
 
 			$found = false;
 			foreach (self::$node->children as $key=>$node) {
-				if ($key == $part) {
-					// do nothing
-				} else if (self::_is_parameter($key)) {
+				if (self::_is_parameter($key)) {
 					self::$parameters[$key] = $part;
-				} else {
-					continue;
+					$found = true;
+					break;
+				} else if ($key == $part) {
+					$found = true;
+					break;
 				}
-				$found = true;
-				self::$node = $node;
-				array_shift(self::$parts);
-				break;
 			}
 			
-			if (!$found) {
+			if ($found) {
+				self::$node = $node;
+				array_shift(self::$parts);
+			} else {
 				break;
 			}
 
