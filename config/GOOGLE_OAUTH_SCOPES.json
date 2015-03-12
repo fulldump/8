@@ -1,0 +1,8 @@
+{
+    "name": "GOOGLE_OAUTH_SCOPES",
+    "type": "STRING",
+    "description": "Google Web Applications scopes. Is a list of urls separated by space.",
+    "default": "https://www.googleapis.com/auth/userinfo.email",
+    "callback_before": null,
+    "callback_after": null
+}
