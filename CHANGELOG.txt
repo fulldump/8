@@ -1,3 +1,31 @@
+8.5.0 / 2015-03-13 Gerardo Jimenez <gerardooscarjt@gmail.com>
+
+	* NOTE: This change set cames from Wikaan efforts:
+	* .htaccess force redirection to www.*
+	* Add login with Facebook:
+		* class/FacebookAuth.class.php
+		* component/LoginWithFacebook/
+		* config/FACEBOOK_.*
+	* Add login with Google:
+		* class/GoogleAuth.class.php
+		* component/LoginWithGoogle/
+		* config/GOOGLE_OAUTH_.*
+		* config/GOOGLE_WA_.*
+	* Add component/Logout
+	* Create Javascript framework 'Tests'
+		* component/Tests/
+	* Begin Terrain project
+		* component/Terrain/ -> Core
+		* component/TerrainDebugger/ -> Graphical developing tool
+		* component/TerrainTests/ -> Browser unit testing
+	* Add TrunkTemplate
+		* component/TrunkTemplate/
+	* Add Version
+		* component/Version/ -> Shows TreeWeb version
+	* Improve component Image
+		* Now it can show image in background
+	* Improvements in php/sitemap.php
+
 8.4.7 / 2015-02-08 Gerardo Jimenez <gerardooscarjt@gmail.com>
 
 	* Add image 'unwho.png' to resources to initialize new users' picture.
