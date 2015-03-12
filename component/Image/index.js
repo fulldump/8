@@ -21,7 +21,7 @@ window.addEventListener('load', function(event) {
 	var elements = document.querySelectorAll('[component="Image"]')
 	for (var i=0; i<elements.length; i++) {
 		element = elements[i];
-		if ('Image' == element.getAttribute('component')) {
+		if ('Image' == element.getAttribute('component') && null != element.getAttribute('edit_id') ) {
 			newImage(element);
 		}
 	}
