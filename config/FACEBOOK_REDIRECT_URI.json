@@ -1,0 +1,8 @@
+{
+    "name": "FACEBOOK_REDIRECT_URI",
+    "type": "STRING",
+    "description": "Facebook Application redirect URI. The component that will receive the request",
+    "default": "",
+    "callback_before": null,
+    "callback_after": null
+}
