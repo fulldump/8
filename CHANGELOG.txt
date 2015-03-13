@@ -1,3 +1,25 @@
+8.6.0 / 2015-03-13 Gerardo Jimenez <gerardooscarjt@gmail.com>
+
+	* NOTE: This change set cames from Metric efforts:
+	* .htaccess uncomment redirection
+	* Replace header("HTTP/1.0 404 Not Found") by http_response_code(404)
+	* Implement permissions system (based on groups)
+		* Instructions:
+			* TREEWEB: Implement permission system based on groups
+			* Instructions to integrate in the main TreeWeb branch:
+			* 1. Create property ('permissions'=>'[]') in the root node
+			* 2. Add property 'permissions' to all nodes (at least basic ones)
+			* 3. Review users permissions (Admin must have '*')
+			* 4. Merge the code (except the router.json)
+		* Files:
+			* class/Router.class.php -> added _have_access() and _apply_permissions()
+			* config/403_PAGE.json
+			* page f072a02478f83eebd003a77b13b6759f (default 403 page)
+			* router.json changes (according to migration process)
+		* Security issue (default user was admin):
+			* Fixed config/GUEST_USER_ID.json
+			* Export SystemUser
+
 8.5.0 / 2015-03-13 Gerardo Jimenez <gerardooscarjt@gmail.com>
 
 	* NOTE: This change set cames from Wikaan efforts:
