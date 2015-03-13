@@ -96,7 +96,7 @@
 			$this->page = SystemPage::get($node->getProperty('reference'));
 
 			if (null === $this->page) {
-				header("HTTP/1.0 404 Not Found");
+				http_response_code(404);
 				$this->initialize(Router::$root->getById(Config::get('404_PAGE')));
 				return;
 			}
@@ -116,7 +116,7 @@
 			if(count(Router::$parts)) {
 				ob_end_clean();
 				Router::$parts = array();
-				header("HTTP/1.0 404 Not Found");
+				http_response_code(404);
 				$this->initialize(Router::$root->getById(Config::get('404_PAGE')));
 				return;
 			}
