@@ -19,12 +19,12 @@
         },
         {
             "id": "2",
-            "__timestamp__": "1414253491",
+            "__timestamp__": "1426209404",
             "__operation__": "UPDATE",
             "Name": "Administrador",
             "Login": "admin",
             "Password": "21232f297a57a5a743894a0e4a801fc3",
-            "Groups": "[\"god\"]"
+            "Groups": "[\"*\"]"
         }
     ]
 }
