@@ -29,6 +29,7 @@ class Router {
 		self::_preprocess_url();
 		self::_extract_language();
 		self::_search_node();
+		self::_apply_permissions();
 	}
 
 	public static function export() {
@@ -160,6 +161,49 @@ class Router {
 				break;
 			}
 
+		}
+	}
+
+	private static function _have_access() {
+		$permissions = self::$node->getProperty('permissions');
+		if (null == $permissions ) {
+			return false;
+		}
+
+		$permissions = json_decode($permissions, true);
+		if (false === $permissions) {
+			return false;
+		}
+
+		if (in_array('*', $permissions)) {
+			return true;
+		}
+
+		$user = Session::getUser();
+		if (null === $user) {
+			return false;
+		}
+
+		$groups = json_decode($user->getGroups(), true);
+		if (false === $groups) {
+			return false;
+		}
+
+		if (in_array('*', $groups)) {
+			return true;
+		}
+
+		if (count(array_intersect($permissions, $groups))) {
+			return true;
+		}
+
+		return false;
+	}
+
+	private static function _apply_permissions() {
+		if ( !self::_have_access() ) {
+			http_response_code(403);
+			self::$node = Router::$root->getById(Config::get('403_PAGE'));
 		}
 	}
 
