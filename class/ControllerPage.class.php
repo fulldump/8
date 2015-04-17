@@ -1,5 +1,5 @@
 <?php
-	
+
 	class ControllerPage {
 
 		private $page = null;
@@ -7,13 +7,13 @@
 		private $title = '';
 		private $keywords = '';
 		private $description = '';
-		
+
 		private $html = '';
 		private $css = '';
 		private $js = '';
-		
+
 		private $components_loaded = array();
-		
+
 		private function __construct() {
 			$this->initialize(Router::$node);
 		}
@@ -35,6 +35,8 @@
 			if (strlen($ga)) $ga = "\n\t\t".$ga;
 
 			$this->html = '<?php
+	$_TITLE = '.var_export($this->title, true).';
+	$_DESCRIPTION = '..var_export($this->description, true)..';
 	header(\'Content-Type: text/html; charset=UTF-8\');
 	ob_start();?>'.$this->html.'<?php
 	$_HTML = ob_get_clean();
@@ -42,9 +44,8 @@
 <html lang="'.Router::$language.'">
 	<head>
 		<meta http-equiv="Content-Type" CONTENT="text/html; charset=UTF-8">
-		<title>'.htmlentities($this->title, ENT_COMPAT, 'UTF-8').'</title>
-		<meta name="keywords" content="'.htmlentities($this->keywords, ENT_COMPAT, 'UTF-8').'">
-		<meta name="description" content="'.htmlentities($this->description, ENT_COMPAT, 'UTF-8').'">
+		<title><?php echo htmlentities($_TITLE, ENT_COMPAT, \'UTF-8\'); ?></title>
+		<meta name="description" content="<?php echo htmlentities($_DESCRIPTION, ENT_COMPAT, \'UTF-8\'); ?>">
 		<meta name="apple-touch-fullscreen" content="YES">
 		<meta name="apple-mobile-web-app-capable" content="yes">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
@@ -96,7 +97,7 @@
 			$this->page = SystemPage::get($node->getProperty('reference'));
 
 			if (null === $this->page) {
-				http_response_code(404);
+				header("HTTP/1.0 404 Not Found");
 				$this->initialize(Router::$root->getById(Config::get('404_PAGE')));
 				return;
 			}
@@ -116,7 +117,7 @@
 			if(count(Router::$parts)) {
 				ob_end_clean();
 				Router::$parts = array();
-				http_response_code(404);
+				header("HTTP/1.0 404 Not Found");
 				$this->initialize(Router::$root->getById(Config::get('404_PAGE')));
 				return;
 			}
@@ -134,9 +135,10 @@
 			$tokens = TreeScript::getParse($html);
 
 			$text = '';
-			foreach ($tokens as $token)
+			foreach ($tokens as $token) {
 				$this->tokenDefault($token, $text);
-			
+			}
+
 			$this->html .= $text;
 
 			$this->render_template();
@@ -150,11 +152,11 @@
 				$text .= $token['data'];
 			} else if ($token['type'] == 'tag' && strtoupper($token['name']) == 'COMPONENT') {
 				$name = $token['data']['name'];
-				
+
 				$component = SystemComponent::getComponentByName($name);
 				if ($component !== null) {
 					$text .= '<?php $data = '.var_export($token['data'], true).'; $flags = '.var_export($token['flags'], true).'; ?>';
-					
+
 					$html = $component->getPHP();
 					$ctokens = TreeScript::getParse($html);
 					$ctext = '';
@@ -162,7 +164,7 @@
 						$this->tokenDefault($ctoken, $ctext);
 					}
 					$text .= $ctext;
-					
+
 					$this->requireComponent($name);
 				}
 			}
@@ -171,7 +173,7 @@
 		public static function compile() {
 			return new ControllerPage();
 		}
-		
+
 		private function appendJS($js, $component = null) {
 			$tokens = TreeScript::getParse($js);
 			foreach ($tokens as $token) {
@@ -182,14 +184,14 @@
 					if (Router::$language != Config::get('DEFAULT_LANGUAGE')) {
 						$this->js .= '/'.Router::$language;
 					}
-					
+
 					$this->js .= '/__ajax__/'.$component.'/'.$token['data']['name'];
 				} else if ($token['type'] == 'text'){
 					$this->js .= $token['data'];
 				}
 			}
 		}
-		
+
 		private function requireComponent($name) {
 			if (!array_key_exists($name, $this->components_loaded)) {
 				// Busco el componente:
@@ -199,7 +201,7 @@
 					$this->components_loaded[$name]="error";
 				} else {
 					$this->components_loaded[$name]=true;
-					$this->appendJS($component->getJS(), $name);					
+					$this->appendJS($component->getJS(), $name);
 					$this->css = $component->getCSS().$this->css;
 				}
 			}
