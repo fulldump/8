@@ -53,7 +53,12 @@
 			self::connect();
 			return self::$link->insert_id;
 		}
-		
+
+		public static function getAffectedRows() {
+			self::connect();
+			return self::$link->affected_rows;
+		}
+
 		public static function sql($sql) {
 			self::connect();
 
