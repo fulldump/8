@@ -19,15 +19,15 @@ class Lib {
 		
 		$n = str_replace($s, $r, $n);
 		
-        $n = str_replace(' ', '-', $n);
-        $n = preg_replace('[^a-zA-Z0-9-_]','', $n);
-        
-        $palabras = explode('-', $n);
-        foreach ($palabras as $P=>$p)
-            if (strlen($p)<1) unset($palabras[$P]);
-        $n = implode('-', $palabras);
-        
-        return $n;
+		$n = str_replace(' ', '-', $n);
+		$n = preg_replace('[^a-zA-Z0-9-_]','', $n);
+		
+		$palabras = explode('-', $n);
+		foreach ($palabras as $P=>$p)
+			if (strlen($p)<1) unset($palabras[$P]);
+		$n = implode('-', $palabras);
+		
+		return $n;
 	}
 	
 	public static function is_md5($md5) {
@@ -85,6 +85,14 @@ class Lib {
 		$headers = array_unique($headers);
 
 		return Lib::doRequest('POST', $url, $headers, http_build_query($body));
+	}
+
+	public static function json_encode($data) {
+		return json_encode($data, Config::get('JSON_ENCODE_OPTIONS'));
+	}
+
+	public static function json_decode($data) {
+		return json_decode($data);
 	}
 
 	/**
