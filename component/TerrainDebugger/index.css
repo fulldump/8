@@ -13,6 +13,9 @@
   background-color: silver;
   display: inline-block;
   background-color: white;
+
+  border: solid;
+  margin: 4px;
 }
 
 [component="TerrainDebugger"] .counter {

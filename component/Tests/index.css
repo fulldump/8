@@ -1,5 +1,5 @@
 [component="Tests"] {
-  position: absolute;
+  position: fixed;
   top: 0;
   right: 0;
   bottom: 0;
@@ -12,13 +12,13 @@
 }
 
 [component="Tests"]:hover {
-  width: 100%;
-  transition: width 0.2s ease;
+  /* width: 100%; */
+  /* transition: width 0.2s ease; */
   background-color: rgba(255,255,255,0.95);
 }
 
 [component="Tests"] > div {
-  white-space: pre;
+  white-space: pre-wrap;
   font-family: monospace;
   border-bottom: solid #F4F4F4 1px;
   font-size: 12px;
@@ -37,4 +37,10 @@
 
 [component="Tests"] .test-pass {
   color: dodgerblue;
+}
+
+[component="Tests"] .test-pack {
+  background-color: black;
+  color: white;
+  font-weight: bold;
 }

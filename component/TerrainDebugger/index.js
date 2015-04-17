@@ -38,7 +38,6 @@
 		this.dom.innerHTML = '';
 		this.selection = window.getSelection();
 		this._inspectRecursive(this.terrain, this.dom);
-		console.log('inspect');
 	};
 
 	TerrainDebugger.prototype._inspectRecursive = function(inspected, watcher) {

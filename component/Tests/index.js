@@ -1,8 +1,4 @@
-
-
-
-
-(function(context){
+(function(context) {
 
 	var Test = function(tests) {
 
@@ -32,17 +28,17 @@
 
 		// Add runs the test while stop==false
 		this.stop = false;
-		
+
 		// Run all tests even if this.stop==false
 		this.all = false;
-		
+
 		// Queue
 		this.queue = [];
-		
+
 		// Callbakcs
 		this.callbacks_prepare = [];
 		this.callbacks_restore = [];
-		
+
 		// Tests counter
 		this.c = 0;
 
@@ -50,7 +46,17 @@
 		this.log('Welcome to Tests');
 	};
 
+	Tests.prototype.reset = function() {
+
+		this.all = false;
+		this.queue = [];
+		this.callbacks_prepare = [];
+		this.callbacks_restore = [];
+		this.c = 0;
+	};
+
 	Tests.prototype.add = function(f) {
+
 		if (this.stop && !this.all) {
 			return;
 		}
@@ -66,27 +72,28 @@
 				this.callbacks_prepare[i](t);
 			}
 			f(t);
-		} catch(err) {
+		} catch (err) {
 			this.stop = true;
 			console.log(err.stack);
 			this.log(err.stack).classList.add('test-error');
 			entry.classList.add('test-error');
-			return;
+			return false;
 		} finally {
-			if (this.callback_restore) {
-				this.callback_restore(t);
+			for (var i in this.callbacks_restore) {
+				this.callbacks_restore[i](t);
 			}
 		}
-		
+
 		entry.classList.add('test-pass');
+		return true;
 	};
-	
+
 	Tests.prototype.prepare = function(f) {
 		this.callbacks_prepare.push(f);
 	};
 
 	Tests.prototype.restore = function(f) {
-		this.callback_restore = f;
+		this.callbacks_restore.push(f);
 	};
 
 	Tests.prototype.log = function(text) {
@@ -94,6 +101,7 @@
 		var entry = document.createElement('div');
 		entry.innerHTML = text.replace(/</mg, '&lt;');
 		this.dom.appendChild(entry);
+		this.dom.scrollTop = entry.offsetTop;
 
 		return entry;
 	};
