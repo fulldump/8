@@ -450,7 +450,19 @@ class '.$this->name.'_auto {
 		}
 		return $select;
 	}
-	
+
+	public static function COUNT($where=null) {
+		$sql = "SELECT COUNT(*) FROM `'.Database::escape($this->name).'`";
+		if ($where !== null)
+			$sql .= " WHERE ".$where;
+
+		$result = Database::sql($sql);
+		if ($result && $row=$result->fetch_row()) {
+			return $row[0];
+		}
+		return null;
+	}
+
 	public static function INSERT() {
 		$sql = "INSERT INTO `'.$this->name.'` (`id`, `__timestamp__`, `__operation__`) VALUES (NULL, ".time().", \'INSERT\')";
 		$result = Database::sql($sql);
