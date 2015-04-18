@@ -36,7 +36,7 @@
 
 			$this->html = '<?php
 	$_TITLE = '.var_export($this->title, true).';
-	$_DESCRIPTION = '..var_export($this->description, true)..';
+	$_DESCRIPTION = '.var_export($this->description, true).';
 	header(\'Content-Type: text/html; charset=UTF-8\');
 	ob_start();?>'.$this->html.'<?php
 	$_HTML = ob_get_clean();
