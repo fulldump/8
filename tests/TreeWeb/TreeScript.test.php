@@ -606,4 +606,157 @@ FUCK;
 	return recursive_compare($reference, $result);
 };
 
+$tests['[[noparse]]'] = function() {
+	echo time();
+
+	$code = <<<FUCK
+
+[[NAME1 attribute:value]]
+
+[[noparse]]
+
+[[NAME1 attribute:value]]
+
+FUCK;
+
+	$reference = array(
+		0 => array (
+			'type' => 'text',
+			'data' => "\n",
+		),
+		1 => array (
+			'type' => 'tag',
+			'data' => array (
+				'attribute' => 'value',
+			),
+			'name' => 'NAME1',
+			'flags' => array (
+			),
+		),
+		2 => array (
+			'type' => 'text',
+			'data' => "\n\n",
+		),
+		3 => array (
+			'type' => 'noparse',
+			'data' => array (
+			),
+			'name' => 'noparse',
+			'flags' => array (
+			),
+		),
+		4 => array (
+			'type' => 'text',
+			'data' => "\n\n[[NAME1 attribute:value]]\n",
+		),
+	);
+
+	$result = TreeScript::getParse($code); var_export($result);
+
+	return recursive_compare($reference, $result);
+};
+
+$tests['[[noparse a:b]]'] = function() {
+	echo time();
+
+	$code = <<<FUCK
+
+[[NAME1 attribute:value]]
+
+[[noparse a:b]]
+
+[[NAME1 attribute:value]]
+
+FUCK;
+
+	$reference = array(
+		0 => array (
+			'type' => 'text',
+			'data' => "\n",
+		),
+		1 => array (
+			'type' => 'tag',
+			'data' => array (
+				'attribute' => 'value',
+			),
+			'name' => 'NAME1',
+			'flags' => array (
+			),
+		),
+		2 => array (
+			'type' => 'text',
+			'data' => "\n\n",
+		),
+		3 => array (
+			'type' => 'noparse',
+			'data' => array (
+				'a' => 'b',
+			),
+			'name' => 'noparse',
+			'flags' => array (
+			),
+		),
+		4 => array (
+			'type' => 'text',
+			'data' => "\n\n[[NAME1 attribute:value]]\n",
+		),
+	);
+
+	$result = TreeScript::getParse($code); var_export($result);
+
+	return recursive_compare($reference, $result);
+};
+
+$tests['[[noparse a:b e]]'] = function() {
+	echo time();
+
+	$code = <<<FUCK
+
+[[NAME1 attribute:value]]
+
+[[noparse a:b e]]
+
+[[NAME1 attribute:value]]
+
+FUCK;
+
+	$reference = array(
+		0 => array (
+			'type' => 'text',
+			'data' => "\n",
+		),
+		1 => array (
+			'type' => 'tag',
+			'data' => array (
+				'attribute' => 'value',
+			),
+			'name' => 'NAME1',
+			'flags' => array (
+			),
+		),
+		2 => array (
+			'type' => 'text',
+			'data' => "\n\n",
+		),
+		3 => array (
+			'type' => 'noparse',
+			'data' => array (
+				'a' => 'b',
+			),
+			'name' => 'noparse',
+			'flags' => array (
+				0 => 'e',
+			),
+		),
+		4 => array (
+			'type' => 'text',
+			'data' => "\n\n[[NAME1 attribute:value]]\n",
+		),
+	);
+
+	$result = TreeScript::getParse($code); var_export($result);
+
+	return recursive_compare($reference, $result);
+};
+
 Test::addFunctions($tests);

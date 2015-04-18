@@ -21,6 +21,7 @@
 		public $token = array(); // Last token
 		public $attribute = '';
 		public $value = '';
+		public $noparse = false;
 
 		public $encoding = '';
 
@@ -34,12 +35,18 @@
 
 		public function parse() {
 			$this->i = 0; // Initialize position
+			$this->noparse = false;
 			$this->tokens = array();
 			$this->textScope();
 		}
 
 		private function textScope() {
-			$find = $p = mb_strpos($this->code,'[[',$this->i, $this->encoding);
+			if ($this->noparse) {
+				$find = false;
+			} else {
+				$find = $p = mb_strpos($this->code,'[[',$this->i, $this->encoding);
+			}
+
 			if ($find===false) {
 				$p = $this->code_length;
 			}
@@ -78,9 +85,11 @@
 			$cc = mb_substr($this->code, $this->i, 2, $this->encoding);
 
 			if ($c == ' ' || $c == "\n" || $c == "\t") {
+				$this->checkNoparse();
 				$this->i++;
 				$this->tagAttributeStart();
 			} else if ($cc == ']]') {
+				$this->checkNoparse();
 				$this->tokens[] = $this->token;
 				$this->i += 2;
 				$this->textScope();
@@ -207,6 +216,13 @@
 				$this->value .= $c;
 				$this->i++;
 				$this->tagValueQuotes($quote);
+			}
+		}
+
+		private function checkNoparse() {
+			if ('noparse' == $this->token['name']) {
+				$this->noparse = true;
+				$this->token['type'] = 'noparse';
 			}
 		}
 
