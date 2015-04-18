@@ -1,3 +1,22 @@
+8.7.0 / 2015-04-17 Gerardo Jimenez <gerardooscarjt@gmail.com>
+
+	* NOTE: This change set cames from Wikaan efforts:
+	* Extend class Lib:
+		* json_encode
+		* json_decode
+	* Improve Database logging errors
+	* Security issue (default user was admin):
+		* Fixed config/GUEST_USER_ID.json
+	* Add Storm method COUNT()
+	* Add method 'getAffectedRows' to class 'Database'
+	* Several points:
+		* Added global $_TITLE
+		* Added global $_DESCRIPTION
+		* Add headers 404 for pages
+	* Sync Terrain
+	* Sync TreeScript
+	* Add component 'Feedback'
+
 8.6.0 / 2015-03-13 Gerardo Jimenez <gerardooscarjt@gmail.com>
 
 	* NOTE: This change set cames from Metric efforts:
