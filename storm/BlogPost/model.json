@@ -1,0 +1,19 @@
+{
+    "name": "BlogPost",
+    "native": false,
+    "fields": {
+        "Blog": "Blog",
+        "Title": "Text",
+        "Description": "Text",
+        "Content": "Document",
+        "Comments": "Comment",
+        "TimeCreation": "Number",
+        "TimePublished": "Number",
+        "Options": "Text",
+        "Url": "Text",
+        "Author": "SystemUser"
+    },
+    "data": [
+
+    ]
+}

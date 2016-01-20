@@ -1,0 +1,45 @@
+[component="Table"] td.saving,
+[component="Table"] select.saving,
+[component="Table"] input[type="datetime-local"].saving {
+  color: blue;
+}
+
+[component="Table"] .remove {
+  cursor: pointer;
+  opacity: 0.6;
+  background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAAZiS0dEAP8A/wD/oL2nkwAAAAlwSFlzAAALEwAACxMBAJqcGAAAAAd0SU1FB94GGhUqOAmAgIkAAACCSURBVDjLrZLREUBADEQfFShFCzqhMjpRAqXoYH1whpvknDn5u0vyMtkNAIKGDxHqJR0PwSIYc5tDvSTqW65/g5yTZ6D1qPIgVo2kPIiXewDcKSlwDLAaUquZAAPi6xK58E8UrVAkYpGNRYeU0+zqE7kwVTCkABVsQAes1597DJmxA/gds9AECdQzAAAAAElFTkSuQmCC');
+  background-position: center center;
+  background-repeat: no-repeat;
+  display: block;
+  width: 16px;
+  height: 16px;
+}
+
+[component="Table"] .remove:hover {
+  opacity: 1;
+}
+
+[component="Table"] td[type="File"] {
+  text-align: center;
+}
+
+[component="Table"] td[type="File"] a {
+  display: block;
+}
+
+[component="Table"] td[type="File"] button {
+  transition: background-color 1s ease;
+  border: solid silver 1px;
+}
+
+[component="Table"] td[type="File"] button.uploaded {
+  background-color: #AAFFAA;
+}
+
+[component="Table"] td[type="File"] button.error {
+  background-color: #FFAAAA;
+}
+
+[component="Table"] .buttons {
+  text-align: center;
+}

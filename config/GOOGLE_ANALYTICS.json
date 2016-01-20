@@ -1,0 +1,8 @@
+{
+    "name": "GOOGLE_ANALYTICS",
+    "type": "STRING",
+    "description": "",
+    "default": "",
+    "callback_before": null,
+    "callback_after": null
+}

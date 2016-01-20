@@ -1,0 +1,133 @@
+HTML {
+	overflow-y:scroll;
+}
+
+BODY {
+	font-family:sans-serif,Arial;
+	font-size:14px;
+	background-color:#F8F8F8;
+}
+
+#frame {
+	max-width:1000px;
+	min-width:600px;
+	margin:auto;
+}
+
+HEADER.main {
+	border:solid silver 1px;
+	background-color:white;
+	padding:16px;
+	overflow: hidden;
+}
+
+HEADER.main H1 {
+	margin:0;
+}
+
+HEADER.main H1 A {
+	color:inherit;
+	text-decoration:none;
+}
+
+HEADER.main H2 {
+	color:silver;
+	font-style:italic;
+	margin:0;
+}
+
+HEADER.main .logo {
+	float:left;
+	margin-right: 16px;
+}
+
+#menu-idiomas {
+	float:right;
+}
+
+#menu-idiomas UL {
+	list-style-type:none;
+	margin:0;
+	padding:0;
+	display:inline;
+}
+
+#menu-idiomas LI {
+	margin:0;
+	padding:0;
+	display:inline;
+}
+
+#menu-idiomas A {
+	color:silver;
+	text-decoration:none;
+	padding-left:4px;
+	padding-right:4px;
+}
+
+#menu-idiomas A:hover {
+	text-decoration:underline;
+}
+
+#menu-idiomas A.selected {
+	color:black;
+}
+
+
+FOOTER.main {
+	border:solid silver 1px;
+	background-color:white;
+	padding:16px;
+	font-size:10px;
+	text-align:center;
+	margin-top:16px;
+}
+
+SECTION.main {
+	margin-left:248px;
+	border:solid silver 1px;
+	padding:16px;
+	background-color:white;
+	text-align: justify;
+	line-height: 150%;
+}
+
+#marco_migas {
+	padding:8px;
+	font-size:10px;
+}
+
+#body {
+	overflow-y:auto;
+}
+
+#right NAV {
+	float: left;
+	width:200px;
+	padding:16px;
+	background-color:white;
+	border:solid silver 1px;
+}
+
+#right NAV UL {
+	list-style-type:none;
+	margin:0;
+	padding:0;
+}
+
+#right NAV UL UL {
+	padding-left:16px;
+}
+
+#right  A {
+	color:DarkBlue;
+	text-decoration:none;
+}
+
+#right A:hover {
+	color:orange;
+}
+
+#right A.selected {
+	color:red;
+}

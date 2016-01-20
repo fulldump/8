@@ -1,0 +1,18 @@
+{
+    "name": "File",
+    "native": false,
+    "fields": {
+        "Hash": "Text",
+        "Size": "Number",
+        "Mime": "Text",
+        "Counter": "Number",
+        "Name": "Text",
+        "User": "SystemUser",
+        "Timestamp": "Number",
+        "Description": "Text",
+        "SearchIndex": "Text"
+    },
+    "data": [
+
+    ]
+}

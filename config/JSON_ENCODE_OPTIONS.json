@@ -1,0 +1,8 @@
+{
+    "name": "JSON_ENCODE_OPTIONS",
+    "type": "NUMBER",
+    "description": "",
+    "default": 448,
+    "callback_before": null,
+    "callback_after": null
+}

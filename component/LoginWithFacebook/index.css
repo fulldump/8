@@ -1,0 +1,53 @@
+[component="LoginWithFacebook"] {
+  display: inline-block;
+  font-weight: bold;
+  font-size: 12px;
+  height: 31px;
+  line-height: 31px;
+  background-color: #5b74a8;
+  color: #fff;
+  -webkit-box-shadow: 0 1px 0 rgba(0,0,0,0.10);
+  box-shadow: 0 1px 0 rgba(0,0,0,0.10);
+  -webkit-border-radius: 3px;
+  border-radius: 3px;
+  -webkit-user-select: none;
+  -webkit-font-smoothing: antialiased;
+  display: inline-block;
+  font-family: Roboto,arial,sans-serif;
+  outline: none;
+  overflow: hidden;
+  position: relative;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+[component="LoginWithFacebook"]:hover {
+  background-color: #5b7bd5;
+  -webkit-box-shadow: inset 0 -2px 0 rgba(0,0,0,.20);
+  box-shadow: inset 0 -2px 0 rgba(0,0,0,.20);
+}
+
+[component="LoginWithFacebook"] .icon {
+  background: no-repeat center;
+  background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAQAAAAngNWGAAABZUlEQVR42oWTv0vDQBTHnw5SN4m6WEfBwVEpzk6GUjAp/iEK7v4DguAkZHJU6uJ/4JBFB3UQS0tVCtVWzLWnNqHJ3fnuWnMkJPi9kNx798l79+MdAFzO90xiEyun2Z55taAwWhP/iJ47BvRM7HEecSaiSWNcvrW4EJ/bQGzsoTsxgBre+E5wSmujrrSIDcTCEZbEmN892DNAaXimQCsFcvWQE4gVHGeDMt7QLQHszrSrgfN9NHrIBEWIlucWAVqrIdE+DSZUR/B9M84SJUCunGTfK9OKOwvwPEesL/u14l+nUyuyuQJKYgrGKvy4mWALl3FYAIlN4xdetsKR4BlzZC3eYLeNRYC3Ndbkj6yNzigF6snfLyNYineM5W7P0xJAZ10mEFFeRIbW4K6I4EZ8VCpiuijkL30VUYORKgpdZrLp1B+T1BKTZZZZuPWiXowUvXAMVeNefBXoTr86KI9Phir77yr8Ak8ubvWGYTQVAAAAAElFTkSuQmCC');
+  height: 32px;
+  width: 32px;
+  margin-top: -1px;
+  border: solid 0 #29447e;
+  border-right-width: 1px;
+  display: inline-block;
+  vertical-align: top;
+}
+
+[component="LoginWithFacebook"]:hover .icon {
+  border-color: #3b5bb5;
+}
+
+[component="LoginWithFacebook"] .text {
+  padding: 0 20px;
+  -webkit-border-radius: 0 3px 3px 0;
+  border-radius: 0 3px 3px 0;
+  display: inline-block;
+}
+
+

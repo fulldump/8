@@ -1,0 +1,7 @@
+[component="Image"].background {
+  display: inline-block;
+  width: 100px;
+  height: 100px;
+  background: no-repeat center center;
+  background-size: contain;
+}

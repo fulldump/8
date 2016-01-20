@@ -1,0 +1,15 @@
+{
+    "name": "EmailerCurrent",
+    "native": false,
+    "fields": {
+        "HTML": "Text",
+        "Timestamp": "Number",
+        "Parameters": "Text",
+        "Name": "Text",
+        "From": "Text",
+        "User": "SystemUser"
+    },
+    "data": [
+
+    ]
+}

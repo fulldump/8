@@ -1,0 +1,13 @@
+{
+    "name": "EmailerHistory",
+    "native": false,
+    "fields": {
+        "HTML": "Text",
+        "Timestamp": "Number",
+        "Original": "EmailerCurrent",
+        "User": "SystemUser"
+    },
+    "data": [
+
+    ]
+}

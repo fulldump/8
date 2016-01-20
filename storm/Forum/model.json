@@ -1,0 +1,14 @@
+{
+    "name": "Forum",
+    "native": false,
+    "fields": {
+        "Text": "Text",
+        "User": "SystemUser",
+        "Timestamp": "Number",
+        "ResponseTo": "Forum",
+        "NumResponses": "Number"
+    },
+    "data": [
+
+    ]
+}

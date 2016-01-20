@@ -1,0 +1,92 @@
+.EditorConfiguration {
+  position:absolute;
+  top:0;
+  left:0;
+  right:0;
+  bottom:0;
+}
+
+.left-panel {
+  position:absolute;
+  top:16px;
+  left:16px;
+  bottom:16px;
+  width:300px;
+}
+
+.left-panel .graphicList-listItem-Button {
+  background-image:url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAABHNCSVQICAgIfAhkiAAABStJREFUSIm9lXtM1WUYx7+/+/nBuXDkIhcVOHFVFBI1SO0iOBWXzhzWbGVz67K1rEVszq2ZTbcsqzUtbW2uWbY0MzWpkQqiIkyMuGgH8IhwQDjncDj3A+f8bm//OHOGuOnq++f7Ps/3s+d59j4v8B+LutfF2TZb0lNFWa4/uu0zRJ1QR9MUopK8IhiOXgOQtGiOxfVAgFMtXaIhVrdb1AnrVUWtBkiO2Ri7iaFpeAKhT0WB7xd57kN/aPzASCC8acmj2dJkAPbug57uLvaxBfPW6HhONJv1e3Q8C5qmQQEw63XvqBqBRghYhlpTe/r0W/er4DbgSH2bLsGsrwwEQy6RZ1hTDA9J1TAejsIfGgPLMEiK04NjaYAA4xGJLSwqLmm33Zxud3oPPbOwQJ4UIOq4apMhdlvyFCMl8CxCURk0RUGSFYz6wuAYGsYYARwrQGAZGGLFKcX5GfUsw1CeQFgPYN+kAIbCXJahQAiBohHQFNB61eb7et9Xpy7W/9bJshyzsKyisOrtN8tLC7P1cXoRQ+4ApY8RiI6li+/XKuQVL57T0GaTrXYn6XV4SG1zZ9CSX7QFwCwABgAmAEUzixdtb++xj49HJTI44iON7bZgRl6RZVLznxrayhqv3DhwoaNXsw2Nkn6Xj1R98NlxANMmCM/aseebek9wjNx0+8kla792yWrf+/O59tKJvGkAYGn6jUSz4UVZUamIJMPjD8Ppcl0AMDRBTp/T4Wge8YXg8gYhKxolCNzrhOD5iQAsAEQiEVckKkkRWeZjBA4QOMwuKNAAaBPkqDm5eYSmaICiEIlKkBUlEgiGfPdsEc3qpiwoX/PyD6cvq73Do2Q0ECZNndcazKlZ3N2xi5evFRs7bO1dAyOkpWuAHD7TGs2b92QlaFY/kfftl1zbfGUZx/MnOYZm52SlgRAQu8O9s7vHtrWy4mkJAA6erNPlZz/yuSiKr0iKSg25vJBVLez1B1dtqCitmxRwtL615vHCrIr6yz0omZ2J1HgjAMAfjvRIinpG1TRGUbVlskrSo7ICbyAMh9uPeLMRTrfXbUlL/IuiqKbSWRmb/zUDADhRe3aryFGFLsdgsC4SzSubl4up8UZwLJPjD0dyJEUFwzCIygo8/hB6B10QeE51+wJUWoLRaUlNeAIgM7v6HV0MTS+72Nm7eUNFSf+dy46iaGaaaDDTNWfON91weFMSTHpY0hJB0YCiEIQjEgadHgTC49AJnDQ1wcxmJJvpGIGDJzCGJLMeBlGARgisfY4T8/PTV9+57AjR1IFnX9uSGqPjDSsXFuDo7803r9rs+ilmkwkEcHu8HkMMH83NtqT03XRKkbGwR1VNyecutQ/s3L7tmCU7N3HXjvfXUAzLNzY1HwYA5u6hdDTWhq70eetG/GP83o+3VadnZLauLF+8OsFsQM3xYy8c+37/dxpvJEP9N/bk5+WU6nRC/KGDB7/89ci3H1nbWy7PXVReYoiLm2aOT6BLl1e23vPDuTUftXhpZWLK9MyXCKB2tbXsv95aHwDA/HKh43hyQlyFIUbA8LBjV1XVu9VLy5YY1657riUYVXJ4jkNjq3XdZIBJ9cmBmo0FmVPfc4fV6Uvm5yMqyedVgtTBEV9Oa2e3IzoWslp7h9Y/MOBWhZaa83/+6A1Lc2RFhaoR8DyHIXvf1s2vrvsCwCj9EACldNXG685Rnzc3PUVraWzYPTI8eCYUDDkGhkd7AIw+hPc/YoRY47xl61dQFG0yJc1IMSalp+HWEv1f9DeMBk8n/2iu8AAAAABJRU5ErkJggg==');
+}
+
+.right-panel {
+  position:absolute;
+  top:0;
+  left:316px;
+  bottom:0;
+  right:0;
+}
+
+.EditorConfiguration-current {
+  padding: 9px;
+  text-align: center;
+  height: 17px;
+  color: dodgerblue;
+  font-weight: bold;
+  font-size: 15px;
+}
+
+
+.EditorConfiguration-ConfigValue {
+  position:absolute;
+  top:16px;
+  left:16px;
+  right:16px;
+  height:150px;
+}
+
+.EditorConfiguration-ConfigValue-Right {
+  position:absolute;
+  overflow-y:auto;
+  top:0;
+  right:0;
+  bottom:0;
+  left:50%;
+}
+
+.EditorConfiguration-ConfigValue-Left {
+  position:absolute;
+  overflow-y:auto;
+  top:0;
+  right:50%;
+  bottom:0;
+  left:0;
+}
+
+.EditorConfiguration-ConfigValue-Input {
+  padding:4px;
+  width:90%;
+}
+
+.EditorConfiguration-ConfigValue-Buttons {
+  text-align:center;
+  padding:8px;
+  width:90%;
+}
+
+.EditorConfiguration-ConfigValue-Buttons BUTTON {
+  margin:8px;
+}
+
+/* Mobile devices */
+@media (max-width: 1024px) {
+
+  .EditorConfiguration-ConfigValue-Right {
+    position: static;
+    padding-bottom: 16px;
+  }
+
+  .EditorConfiguration-ConfigValue-Left {
+    position: static;
+  }
+
+}

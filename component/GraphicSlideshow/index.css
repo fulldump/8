@@ -1,0 +1,111 @@
+.GraphicSlideshow {
+	/* layout */
+	width: 100%;
+	height: 300px; /* PARAMETRIZABLE */
+	overflow: hidden;
+
+	/* colors */
+}
+
+.GraphicSlideshow-roll {
+	/* layout */
+	height: 100%;
+	margin: auto;
+	width: 100%; /* PARAMETRIZABLE (unit can be %) */
+
+	/* colors */
+}
+
+.GraphicSlideshow-roll-frame {
+	/* layout */
+	height: 100%;
+	width: 100%;
+	white-space: nowrap;
+	transition: margin-left 0.5s ease;
+	margin-left: 0;
+
+	/* colors */
+}
+
+.GraphicSlideshow-item {
+	/* layout */
+	display: inline-block;
+	height: 100%;
+	width: 100%;
+	overflow: hidden;
+	vertical-align: top;
+
+	/* colors */
+	background-repeat: no-repeat;
+	background-position: center center;
+	background-size: cover;
+}
+
+.GraphicSlideshow-item-frame {
+	/* layout */
+	padding: 32px;
+
+	/* colors */
+}
+
+.GraphicSlideshow-imageSelector {
+	float: left;
+}
+
+
+.GraphicSlideshow-title {
+	/* layout */
+	padding-bottom: 16px;
+
+	/* colors */
+	font-weight: bold;
+	font-size: 32px;
+	text-align: right;
+	color: black;
+	text-shadow: 1px 1px 3px white;
+}
+
+.GraphicSlideshow-text {
+	/* layout */
+	width: 50%;
+	float: right;
+	white-space: normal;
+
+	/* colors */
+	padding: 16px;
+	margin-right: -32px;
+	background-color: rgba(255,255,255,0.7);
+}
+
+.GraphicSlideshow-points {
+	/* layout */
+	height: 0;
+	width: 300px;
+	margin: auto;
+
+	/* colors */
+}
+
+.GraphicSlideshow-points-frame {
+	/* layout */
+	position: absolute;
+	width: inherit;
+	text-align: center;
+	padding: 8px;
+
+	/* colors */
+}
+
+.GraphicSlideshow-point {
+	display: inline-block;
+	width: 16px;
+	height: 16px;
+	background-color: gray;
+	margin: 4px;
+	border-radius: 8px;
+	cursor: pointer;
+}
+
+.GraphicSlideshow-point:hover {
+	background-color: black;
+}

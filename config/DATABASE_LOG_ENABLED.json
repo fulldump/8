@@ -1,0 +1,8 @@
+{
+    "name": "DATABASE_LOG_ENABLED",
+    "type": "BOOLEAN",
+    "description": "Enable this to log all database queries",
+    "default": false,
+    "callback_before": null,
+    "callback_after": null
+}

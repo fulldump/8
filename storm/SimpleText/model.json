@@ -1,0 +1,11 @@
+{
+    "name": "SimpleText",
+    "native": false,
+    "fields": {
+        "Name": "Text",
+        "Text": "Text"
+    },
+    "data": [
+
+    ]
+}

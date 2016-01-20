@@ -1,0 +1,59 @@
+[component="TrunkTable"] {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+[component="TrunkTable"] > [component="TrunkInputButton"].search {
+/*  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+*/
+}
+
+[component="TrunkTable"] div.a {
+  position: relative;
+}
+
+[component="TrunkTable"] div.b {
+
+}
+
+[component="TrunkTable"] div.c {
+  position: absolute;
+}
+
+[component="TrunkTable"] div.f {
+  position: fixed;
+}
+
+[component="TrunkTable"] table thead {
+  background-color: white;
+}
+
+/*
+Estudiar esto:
+http://salzerdesign.com/test/fixedTable.html
+*/
+
+[component="TrunkTable"] > table {
+  position: absolute;
+  display: block;
+  background: red;
+  top: 45px;
+  overflow-y: auto;
+  left: 0;
+  right: 0;
+  bottom: 0px;
+}
+
+[component="TrunkTable"] table tfoot td,
+[component="TrunkTable"] table thead td {
+  color: white;
+  background-color: #333333;
+  text-align: center;
+  padding: 4px 16px;
+}

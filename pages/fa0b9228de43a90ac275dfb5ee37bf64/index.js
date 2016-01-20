@@ -1,0 +1,9 @@
+[[INCLUDE component=AdminEmails]]
+[[INCLUDE component=Favicon]]
+
+window.addEventListener('load', function(e){
+	var contenedor = document.getElementById('contenedor');
+	var admin = new AdminEmails(contenedor);
+}, true);
+
+setFavicon('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAB8ElEQVQ4y8WTT2pUQRDGf9Wv38x78yfMM5EocRQ0MRIXwVm7EDxBcgvv4D0Ed+6zkZwhUXDjRnQgjIIgMtGIyUwm8XVXuegMmhOkoaC6ur6vq77ugqtesr396qkqT2azEJ1zqKZ4CGAmAiJmgqkRVVw6FxHcn6jTl74o/Iutrc215Zu3OJmAICAgAsx90t4JZJnQbhlv9o/Z2dlV3+tVZ+dSMD4c82hzhapqEfWiPAEs8TgBMzj6ERl+jvTXK3xOzyGcbg7uIWXF23ffGH76zkLXqHrQ7cBCFxYrEJSPH04Zfa2pbuRcqzziso4LdZh4YPXuEusbfY5+w+7rLxyOz2nkkOcwOjhnf++YZsvTv1NQtYUyz3DOd31d60lmRpkJ3XaTpQfLTCdn7O+Nud3vEqLjbKY83FjA5UlkA+qmI3O+40MIp0SlLDOcA+eEsix5fH2F4fAX7ZZj7X4PMxLYki51U/C+UXqN8cQ0UhRZUtol8UQcg8HiJeDcAPIavPcdr2bHMSqNZmL+n2T+Ell2mUCARhOcy1vezCYxRMoi3ZTamH+zlIz8A6qBAwLgfV76GMNkNJqCZMRgGAaWEm1euiQ/RkNNqCPMgifUtGQweLaqWj43BTUzVVDFQDATNTNU7aJ3MUyIagaSmf18f+XDyF+NRfApp0gBPwAAAABJRU5ErkJggg==');

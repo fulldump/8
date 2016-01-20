@@ -1,0 +1,147 @@
+<?php
+
+// Constants:
+$TrunkTransitionDelay = '0.4';
+$left_panel_width = 300;
+$splitter_panel_width = 8;
+
+?>
+
+[component="TrunkDouble"] {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+/* Panel current */
+[component="TrunkDouble"] .current-panel {
+  position: absolute;
+  top: 0;
+  left: 100%;
+  right:0;
+  height: 37px;
+  z-index: 999;
+  overflow: hidden;
+
+  transition: left <?=$TrunkTransitionDelay?>s ease;
+
+  background: white;
+}
+
+[component="TrunkDouble"] .current-panel .current-back {
+  height: 37px;
+  float: left;
+  width: 50px;
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+  border-color: transparent;
+  background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA8AAAAWCAYAAAAfD8YZAAAAAXNSR0IArs4c6QAAAI9JREFUOMu1lMENg0AMBMehgXSSFiiFl990kv++oJOUQDpJCXwAgcRJd7ayT0uzvrNXhkpJekoaz7VHLQh8gLekaa9bA/g6lWd3HywAHgZdEAQwC4JfoLco6O4/i4KXabeCBxwBASwKViespNyz0wNLryodknQ8WwyKq9r+1W9d7rT87xgUDGZ3H5rSdHcAV2fiaIZsvF6tAAAAAElFTkSuQmCC');
+}
+
+[component="TrunkDouble"] .current-panel .current-info {
+  border: solid transparent 1px;
+  margin-left: 50px;
+  height: 35px;
+  border-left: none;
+  overflow: hidden;
+}
+
+/* Panel left */
+[component="TrunkDouble"] .left-panel {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: <?=$left_panel_width?>px;
+  /*z-index: 98;*/
+  overflow: hidden;
+
+  background-color: white;
+
+  transition: width <?=$TrunkTransitionDelay?>s ease, right <?=$TrunkTransitionDelay?>s ease;
+}
+
+[component="TrunkDouble"] .left-panel [component="TrunkInputButton"] {
+  max-width: 100%;
+}
+
+/* Panel splitter */
+[component="TrunkDouble"] .splitter-panel {
+  position: absolute;
+  left: <?=$left_panel_width?>px;
+  top: 0;
+  bottom: 0;
+  width: <?=$splitter_panel_width?>px;
+  cursor: pointer;
+  transition: left <?=$TrunkTransitionDelay?>s ease;
+}
+
+[component="TrunkDouble"].splitted .splitter-panel {
+  background-color: dodgerblue;
+}
+
+[component="TrunkDouble"] .splitter-panel:hover {
+  background-color: dodgerblue;
+}
+
+/* Panel right */
+[component="TrunkDouble"] .right-panel {
+  position: absolute;
+  left: <?=$left_panel_width+$splitter_panel_width?>px;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  /*z-index: 99;*/
+  transition: left <?=$TrunkTransitionDelay?>s ease;
+  overflow: hidden;
+
+  background: white;
+}
+
+/* Splitted functionality */
+[component="TrunkDouble"].splitted .left-panel {
+  width: 0;
+}
+
+[component="TrunkDouble"].splitted .splitter-panel {
+  left: 0;
+}
+
+[component="TrunkDouble"].splitted .right-panel {
+  left: <?=$splitter_panel_width?>px;
+}
+
+/* Mobile devices */
+@media (max-width: 1024px) {
+
+  [component="TrunkDouble"] .splitter-panel {
+    display: none;
+  }
+
+  [component="TrunkDouble"] .left-panel {
+    right: 0 !important;
+    width: auto !important;
+  }
+
+  [component="TrunkDouble"] .right-panel {
+    top: 37px !important;
+    left: 100% !important;
+  }
+
+  /* Detailed behaviour */
+  [component="TrunkDouble"].detailed .left-panel {
+    /*display: none;*/
+    right: 100% !important;
+  }
+
+  [component="TrunkDouble"].detailed .right-panel {
+    left: 0 !important;
+  }
+
+  [component="TrunkDouble"].detailed .current-panel {
+    left: 0;
+  }
+
+}

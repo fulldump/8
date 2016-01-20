@@ -1,0 +1,13 @@
+{
+    "name": "Blog",
+    "native": false,
+    "fields": {
+        "TimeCreation": "Number",
+        "Author": "SystemUser",
+        "Options": "Text",
+        "Title": "Text"
+    },
+    "data": [
+
+    ]
+}

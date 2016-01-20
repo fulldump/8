@@ -1,0 +1,60 @@
+[component="TerrainDebugger"] {
+  border: solid black 1px;
+  padding: 2px;
+  font-size: 80%;
+  background-color: gray;
+}
+
+[component="TerrainDebugger"] .watch_node {
+  margin: 0px;
+}
+
+[component="TerrainDebugger"] .text {
+  background-color: silver;
+  display: inline-block;
+  background-color: white;
+
+  border: solid;
+  margin: 4px;
+}
+
+[component="TerrainDebugger"] .counter {
+  position: absolute;
+  margin-left: -32px;
+  font-size: 10px;
+  width: 32px;
+  text-align: right;
+  color: white;
+}
+
+[component="TerrainDebugger"] .cont {
+  padding-left: 32px;
+}
+
+[component="TerrainDebugger"] .anchor_node {
+  border-top: solid blue 2px;
+  margin-top: -2px;
+  background-color: white;
+}
+
+[component="TerrainDebugger"] .focus_node {
+  border-bottom: solid blue 2px;
+  margin-bottom: -2px;
+}
+
+[component="TerrainDebugger"] .caret {
+  margin-right: -1px;
+  height: 10px;
+  display: inline-block;
+  border-left: solid red 1px;
+}
+
+[component="TerrainDebugger"] .caret span {
+  position: absolute;
+  width: 64px;
+  height: 64px;
+  margin-left: -32px;
+  margin-top: -27px;
+  border: solid rgba(255,0,0,0.5) 1px;
+  border-radius: 50%;
+}

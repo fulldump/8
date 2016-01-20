@@ -1,0 +1,91 @@
+<meta http-equiv="Content-Type" CONTENT="text/html; charset=UTF-8">
+
+<h1>¿Qué es Rack?</h1>
+
+	<p>Es una forma de almacenar un gran número de archivos en un sistema de archivos basado en directorios, sin que se produzca la típica pérdida exponencial de rendimiento.</p>
+
+	<p>La solución consiste en almacenar los directorios y archivos de una forma jerárquica en lugar de hacerlo de forma plana en un mismo directorio.</p>
+
+<h1>Buscando los límites</h1>
+
+	<p>Hay que determinar qué valores utilizamos para las variables del problema en función del tipo de información que vayamos a utilizar. Éstas variables son:</p>
+
+	<ul>
+		<li>Arborescencia: cuántos subdirectorios tiene cada directorio</li>
+		<li>Profundidad: cuántoso niveles de directorios necesitaremos para almacenar todos nuestros archivos</li>
+	</ul>
+
+	<h2>Arborescencia</h2>
+
+		<p>Si la arborescencia tiene que ver con el número de entradas de directorio que puede almacenar cada i-nodo. Lo ideal sería utilizar el número máximo de entradas de directorio posible, pero esto tiene dos problemas:</p>
+
+		<ul>
+			<li>Varía de un sistema de ficheros a otro y varía según los parámetros de configuración de cada formateo.</li>
+			<li>Complica la localización del archivo</li>
+		</ul>
+
+		<p>Como solución óptima cada archivo se identificará por un hash md5. Cada caracter de un hash md5 tiene 16 posibles valores (está en hexadecimal), por lo tanto si elegimos:</p>
+
+		<ul>
+			<li>1 caracter -> 16 subdirectorios por directorio (arborescencia 16)</li>
+			<li>2 caracteres -> 16² = 256 subdirectorios por directorio (arborescencia 256)</li>
+		</ul>
+
+		<p>Elegiremos arborescencia 16</p>
+
+
+	<h2>Profundidad</h2>
+
+		<p>La profundidad viene determinada por la cantidad de archivos que necesitamos almacenar y ésta viene determinada a su vez por el espacio disponible y el tamaño medio de archivo. Hagamos algunas suposiciones:</p>
+
+		<ul>
+			<li>Espacio disponible: 2TiB - Es lo que se puede conseguir "fácilmente" en algunos proveedores de hosting.</li>
+			<li>Tamaño medio de archivo: 30KiB - Por el momento, en TreeWeb se almacenan mayoritariamente imágenes de (media 60KiB) y sus miniaturas cacheadas (media 6KiB) lo que hace una media global de 30KiB por archivo.</li>
+		</ul>
+
+		<p>Según estas suposiciones, necesitaríamos poder direccionar 71582788 archivos. Para distribuirlos uniformemente con una arborescencia de 16: (log 71582788)÷(log 16) = 6,52 niveles. Por lo tanto utilizaremos 6 niveles con arborescencia 16.</p>
+
+	<h2>Conclusiones</h2>
+
+		<p>Para:</p>
+
+		<ul>
+			<li>Un espacio disponible de <strong>2TiB</strong></li>
+			<li>Tamaño medio de archivo <strong>30KiB</strong></li>
+		</ul>
+
+		<p>Utilizaremos:</p>
+
+		<ul>
+			<li>Una arborescencia de <strong>16</strong></li>
+			<li>Y una profundidad de <strong>6 niveles</strong></li>
+		</ul>
+
+<h1>API</h1>
+	
+	<p>Ya que se necesitan almacenar distintas colecciones (imágenes, caché, miniaturas, archivos, ...), habrá varios Racks</p>
+
+	<p>Las operaciones disponibles para cada archivo son:</p>
+
+	<ul>
+		<li>Escritura</li>
+		<li>Ruta</li>
+		<li>Eliminación</li>
+	</ul>
+
+	<p>Obsérvese que no se pueden listar elementos (al menos por ahora)</p>
+
+	<h2>Escritura</h2>
+
+		<code>Rack::Write( {collection_name}, {hash}, {path_to_file} )</code>
+
+	<h2>Ruta</h2>
+
+		<p>Esta operación devuelve el directorio donde está almacenado físicamente el archivo.</p>
+
+		<code>Rack::Path( {collection_name}, {hash} )</code>
+
+	<h2>Eliminación</h2>
+
+		<code>Rack::Remove( {collection_name}, {hash} )</code>
+

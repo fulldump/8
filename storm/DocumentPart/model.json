@@ -1,0 +1,15 @@
+{
+    "name": "DocumentPart",
+    "native": false,
+    "fields": {
+        "Document": "Document",
+        "PreviousPart": "DocumentPart",
+        "NextPart": "DocumentPart",
+        "Data": "Text",
+        "Type": "DocumentPartType",
+        "Image": "Image"
+    },
+    "data": [
+
+    ]
+}

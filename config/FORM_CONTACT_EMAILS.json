@@ -1,0 +1,8 @@
+{
+    "name": "FORM_CONTACT_EMAILS",
+    "type": "EMAIL",
+    "description": "Emails where contact form is sent to.",
+    "default": "example@email.com, other@example.com",
+    "callback_before": null,
+    "callback_after": null
+}

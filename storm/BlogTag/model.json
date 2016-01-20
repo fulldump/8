@@ -1,0 +1,11 @@
+{
+    "name": "BlogTag",
+    "native": false,
+    "fields": {
+        "Blog": "Blog",
+        "Name": "Text"
+    },
+    "data": [
+
+    ]
+}

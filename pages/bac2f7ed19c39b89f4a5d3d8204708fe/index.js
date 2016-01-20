@@ -1,0 +1,12 @@
+[[INCLUDE component=EditorConfiguration]]
+[[INCLUDE component=Favicon]]
+
+window.addEventListener('load', function(){
+
+	var container = document.getElementById('contenedor');
+	var editor = newEditorConfiguration();
+	container.appendChild(editor);
+
+}, true);
+
+setFavicon('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAa1JREFUOMt100+IjlEUBvDfnRn5mKYpMhZI0UiaYjEspIQSxU6yVJqFlZQF9W7obqc0CylJSKGUUhYaKWUrTREpk/yJMCzMIOO7Ft/5Zl6MU+/inHv+PM9zzptALglJlZpySapU5NKP7XiFO6o0bQ7rAFUqaMilD53xthdn4xuIQQ25zP+3Qct24CJ2y2UJNkZ8KTYFojPIcultF6Xo3I2r2INPAXstGpH3BpPoxy+cwLAqlTaFSVzCFyzGhloxLMOaGPgZr9vD6xTu42XN/4ExPML3WvwebqtSs0Uhl9XYFZz3Y0EUj+AcpnAYx0PgcVzDA4wmuQyF0nU0Y9inSs9DowHcRV8t5y0OdOAd3qO+5ya+1fwVWFjzfwbKRoq9rsdgqLs8OA/jClbiVG2tz3Aaj/EkzfTMZRVuYV1EpjERmvTUpt/AQVX6OruFXObhWK0YuoJzz1/XuxXb5rrEqTiSiZjyovb2FNdDr0UYlEvX7CW2UPRiCB9wE0dwMqgcxXlswWZcxrgqlfQHuDxzmU257MSFaHBIlUYjpxPN+AEl/7PWdgbRjYeq9HGutN/caIBSUu3qKwAAAABJRU5ErkJggg==');

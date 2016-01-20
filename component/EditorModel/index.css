@@ -1,0 +1,95 @@
+			#panel-tables {
+				position:absolute;
+				top:0;
+				bottom:0;
+				left:0;
+				width:300px;
+				overflow-y:auto;
+			}
+			
+			#panel-editor {
+				position:absolute;
+				top:0;
+				bottom:0;
+				left:300px;
+				right:0;
+				overflow-y:auto;
+			}
+			
+			#panel-editor TH {
+				background-color:lightblue;
+				padding:8px;
+			}
+			
+			#editor-footer {
+				margin-top:16px;
+				border-radius:4px;
+				background-color:silver;
+			}
+			
+			#editor-footer A {
+				border-radius:4px;
+				display:inline-block;
+				padding:8px;
+				color:black;
+				text-decoration:none;
+			}
+			
+			#editor-footer A:hover {
+				background-color:gray;
+				color:white;
+			}
+			
+			#panel-editor TD INPUT {
+				display:block;
+				margin:0;
+				
+				width:100%;
+				border:none;
+			}
+			
+			#panel-editor TD .borde {
+				border:solid silver 1px;
+				padding:2px;
+			}
+			
+			#panel-editor TD .borde:hover {
+				border:solid black 1px;
+			}
+			
+			
+			#list-entities {
+				
+			}
+			
+			.bottom-bar {
+				background-color: silver;
+				border-radius: 4px 4px 4px 4px;
+				margin-top: 16px;
+			}
+			
+			.button-1 {
+				background-color:#4D90FE;
+			}
+
+			#new-entity-name {
+				width:100%;
+				border:none;
+			}
+			
+			#new-entity-engine {
+				width:100%;
+				border:none;
+			}
+			
+			
+			
+			#model-editor .elem {
+				display:block;
+				padding:8px;
+				cursor:pointer;
+			}
+			
+			#model-editor .elem:hover {
+				background-color:#EEEEEE;
+			}

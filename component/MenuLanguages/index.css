@@ -1,0 +1,12 @@
+[component="MenuLanguages"] img {
+  opacity: 0.3;
+}
+
+[component="MenuLanguages"] a:hover img,
+[component="MenuLanguages"] a.selected img {
+  opacity: 1;
+}
+
+[component="MenuLanguages"] a.selected img {
+  box-shadow: 1px 1px 4px gray;
+}

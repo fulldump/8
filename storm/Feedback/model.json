@@ -1,0 +1,11 @@
+{
+    "name": "Feedback",
+    "native": false,
+    "fields": {
+        "Message": "Text",
+        "User": "Users"
+    },
+    "data": [
+
+    ]
+}

@@ -1,0 +1,8 @@
+{
+    "name": "FACEBOOK_APP_ID",
+    "type": "STRING",
+    "description": "Facebook Application ID. If you need one, go to: https://developers.facebook.com/",
+    "default": "",
+    "callback_before": null,
+    "callback_after": null
+}

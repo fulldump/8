@@ -1,0 +1,124 @@
+8.7.0 / 2015-04-17 Gerardo Jimenez <gerardooscarjt@gmail.com>
+
+	* NOTE: This change set cames from Wikaan efforts:
+	* Extend class Lib:
+		* json_encode
+		* json_decode
+	* Improve Database logging errors
+	* Security issue (default user was admin):
+		* Fixed config/GUEST_USER_ID.json
+	* Add Storm method COUNT()
+	* Add method 'getAffectedRows' to class 'Database'
+	* Several points:
+		* Added global $_TITLE
+		* Added global $_DESCRIPTION
+		* Add headers 404 for pages
+	* Sync Terrain
+	* Sync TreeScript
+	* Add component 'Feedback'
+
+8.6.0 / 2015-03-13 Gerardo Jimenez <gerardooscarjt@gmail.com>
+
+	* NOTE: This change set cames from Metric efforts:
+	* .htaccess uncomment redirection
+	* Replace header("HTTP/1.0 404 Not Found") by http_response_code(404)
+	* Implement permissions system (based on groups)
+		* Instructions:
+			* TREEWEB: Implement permission system based on groups
+			* Instructions to integrate in the main TreeWeb branch:
+			* 1. Create property ('permissions'=>'[]') in the root node
+			* 2. Add property 'permissions' to all nodes (at least basic ones)
+			* 3. Review users permissions (Admin must have '*')
+			* 4. Merge the code (except the router.json)
+		* Files:
+			* class/Router.class.php -> added _have_access() and _apply_permissions()
+			* config/403_PAGE.json
+			* page f072a02478f83eebd003a77b13b6759f (default 403 page)
+			* router.json changes (according to migration process)
+		* Security issue (default user was admin):
+			* Fixed config/GUEST_USER_ID.json
+			* Export SystemUser
+
+8.5.0 / 2015-03-13 Gerardo Jimenez <gerardooscarjt@gmail.com>
+
+	* NOTE: This change set cames from Wikaan efforts:
+	* .htaccess force redirection to www.*
+	* Add login with Facebook:
+		* class/FacebookAuth.class.php
+		* component/LoginWithFacebook/
+		* config/FACEBOOK_.*
+	* Add login with Google:
+		* class/GoogleAuth.class.php
+		* component/LoginWithGoogle/
+		* config/GOOGLE_OAUTH_.*
+		* config/GOOGLE_WA_.*
+	* Add component/Logout
+	* Create Javascript framework 'Tests'
+		* component/Tests/
+	* Begin Terrain project
+		* component/Terrain/ -> Core
+		* component/TerrainDebugger/ -> Graphical developing tool
+		* component/TerrainTests/ -> Browser unit testing
+	* Add TrunkTemplate
+		* component/TrunkTemplate/
+	* Add Version
+		* component/Version/ -> Shows TreeWeb version
+	* Improve component Image
+		* Now it can show image in background
+	* Improvements in php/sitemap.php
+
+8.4.7 / 2015-02-08 Gerardo Jimenez <gerardooscarjt@gmail.com>
+
+	* Add image 'unwho.png' to resources to initialize new users' picture.
+	* Router class improvements:
+		* Change first node priority: At select starting node time, root node has preference over default node.
+		* Fix bug in parameters: Now works when parameter value is the same as parameter name
+	* Extend Lib with current url functions and request functions:
+		* getCurrentUrlScheme
+		* getCurrentUrlHost
+		* getCurrentUrl
+		* doRequest
+		* doPostForm
+	* Class Database must not print anything (previously was printing errors)
+
+8.4.6 / 2014-11-26 Gerardo Jimenez <gerardooscarjt@gmail.com>
+
+	* Add internacionalization to node URL generation and fix menu and menu languages
+
+8.4.5 / 2014-11-15 Gerardo Jimenez <gerardooscarjt@gmail.com>
+
+	* Add component CookiesPolicy
+	* Improve /profile layout adding margins
+
+8.4.4 / 2014-11-08  Gerardo Jimenez <gerardooscarjt@gmail.com>
+
+	* Handle 404 erros for Pages
+
+8.4.3 /  Gerardo Jimenez <gerardooscarjt@gmail.com>
+
+	* Change configuration DEFAULT_PAGE to 'index-page' (type string)
+
+8.4.2 /  Gerardo Jimenez <gerardooscarjt@gmail.com>
+
+	* Add profile page to adminx
+
+8.4.1 /  Gerardo Jimenez <gerardooscarjt@gmail.com>
+
+	* Component Imabe by name instead of id
+	* Fix resizing image module
+
+8.4.0 /  Gerardo Jimenez <gerardooscarjt@gmail.com>
+
+	* Intelligent sessions
+
+8.3.4 /  Gerardo Jimenez <gerardooscarjt@gmail.com>
+
+	* Store pages in disk instead of database
+
+8.3.3 /  Gerardo Jimenez <gerardooscarjt@gmail.com>
+
+	* Update database client to mysqli
+
+8.3.2 /  Gerardo Jimenez <gerardooscarjt@gmail.com>
+
+	* AdminxPages has been rewritten

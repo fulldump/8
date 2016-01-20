@@ -1,0 +1,26 @@
+html {
+	font-family: sans-serif;
+}
+
+
+
+
+
+.t-header {
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	height: 30px;
+	padding: 16px;
+	border-bottom: solid 2px dodgerblue;
+	font-size: 140%;
+}
+
+.t-body {
+	position: absolute;
+	top: 64px;
+	left: 0;
+	right: 0;
+	bottom: 0;
+}

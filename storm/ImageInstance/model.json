@@ -1,0 +1,15 @@
+{
+    "name": "ImageInstance",
+    "native": false,
+    "fields": {
+        "Name": "Text",
+        "Image": "Text",
+        "Description": "Text",
+        "Width": "Number",
+        "Height": "Number",
+        "Align": "Text"
+    },
+    "data": [
+
+    ]
+}

@@ -1,0 +1,8 @@
+{
+    "name": "GOOGLE_API_KEY",
+    "type": "STRING",
+    "description": "",
+    "default": "",
+    "callback_before": null,
+    "callback_after": null
+}

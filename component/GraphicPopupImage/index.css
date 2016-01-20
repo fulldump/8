@@ -1,0 +1,42 @@
+
+
+
+.panel-insert-image {
+	width:660px;
+	height:200px;
+}
+
+.panel-insert-image .panel-left {
+	height:100%;
+	width:214px;
+	float:left;
+	overflow:hidden;
+}
+
+.panel-insert-image .panel-right {
+	height:100%;
+	width:390px;
+	float:right;
+	overflow:hidden;
+}
+
+.panel-right .source-3 {
+	height:100%;
+	overflow-y:auto;
+}
+
+.panel-right .source-3 IMG {
+	display:block;
+	float:left;
+	margin:4px;
+	cursor:pointer;
+	width:64px;
+	height:64px;
+	border:solid silver 1px;
+}
+
+.panel-right .source-3 IMG:hover, .panel-right .source-3 IMG.s3_selected {
+	border-color:black;
+	box-shadow:4px 4px 4px gray;
+	margin:2px 6px 6px 2px;
+}

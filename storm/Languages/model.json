@@ -1,0 +1,38 @@
+{
+    "name": "Languages",
+    "native": false,
+    "fields": {
+        "Code": "Text",
+        "Image": "Image"
+    },
+    "data": [
+        {
+            "id": "5",
+            "__timestamp__": "1404246939",
+            "__operation__": "UPDATE",
+            "Code": "es",
+            "Image": "4"
+        },
+        {
+            "id": "6",
+            "__timestamp__": "1404246946",
+            "__operation__": "UPDATE",
+            "Code": "en",
+            "Image": "5"
+        },
+        {
+            "id": "7",
+            "__timestamp__": "1404246951",
+            "__operation__": "UPDATE",
+            "Code": "it",
+            "Image": "6"
+        },
+        {
+            "id": "8",
+            "__timestamp__": "1404246956",
+            "__operation__": "UPDATE",
+            "Code": "fr",
+            "Image": "7"
+        }
+    ]
+}

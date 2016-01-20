@@ -1,0 +1,8 @@
+{
+    "name": "FACEBOOK_SCOPES",
+    "type": "STRING",
+    "description": "Facebook application scopes. Is a list of scopes separated by space.",
+    "default": "email",
+    "callback_before": null,
+    "callback_after": null
+}

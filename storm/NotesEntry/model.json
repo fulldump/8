@@ -1,0 +1,15 @@
+{
+    "name": "NotesEntry",
+    "native": false,
+    "fields": {
+        "Notes": "Notes",
+        "Author": "SystemUser",
+        "Title": "Label",
+        "Content": "SimpleText",
+        "Creation": "Number",
+        "Publication": "Number"
+    },
+    "data": [
+
+    ]
+}
