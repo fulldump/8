@@ -1,0 +1,17 @@
+.HttpErrors {
+  margin: 16px auto;
+  padding: 16px;
+  max-width: 900px;
+  font-family: sans-serif;
+}
+
+.HttpErrors [component="TrunkLogin"] {
+  position: static;
+  margin-top: 32px;
+
+}
+
+.HttpErrors [component="TrunkLogin"] form {
+  box-shadow: none;
+  border-color: #F8F8F8;
+}
