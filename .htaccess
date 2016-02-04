@@ -5,7 +5,5 @@ RewriteEngine On
 RewriteCond %{HTTP_HOST} !^www\.
 RewriteRule ^(.*)$ http://www.%{HTTP_HOST}/$1 [R=301,L]
 
-RewriteCond %{REQUEST_URI} !/developer.php|/install.php
-RewriteRule (.*) index.php [L,QSA]
-
-
+RewriteCond %{REQUEST_URI} !=/index.php
+RewriteRule .* /index.php [NC,L]
