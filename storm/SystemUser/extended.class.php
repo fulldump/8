@@ -10,6 +10,19 @@
 		public function setPassword($value) {
 			return parent::setPassword(md5($value));
 		}
+
+		public function inGroup($group) {
+			$groups = json_decode($this->getGroups(), true);
+			if (false === $groups) {
+				return false;
+			}
+
+			if (in_array('*', $groups)) {
+				return true;
+			}
+
+			return in_array($group, $groups);
+		}
 		
 		public static function validate($login, $password) {
 			sleep(Config::get('LOGIN_DELAY'));
